@@ -76,6 +76,7 @@
             {
                 "id": "1972",
                 "name": "Безалкохолни",
+                "key":"cold-drinks",
                 "description": "",
                 "visible": "1",
                 "objId": "24",
@@ -100,6 +101,7 @@
                                         "name": "Кафе",
                                         "fullName": "Кафе",
                                         "price": "1.50",
+                                        "size":2,
                                         "childs": {
                                             "total": 0
                                         }
@@ -110,6 +112,7 @@
                                         "name": "Мляко",
                                         "fullName": "Мляко",
                                         "price": "1.20",
+                                        "size":1,
                                         "childs": {
                                             "total": 0
                                         }
@@ -120,6 +123,29 @@
                                         "name": "Нес Кафе",
                                         "fullName": "Нес Кафе",
                                         "price": "1.50",
+                                        "size":1,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "55999",
+                                        "code": "",
+                                        "name": "Чай Twinings",
+                                        "fullName": "Нес Кафе",
+                                        "price": "1.50",
+                                        "size":1,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "5556755",
+                                        "code": "",
+                                        "name": "Чай Билков",
+                                        "fullName": "Нес Кафе",
+                                        "price": "1.50",
+                                        "size":1,
                                         "childs": {
                                             "total": 0
                                         }
@@ -139,9 +165,55 @@
                                     {
                                         "id": "5593",
                                         "code": "",
-                                        "name": "arg",
+                                        "name": "Кока Кола",
                                         "fullName": "arg",
-                                        "price": "0.00",
+                                        "price": "2.00",
+                                        "size":2,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "559323112",
+                                        "code": "",
+                                        "name": "Фанта",
+                                        "fullName": "arg",
+                                        "price": "2.00",
+                                        "size":1,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "55932311211",
+                                        "code": "",
+                                        "name": "Спрайт",
+                                        "fullName": "arg",
+                                        "price": "2.00",
+                                        "size":1,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    }
+                                    ,
+                                    {
+                                        "id": "559323112",
+                                        "code": "",
+                                        "name": "Студен чай Nestea",
+                                        "fullName": "arg",
+                                        "price": "2.50",
+                                        "size":2,
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "55932311211",
+                                        "code": "",
+                                        "name": "Cappy",
+                                        "fullName": "arg",
+                                        "price": "2.00",
+                                        "size":1,
                                         "childs": {
                                             "total": 0
                                         }
@@ -155,6 +227,7 @@
             {
                 "id": "1973",
                 "name": "Алкохол",
+                "key":"hot-drinks",
                 "description": "",
                 "visible": "1",
                 "objId": "24",
@@ -209,7 +282,8 @@
             {
                 "id": "1974",
                 "name": "Други",
-                "description": "",
+                "key":"other",
+                "description": "other",
                 "visible": "1",
                 "objId": "24",
                 "items": {
@@ -248,141 +322,9 @@
                 }
             },
             {
-                "id": "1972",
-                "name": "Безалкохолни",
-                "description": "",
-                "visible": "1",
-                "objId": "24",
-                "items": {
-                    "total": 0
-                },
-                "groups": {
-                    "total": 2,
-                    "data": [
-                        {
-                            "id": "1975",
-                            "code": null,
-                            "name": "Топли напитки",
-                            "description": null,
-                            "visible": "1",
-                            "items": {
-                                "total": 3,
-                                "data": [
-                                    {
-                                        "id": "5590",
-                                        "code": "",
-                                        "name": "Кафе",
-                                        "fullName": "Кафе",
-                                        "price": "1.50",
-                                        "childs": {
-                                            "total": 0
-                                        }
-                                    },
-                                    {
-                                        "id": "5591",
-                                        "code": "",
-                                        "name": "Мляко",
-                                        "fullName": "Мляко",
-                                        "price": "1.20",
-                                        "childs": {
-                                            "total": 0
-                                        }
-                                    },
-                                    {
-                                        "id": "5592",
-                                        "code": "",
-                                        "name": "Нес Кафе",
-                                        "fullName": "Нес Кафе",
-                                        "price": "1.50",
-                                        "childs": {
-                                            "total": 0
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": "1981",
-                            "code": null,
-                            "name": "Безалкохолни",
-                            "description": null,
-                            "visible": "1",
-                            "items": {
-                                "total": 1,
-                                "data": [
-                                    {
-                                        "id": "5593",
-                                        "code": "",
-                                        "name": "arg",
-                                        "fullName": "arg",
-                                        "price": "0.00",
-                                        "childs": {
-                                            "total": 0
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "id": "1973",
-                "name": "Алкохол",
-                "description": "",
-                "visible": "1",
-                "objId": "24",
-                "items": {
-                    "total": 0
-                },
-                "groups": {
-                    "total": 3,
-                    "data": [
-                        {
-                            "id": "1976",
-                            "code": null,
-                            "name": "Водка",
-                            "description": null,
-                            "visible": "1",
-                            "items": {
-                                "total": 0,
-                                "data": [
-
-                                ]
-                            }
-                        },
-                        {
-                            "id": "1979",
-                            "code": null,
-                            "name": "Джин",
-                            "description": null,
-                            "visible": "1",
-                            "items": {
-                                "total": 0,
-                                "data": [
-
-                                ]
-                            }
-                        },
-                        {
-                            "id": "1980",
-                            "code": null,
-                            "name": "Уиски",
-                            "description": null,
-                            "visible": "1",
-                            "items": {
-                                "total": 0,
-                                "data": [
-
-                                ]
-                            }
-                        }
-                    ]
-                }
-            },
-            {
                 "id": "1974",
-                "name": "Други",
+                "name": "Коктейли",
+                "key":"cocktails",
                 "description": "",
                 "visible": "1",
                 "objId": "24",

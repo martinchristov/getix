@@ -10,10 +10,14 @@
 	</div>
 
 	<div id="leftbar">
-		<a ng-repeat="product in pos.products" hm-tap="pos.show('products',{{$index}})">{{product.name}}</a>
+		<a 
+			class="btn {{product.key}}"
+			ng-class="{on: pos.currentProductIndex==$index}"
+			ng-repeat="product in pos.products" 
+			hm-tap="pos.show('products',{{$index}})"></a>
 		<div class="bottom">
 			<a class="btn bills" hm-tap="pos.show('bills')"></a>
-			<a class="btn newbill"></a>
+			<a class="btn newbill" hm-tap="pos.newBill()"></a>
 		</div>
 	</div>
 	
@@ -26,7 +30,7 @@
 		</div>
 	</div>
 
-	<div id="rightbar">
-		<bill ng-model="openedBill"></bill>
+	<div id="rightbar" ng-show="pos.currentBill>-1">
+		<bill bill="pos.bills[pos.currentBill]"></bill>
 	</div>
 </div>

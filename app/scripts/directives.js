@@ -14,4 +14,19 @@ angular.module('getix')
 				console.log($scope.group);
 			}
 		};
+	}])
+
+	.directive('bill', [function () {
+		return {
+			restrict: 'E',
+			replace: true,
+			transclude:true,
+			templateUrl:'directives/bill.html',
+			scope:{
+				bill:'='
+			},
+			link: function () {
+				
+			}
+		};
 	}]);
