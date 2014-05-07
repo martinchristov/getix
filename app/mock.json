@@ -1,0 +1,426 @@
+{
+    "objectData": [
+        {
+            "name": "test",
+            "frmName": "Firma OOD",
+            "mol": "Боян Захариев",
+            "adr": "ул. Шишман",
+            "tagLine": "",
+            "eik": "1234578765"
+        }
+    ],
+    "printers": {
+        "total": 2,
+        "data": [
+            {
+                "id": "1",
+                "name": "Epson",
+                "model": null,
+                "type": "0",
+                "ipadress": null,
+                "outFolder": "pos\/POS_Printer",
+                "workArea": "0",
+                "clientBon": "1",
+                "rowLength": "28",
+                "leftMargin": "9",
+                "fontCode": "1",
+                "port": null
+            },
+            {
+                "id": "2",
+                "name": "Datecs",
+                "model": null,
+                "type": "1",
+                "ipadress": null,
+                "outFolder": "pos\/CashRegister",
+                "workArea": "0",
+                "clientBon": "0",
+                "rowLength": null,
+                "leftMargin": null,
+                "fontCode": "0",
+                "port": null
+            }
+        ]
+    },
+    "operators": {
+        "total": 1,
+        "data": [
+            {
+                "id": "50",
+                "name": "Admin",
+                "pswHash": "202cb962ac59075b964b07152d234b70",
+                "userGroup": "0"
+            }
+        ]
+    },
+    "tables": {
+        "total": 2,
+        "data": [
+            {
+                "id": "78",
+                "name": "Маса 2",
+                "code": "",
+                "zone": "-1"
+            },
+            {
+                "id": "87",
+                "name": "Маса 1",
+                "code": "",
+                "zone": "-1"
+            }
+        ]
+    },
+    "menu": {
+        "total": 6,
+        "data": [
+            {
+                "id": "1972",
+                "name": "Безалкохолни",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 2,
+                    "data": [
+                        {
+                            "id": "1975",
+                            "code": null,
+                            "name": "Топли напитки",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 3,
+                                "data": [
+                                    {
+                                        "id": "5590",
+                                        "code": "",
+                                        "name": "Кафе",
+                                        "fullName": "Кафе",
+                                        "price": "1.50",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "5591",
+                                        "code": "",
+                                        "name": "Мляко",
+                                        "fullName": "Мляко",
+                                        "price": "1.20",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "5592",
+                                        "code": "",
+                                        "name": "Нес Кафе",
+                                        "fullName": "Нес Кафе",
+                                        "price": "1.50",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1981",
+                            "code": null,
+                            "name": "Безалкохолни",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 1,
+                                "data": [
+                                    {
+                                        "id": "5593",
+                                        "code": "",
+                                        "name": "arg",
+                                        "fullName": "arg",
+                                        "price": "0.00",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1973",
+                "name": "Алкохол",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 3,
+                    "data": [
+                        {
+                            "id": "1976",
+                            "code": null,
+                            "name": "Водка",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1979",
+                            "code": null,
+                            "name": "Джин",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1980",
+                            "code": null,
+                            "name": "Уиски",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1974",
+                "name": "Други",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 2,
+                    "data": [
+                        {
+                            "id": "1977",
+                            "code": null,
+                            "name": "Коктейли",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1978",
+                            "code": null,
+                            "name": "Разядки",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1972",
+                "name": "Безалкохолни",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 2,
+                    "data": [
+                        {
+                            "id": "1975",
+                            "code": null,
+                            "name": "Топли напитки",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 3,
+                                "data": [
+                                    {
+                                        "id": "5590",
+                                        "code": "",
+                                        "name": "Кафе",
+                                        "fullName": "Кафе",
+                                        "price": "1.50",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "5591",
+                                        "code": "",
+                                        "name": "Мляко",
+                                        "fullName": "Мляко",
+                                        "price": "1.20",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    },
+                                    {
+                                        "id": "5592",
+                                        "code": "",
+                                        "name": "Нес Кафе",
+                                        "fullName": "Нес Кафе",
+                                        "price": "1.50",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1981",
+                            "code": null,
+                            "name": "Безалкохолни",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 1,
+                                "data": [
+                                    {
+                                        "id": "5593",
+                                        "code": "",
+                                        "name": "arg",
+                                        "fullName": "arg",
+                                        "price": "0.00",
+                                        "childs": {
+                                            "total": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1973",
+                "name": "Алкохол",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 3,
+                    "data": [
+                        {
+                            "id": "1976",
+                            "code": null,
+                            "name": "Водка",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1979",
+                            "code": null,
+                            "name": "Джин",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1980",
+                            "code": null,
+                            "name": "Уиски",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1974",
+                "name": "Други",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 2,
+                    "data": [
+                        {
+                            "id": "1977",
+                            "code": null,
+                            "name": "Коктейли",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1978",
+                            "code": null,
+                            "name": "Разядки",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

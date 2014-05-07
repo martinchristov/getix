@@ -1,0 +1,32 @@
+<div id="pos">
+	<div id="topbar">
+		<search></search>
+		<h1>Bilkova</h1>
+		<div class="btns">
+			<div class="btn">martin</div>
+			<div class="btn icon icon-settings"></div>
+			<div class="btn icon icon-fullscreen"></div>
+		</div>
+	</div>
+
+	<div id="leftbar">
+		<a ng-repeat="product in pos.products" hm-tap="pos.show('products',{{$index}})">{{product.name}}</a>
+		<div class="bottom">
+			<a class="btn bills" hm-tap="pos.show('bills')"></a>
+			<a class="btn newbill"></a>
+		</div>
+	</div>
+	
+	<div id="list">
+		<div id="products" ng-show="!pos.billsOn">
+			<group ng-repeat="group in pos.groups" group="group"></group>
+		</div>
+		<div id="bills" ng-show="pos.billsOn">
+			<bill ng-repeat="bill in pos.bills" bill="bill"></bill>
+		</div>
+	</div>
+
+	<div id="rightbar">
+		<bill ng-model="openedBill"></bill>
+	</div>
+</div>
