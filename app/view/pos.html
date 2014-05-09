@@ -23,7 +23,17 @@
 	
 	<div id="list">
 		<div id="products" ng-show="!pos.billsOn">
-			<group ng-repeat="group in pos.groups" group="group"></group>
+			<div class="group" ng-repeat="group in pos.groups">
+				<h3>{{group.name}}</h3>
+				<div class="items">
+					<div 
+						class="item" 
+						ng-class="{medium:item.size==2}"
+						ng-repeat="item in group.items.data"
+						hm-tap="pos.addToBill(item)"
+						>{{item.name}}</div>
+				</div>
+			</div>
 		</div>
 		<div id="bills" ng-show="pos.billsOn">
 			<bill ng-repeat="bill in pos.bills" bill="bill"></bill>

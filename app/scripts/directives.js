@@ -10,8 +10,8 @@ angular.module('getix')
 			scope:{
 				group:'='
 			},
-			link: function ($scope) {
-				console.log($scope.group);
+			link: function () {
+				
 			}
 		};
 	}])

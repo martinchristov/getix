@@ -89,50 +89,36 @@ $clr-money:#41921e;
         &.hot-drinks{
             background:$clr-hot-drinks;
             box-shadow:0 $btn-shadow-size 0 shade($clr-hot-drinks, $btn-shadow-shade);
-            &:active{
+            &:active, &.on{
                 box-shadow: 0 1px 0 shade($clr-hot-drinks, $btn-shadow-shade);
-            }
-            &.on{
-                background:shade($clr-hot-drinks, $btn-shadow-shade);
             }
         }
         &.cold-drinks{
-            background:$clr-cold-drinks;
+            background:url(../images/icons/beer.png) no-repeat center -8px $clr-cold-drinks;
+            background-size:100%;
             box-shadow:0 $btn-shadow-size 0 shade($clr-cold-drinks, $btn-shadow-shade);
-            &:active{
+            &:active, &.on{
                 box-shadow: 0 1px 0 shade($clr-cold-drinks, $btn-shadow-shade);
-            }
-            &.on{
-                background:shade($clr-cold-drinks, $btn-shadow-shade);
             }
         }
         &.cocktails{
             background:$clr-cocktails;
             box-shadow:0 $btn-shadow-size 0 shade($clr-cocktails, $btn-shadow-shade);
-            &:active{
+            &:active, &.on{
                 box-shadow: 0 1px 0 shade($clr-cocktails, $btn-shadow-shade);
-            }
-            &.on{
-                background:shade($clr-cocktails, $btn-shadow-shade);
             }
         }
         &.other{
             background:$clr-other;
             box-shadow:0 $btn-shadow-size 0 shade($clr-other, $btn-shadow-shade);
-            &:active{
+            &:active, &.on{
                 box-shadow: 0 1px 0 shade($clr-other, $btn-shadow-shade);
-            }
-            &.on{
-                background:shade($clr-other, $btn-shadow-shade);
             }
         }
 
         &.on{
             box-shadow:none;
             @include transform(translateY(4px));
-
-            // border:1px solid shade($clr-other, $btn-shadow-shade);
-            // @include transform(translate(-1px,-1px));
         }
 
     }
@@ -151,6 +137,9 @@ $clr-money:#41921e;
                 box-shadow: 0 1px 0 shade(#fff, $btn-shadow-shade);
             }
             margin-bottom: 15px;
+        }
+        .btn.newbill{
+            background:url(../images/icons/plus.png) no-repeat center #fff;
         }
     }
 }
@@ -205,10 +194,10 @@ $grid-margin:6px;
                     position: absolute;
                     width: ($grid-single + 4px);
                     height: ($grid-single + 4px);
-                    left: -4px;
-                    top: -4px;
+                    left: -6px;
+                    top: -6px;
                     border-radius: 8px;
-                    border:2px solid #888;
+                    border:4px solid #888;
                     opacity: 0;
                     @include transition(all .2s)
                 }
