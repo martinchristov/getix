@@ -11,10 +11,10 @@
 
 	<div id="leftbar">
 		<a 
-			class="btn {{product.key}}"
-			ng-class="{on: pos.currentProductIndex==$index}"
-			ng-repeat="product in pos.products" 
-			hm-tap="pos.show('products',{{$index}})"></a>
+			class="btn {{category.key}}"
+			ng-class="{on: pos.currentCategoryIndex==$index}"
+			ng-repeat="category in pos.categories" 
+			hm-tap="pos.show('categories',{{$index}})"></a>
 		<div class="bottom">
 			<a class="btn bills" hm-tap="pos.show('bills')"></a>
 			<a class="btn newbill" hm-tap="pos.newBill()"></a>
@@ -22,8 +22,11 @@
 	</div>
 	
 	<div id="list">
-		<div id="products" ng-show="!pos.billsOn">
-			<div class="group" ng-repeat="group in pos.groups">
+		<div 
+			class="groups fx-fade-left fx-easing-back fx-speed-500"
+			ng-repeat="category in pos.categories"
+			ng-show="pos.currentCategoryIndex==$index">
+			<div class="group" ng-repeat="group in category.groups.data">
 				<h3>{{group.name}}</h3>
 				<div class="items">
 					<div 
@@ -41,6 +44,10 @@
 	</div>
 
 	<div id="rightbar" ng-show="pos.currentBill>-1">
-		<bill bill="pos.bills[pos.currentBill]"></bill>
+		<bill 
+			ng-repeat="bill in pos.bills" 
+			bill="bill"
+			ng-show="$index==pos.currentBill"
+			></bill>
 	</div>
 </div>

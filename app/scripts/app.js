@@ -3,7 +3,9 @@
 
 angular.module('getix', [
 		'ngRoute',
-		'hmTouchEvents'
+		'hmTouchEvents',
+		'ngAnimate',
+		'fx.animations'
 	]).config(['$routeProvider',function ($routeProvider) {
 		$routeProvider
 			.when('/login', {controller:'Login', templateUrl:'view/login.html'})

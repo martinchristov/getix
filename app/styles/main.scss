@@ -15,6 +15,10 @@ h1,h2,h3,h4{
     font-weight: 300;
 }
 
+.clearfix{
+    width: 100%; float: none; clear: both;
+}
+
 
 .btn{
 
@@ -201,10 +205,12 @@ $grid-margin:6px;
                     opacity: 0;
                     @include transition(all .2s)
                 }
+                @include transition(all .2s ease-out);
                 &:active{
-                    &:before{
-                        opacity: .6;
-                    }
+                    @include transform(scale(1.1));
+                    // &:before{
+                    //     opacity: .6;
+                    // }
                 }
             }
         }
@@ -212,15 +218,62 @@ $grid-margin:6px;
 }
 
 #rightbar{
-    width: 275px;
-    padding: 20px;
     position: absolute;
     height: 100%;
     top: 85px;
     right: 0;
-    background:rgba(255,255,255,0.55);
     .bill{
+        width: 315px;
         margin-bottom: 90px;
+        background:rgba(255,255,255,0.55);
+        height: 100%;
+        position: absolute;
+        top: 0;right: 0;
+        .scroll{
+            height: 100%;
+            overflow-y: scroll;
+        }
+        .in{
+            padding: 20px;
+        }
+        .items{
+
+        }
+        .item{
+            @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+            &.ng-enter{
+                @include transform(translate(0,-50px));
+                opacity: 0;
+                margin-bottom: -55px;
+            }
+            &.ng-enter-active, &.ng-leave{
+                @include transform(translate(0,0));
+                opacity: 1;
+                margin-bottom: 10px;
+            }
+            &.ng-leave-active{
+                @include transform(translate(0,-50px));
+                opacity: 0;
+                margin-bottom: -55px;
+            }
+        }
+        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+        // -webkit-transition-timing-function: cubic-bezier(0.42,0,0.58,1);
+        &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+            display: block!important;
+            
+        }
+        &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+            @include transform(perspective(315px) rotateY(-40deg) translate(315px,0));
+            @include transform-origin(100%,50%);
+            -webkit-backface-visibility: visible;
+        }
+        &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+            @include transform(translate(0));
+        }
+        &.ng-enter{
+            -webkit-transition-delay: .3s;
+        }
     }
 
 }
@@ -243,9 +296,16 @@ $grid-margin:6px;
             color: #858585;
             font-size: 13px;
             font-weight: bold;
+            float: left;
+            @include transition(all .15s);
+            &.change-up{
+                @include transform(scale(1.3));
+                color:orange;
+            }
         }
         .name{
             font-size: 20px;
+            clear: left;
         }
         .price{
             position: absolute;

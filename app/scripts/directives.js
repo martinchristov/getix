@@ -16,7 +16,7 @@ angular.module('getix')
 		};
 	}])
 
-	.directive('bill', [function () {
+	.directive('bill', ['$timeout',function ($timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -25,8 +25,37 @@ angular.module('getix')
 			scope:{
 				bill:'='
 			},
-			link: function () {
-				
+			link: function ($scope) {
+				$scope.remove = function(item,bill,event){
+					
+					bill.items = _.reject(bill.items,item);
+					// bill.items.splice(2,1);
+				}
 			}
 		};
-	}]);
+	}])
+
+	.directive('winHeightMinus', [function () {
+		return {
+			restrict: 'A',
+			link: function ($scope, el, attr) {
+				angular.element(window).resize(function(){
+					el.height(angular.element(window).height()-attr.winHeightMinus);
+				})
+				.resize();
+			}
+		};
+	}])
+	.directive('animateOnChange', ['$animate',function($animate) {
+		return function(scope, elem, attr) {
+			scope.$watch(attr.animateOnChange, function(nv,ov) {
+				if (nv!==ov) {
+					var c = nv > ov ? 'change-up':'change';
+					$animate.addClass(elem,c, function() {
+						$animate.removeClass(elem,c);
+					});
+				}
+			});
+		};
+	}])
+	;
