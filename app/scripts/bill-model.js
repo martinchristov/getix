@@ -29,6 +29,15 @@
 			})
 		);
 	};
+
+	Bill.prototype.close = function(){
+		
+	};
+
+	Bill.prototype.cancel = function(){
+
+	};
+
 	Bill.prototype.total = function(){
 		var total=0;
 		for(var i=0;i<this.items.length;i++){

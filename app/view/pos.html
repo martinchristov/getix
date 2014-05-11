@@ -1,53 +1,54 @@
 <div id="pos">
-	<div id="topbar">
-		<search></search>
-		<h1>Bilkova</h1>
-		<div class="btns">
-			<div class="btn">martin</div>
-			<div class="btn icon icon-settings"></div>
-			<div class="btn icon icon-fullscreen"></div>
-		</div>
-	</div>
-
-	<div id="leftbar">
-		<a 
-			class="btn {{category.key}}"
-			ng-class="{on: pos.currentCategoryIndex==$index}"
-			ng-repeat="category in pos.categories" 
-			hm-tap="pos.show('categories',{{$index}})"></a>
-		<div class="bottom">
-			<a class="btn bills" hm-tap="pos.show('bills')"></a>
-			<a class="btn newbill" hm-tap="pos.newBill()"></a>
-		</div>
-	</div>
-	
-	<div id="list">
-		<div 
-			class="groups fx-fade-left fx-easing-back fx-speed-500"
-			ng-repeat="category in pos.categories"
-			ng-show="pos.currentCategoryIndex==$index">
-			<div class="group" ng-repeat="group in category.groups.data">
-				<h3>{{group.name}}</h3>
-				<div class="items">
-					<div 
-						class="item" 
-						ng-class="{medium:item.size==2}"
-						ng-repeat="item in group.items.data"
-						hm-tap="pos.addToBill(item)"
-						>{{item.name}}</div>
-				</div>
+	<div ng-controller="Bills as bills">
+		<div id="topbar">
+			<search></search>
+			<h1>Bilkova</h1>
+			<div class="btns">
+				<div class="btn">martin</div>
+				<div class="btn icon icon-settings"></div>
+				<div class="btn icon icon-fullscreen"></div>
 			</div>
 		</div>
-		<div id="bills" ng-show="pos.billsOn">
-			<bill ng-repeat="bill in pos.bills" bill="bill"></bill>
-		</div>
-	</div>
 
-	<div id="rightbar" ng-show="pos.currentBill>-1">
-		<bill 
-			ng-repeat="bill in pos.bills" 
-			bill="bill"
-			ng-show="$index==pos.currentBill"
-			></bill>
+		<div id="leftbar">
+			<a 
+				class="btn {{category.key}}"
+				ng-class="{on: pos.currentCategoryIndex==$index}"
+				ng-repeat="category in pos.categories" 
+				hm-tap="pos.show('categories',{{$index}})"></a>
+			<div class="bottom">
+				<a class="btn bills" hm-tap="pos.show('bills')"></a>
+				<a class="btn newbill" hm-tap="bills.newBill()"></a>
+			</div>
+		</div>
+		
+		<div id="list">
+			<div 
+				class="groups fx-fade-left fx-easing-back fx-speed-500"
+				ng-repeat="category in pos.categories"
+				ng-show="pos.currentCategoryIndex==$index">
+				<div class="group" ng-repeat="group in category.groups.data">
+					<h3>{{group.name}}</h3>
+					<div class="items">
+						<div 
+							class="item" 
+							ng-class="{medium:item.size==2}"
+							ng-repeat="item in group.items.data"
+							hm-tap="bills.addToCurrent(item)"
+							>{{item.name}}</div>
+					</div>
+				</div>
+			</div>
+			<div id="bills" ng-show="pos.billsOn">
+				<bill ng-repeat="bill in bills.open" bill="bill"></bill>
+			</div>
+		</div>
+		<div id="rightbar" ng-show="bills.current>-1">
+			<bill 
+				ng-repeat="bill in bills.opened" 
+				bill="bill"
+				ng-show="$index==bills.current"
+				></bill>
+		</div>
 	</div>
 </div>

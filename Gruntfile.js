@@ -341,6 +341,19 @@ module.exports = function (grunt) {
                 'imagemin',
                 'svgmin'
             ]
+        },
+
+        webfont:{
+            icons:{
+                src:'app/images/svg/*.svg',
+                dest:'app/fonts',
+                options:{
+                    stylesheet:'scss',
+                    engine:'node',
+                    relativeFontPath:'../fonts/'
+                }
+            }
+
         }
     });
 

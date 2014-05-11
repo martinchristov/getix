@@ -3,6 +3,9 @@
 
 @import "compass/css3";
 @import "compass/reset";
+
+@import "../fonts/_icons.scss";
+
 // @import "compass/helpers/colors";
 
 body {
@@ -21,9 +24,17 @@ h1,h2,h3,h4{
 
 
 .btn{
-
-    &.g{
-
+    border-radius: 6px;
+    box-sizing:border-box;
+    display: block;
+    @include transition(all .15s);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 46px;
+    &:active{
+        @include transform(translateY(3px));
     }
 }
 
@@ -76,18 +87,12 @@ $clr-money:#41921e;
     width: 104px;
     top: 85px;
     background:rgba(255,255,255,0.55);
+
     .btn{
-        display: block;
         width: 74px;
         height: 74px;
-        border-radius: 6px;
         margin-left: 14px;
         margin-top: 14px;
-        box-sizing:border-box;
-        @include transition(all .15s);
-        &:active{
-            @include transform(translateY(3px));
-        }
 
         //custom styling for category keywords
         &.hot-drinks{
@@ -258,7 +263,6 @@ $grid-margin:6px;
             }
         }
         @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
-        // -webkit-transition-timing-function: cubic-bezier(0.42,0,0.58,1);
         &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
             display: block!important;
             
@@ -274,6 +278,8 @@ $grid-margin:6px;
         &.ng-enter{
             -webkit-transition-delay: .3s;
         }
+
+
     }
 
 }
@@ -328,6 +334,36 @@ $grid-margin:6px;
             font-weight: bold;
             font-size: 13px;
             color: #858585;
+        }
+    }
+
+    .bottom{
+        position: absolute;
+        bottom: 0;
+        padding: 20px;
+        
+        .btn.close{
+            float: left;
+            width: 196px;
+            height: 46px;
+            background:$clr-money;
+            box-shadow:0 $btn-shadow-size 0 shade($clr-money, $btn-shadow-shade);
+            &:active{
+                box-shadow: 0 1px 0 shade($clr-money, $btn-shadow-shade);
+            }
+
+        }
+        .btn.cancel{
+            float: left;
+            margin-right: 17px;
+            width: 46px;
+            height: 46px;
+            background:#a2a2a2;
+            box-shadow:0 $btn-shadow-size 0 shade(#a2a2a2, $btn-shadow-shade);
+            font-size: 25px;
+            &:active{
+                box-shadow: 0 1px 0 shade(#a2a2a2, $btn-shadow-shade);
+            }
         }
     }
 }
