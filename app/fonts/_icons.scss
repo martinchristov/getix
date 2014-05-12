@@ -2,11 +2,11 @@
 
 @font-face {
 	font-family:"icons";
-	src:url("../fonts/icons-08a584aaf16b987c2fc87a2c651ee0ea.eot");
-	src:url("../fonts/icons-08a584aaf16b987c2fc87a2c651ee0ea.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/icons-08a584aaf16b987c2fc87a2c651ee0ea.woff") format("woff"),
-		url("../fonts/icons-08a584aaf16b987c2fc87a2c651ee0ea.ttf") format("truetype"),
-		url("../fonts/icons-08a584aaf16b987c2fc87a2c651ee0ea.svg?#icons") format("svg");
+	src:url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.eot");
+	src:url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.woff") format("woff"),
+		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.ttf") format("truetype"),
+		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.svg?#icons") format("svg");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -16,7 +16,7 @@
 	display:inline-block;
 	vertical-align:middle;
 	line-height:1;
-	font-weight:normal!important;
+	font-weight:normal;
 	font-style:normal;
 	speak:none;
 	text-decoration:inherit;
@@ -40,11 +40,16 @@
 }
 
 
-.icon_search:before {
+.icon_pointer:before {
 	content:"\e003";
 }
 
 
-.icon_settings:before {
+.icon_search:before {
 	content:"\e004";
+}
+
+
+.icon_settings:before {
+	content:"\e005";
 }

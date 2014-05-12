@@ -3,6 +3,7 @@
 (function(){
 
 	function Bill(){
+		this.index=0;
 		this.items = [];
 	}
 	Bill.$factory = [
@@ -22,16 +23,17 @@
 			}
 		}
 		//add a new item
+		var index = this.index++;
 		this.items.push(
 			_.extend(_.clone(item),{
-				added:new Date(),
+				index:index,
 				quantity:1
 			})
 		);
 	};
 
 	Bill.prototype.close = function(){
-		
+
 	};
 
 	Bill.prototype.cancel = function(){

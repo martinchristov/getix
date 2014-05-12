@@ -1,4 +1,4 @@
-/* global angular */
+/* global angular,_ */
 'use strict';
 
 angular.module('getix')
@@ -16,7 +16,7 @@ angular.module('getix')
 		};
 	}])
 
-	.directive('bill', ['$timeout',function ($timeout) {
+	.directive('bill', ['UIService',function (UIService) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -25,15 +25,64 @@ angular.module('getix')
 			scope:{
 				bill:'='
 			},
-			link: function ($scope) {
-				$scope.remove = function(item,bill,event){
-					
+			link: function ($scope, elem, attrs) {
+				$scope.received=0;
+				$scope.toStep2 = function(){
+					$scope.received = $scope.bill.total();
+					$scope.step2=true;
+					// angular.element(document.getElementById('received-input')).focus();
+					setTimeout(function(){
+						$('#received-input').focus();
+					},600);
+				};
+				$scope.remove = function(item,bill){
 					bill.items = _.reject(bill.items,item);
-					// bill.items.splice(2,1);
+				};
+				//draggers
+				if(attrs.draggable=='true'){
+					$scope.dragging = UIService.isDragging();
+					console.log($scope.dragging);
+					$scope.dragStart = function(){
+						angular.element(elem).css({'-webkit-transition':'none'});
+						UIService.isDragging(true);
+					};
+					$scope.dragUp = function(e){
+						angular.element(elem).css({'-webkit-transform':'translate(0,-'+e.gesture.distance+'px)'})
+					};
+					$scope.dragDown=function(){
+
+					};
+					$scope.dragEnd= function(){
+						angular.element(elem).removeAttr('style');
+						UIService.isDragging(false);
+					};
 				}
 			}
 		};
 	}])
+
+	.directive('billdrag', function () {
+	    return {
+	        link: function(elem, $scope, attrs){
+	            console.log('here');
+				
+	        }
+	    };
+	})
+
+	.directive('currency', function () {
+	    return {
+	        require: 'ngModel',
+	        link: function(elem, $scope, attrs, ngModel){
+	            ngModel.$formatters.push(function(val){
+	                return val.toFixed(2);
+	            });
+	            // ngModel.$parsers.push(function(val){
+	            //     return val.replace(/^\$/, '')
+	            // });
+	        }
+	    };
+	})
 
 	.directive('winHeightMinus', [function () {
 		return {

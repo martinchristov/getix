@@ -1,5 +1,5 @@
 <div id="pos">
-	<div ng-controller="Bills as bills">
+	<div ng-controller="Bills as bills" ng-init="pos.bills=bills">
 		<div id="topbar">
 			<search></search>
 			<h1>Bilkova</h1>
@@ -17,12 +17,11 @@
 				ng-repeat="category in pos.categories" 
 				hm-tap="pos.show('categories',{{$index}})"></a>
 			<div class="bottom">
-				<a class="btn bills" hm-tap="pos.show('bills')"></a>
 				<a class="btn newbill" hm-tap="bills.newBill()"></a>
 			</div>
 		</div>
 		
-		<div id="list">
+		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on}">
 			<div 
 				class="groups fx-fade-left fx-easing-back fx-speed-500"
 				ng-repeat="category in pos.categories"
@@ -39,16 +38,31 @@
 					</div>
 				</div>
 			</div>
-			<div id="bills" ng-show="pos.billsOn">
-				<bill ng-repeat="bill in bills.open" bill="bill"></bill>
-			</div>
 		</div>
-		<div id="rightbar" ng-show="bills.current>-1">
+		<div id="rightbar">
 			<bill 
 				ng-repeat="bill in bills.opened" 
 				bill="bill"
 				ng-show="$index==bills.current"
 				></bill>
+		</div>
+
+		<div id="bills" 
+			ng-show="bills.opened.length>0" 
+			ng-class="{shorter:bills.current>-1, open:pos.shown=='bills'}" 
+			win-height-minus="85">
+			<div class="holder">
+				<div class="toggle icon icon_pointer" hm-tap="pos.toggleBills()"></div>
+				<div class="list" style="width:{{bills.opened.length*335}}px">
+					<bill
+						ng-repeat="bill in bills.opened"
+						bill="bill"
+						ng-hide="bills.opened[bills.current]==bill"
+						draggable="true"
+						></bill>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </div>
