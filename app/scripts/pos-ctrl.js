@@ -1,7 +1,7 @@
 /* global angular */
 'use strict';
 
-var POS = function(appData, UIService, $scope){
+var POS = function(appData, UIService){
 	this.categories = appData.data.menu.data;
 	this.currentCategoryIndex = 0;
 	
@@ -19,7 +19,7 @@ POS.prototype.show = function(what,index){
 	}
 };
 POS.prototype.toggleBills = function(){
-	if(this.shown=='bills'){
+	if(this.shown==='bills'){
 		this.shown='categories';
 	}
 	else {
@@ -28,6 +28,6 @@ POS.prototype.toggleBills = function(){
 	}
 };
 
-POS.$inject = ['appData','UIService', '$scope'];
+POS.$inject = ['appData','UIService'];
 
 angular.module('getix').controller('POS',POS);

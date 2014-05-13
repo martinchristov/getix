@@ -2,11 +2,11 @@
 
 @font-face {
 	font-family:"icons";
-	src:url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.eot");
-	src:url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.eot?#iefix") format("embedded-opentype"),
-		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.woff") format("woff"),
-		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.ttf") format("truetype"),
-		url("../fonts/icons-4077165f5e527f0a6134a220a2a99b43.svg?#icons") format("svg");
+	src:url("../fonts/icons-9bd663bf252b41d8f291ca7dd9e2c3f4.eot");
+	src:url("../fonts/icons-9bd663bf252b41d8f291ca7dd9e2c3f4.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/icons-9bd663bf252b41d8f291ca7dd9e2c3f4.woff") format("woff"),
+		url("../fonts/icons-9bd663bf252b41d8f291ca7dd9e2c3f4.ttf") format("truetype"),
+		url("../fonts/icons-9bd663bf252b41d8f291ca7dd9e2c3f4.svg?#icons") format("svg");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -45,11 +45,16 @@
 }
 
 
-.icon_search:before {
+.icon_pushpin:before {
 	content:"\e004";
 }
 
 
-.icon_settings:before {
+.icon_search:before {
 	content:"\e005";
+}
+
+
+.icon_settings:before {
+	content:"\e006";
 }

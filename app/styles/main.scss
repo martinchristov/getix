@@ -34,6 +34,10 @@ h1,h2,h3,h4{
     user-select: none;
 }
 
+.static{
+    @include transition(none!important);
+}
+
 .icon{
     font-weight: normal!important;
 }
@@ -113,6 +117,7 @@ $clr-bottom:#3c3c3c;
     height: 100%;
     width: 104px;
     top: 85px;
+    z-index: 100;
     background:rgba(255,255,255,0.55);
 
     .btn{
@@ -276,22 +281,7 @@ $grid-margin:6px;
 
         }
         .item{
-            @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
-            &.ng-enter{
-                @include transform(translate(0,-50px));
-                opacity: 0;
-                margin-bottom: -55px;
-            }
-            &.ng-enter-active, &.ng-leave{
-                @include transform(translate(0,0));
-                opacity: 1;
-                margin-bottom: 10px;
-            }
-            &.ng-leave-active{
-                @include transform(translate(0,-50px));
-                opacity: 0;
-                margin-bottom: -55px;
-            }
+            
         }
         @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
         &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
@@ -317,9 +307,33 @@ $grid-margin:6px;
 .bill{
     width: 315px;
     background:rgba(255,255,255,0.55);
+    position: relative;
+    overflow: hidden;
     .in{
-            padding: 20px;
+        // padding: 20px;
+    }
+    .pin{
+        width: 38px;
+        height: 38px;
+        background:$clr-bottom;
+        border-radius: 4px;
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        text-align: center;
+        line-height: 38px;
+        color: #fff;
+        &.pinned{
+            background:#cfcfcf;
         }
+    }
+    .scroll{
+        padding: 20px;
+        width: 290px;
+        padding-right: 50px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
     .items{
 
     }
@@ -364,6 +378,22 @@ $grid-margin:6px;
             color: $clr-money;
             font-weight:600;
         }
+        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+        &.ng-enter{
+            @include transform(translate(0,-50px));
+            opacity: 0;
+            margin-bottom: -55px;
+        }
+        &.ng-enter-active, &.ng-leave{
+            @include transform(translate(0,0));
+            opacity: 1;
+            margin-bottom: 10px;
+        }
+        &.ng-leave-active{
+            @include transform(translate(0,-50px));
+            opacity: 0;
+            margin-bottom: -55px;
+        }
     }
 
     .total{
@@ -395,7 +425,7 @@ $grid-margin:6px;
     }
     .bottom{
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
         padding: 20px;
         background:$clr-bottom;
         width: 100%;
@@ -461,17 +491,32 @@ $grid-margin:6px;
         right:30px;
         top: 60px;
     }
+
+    @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+    &.ng-enter{
+        @include transform(translate(320px,0));
+        opacity: 0;
+    }
+    &.ng-enter-active, &.ng-leave{
+        @include transform(translate(0,0));
+        opacity: 1;
+    }
+    &.ng-leave-active{
+        @include transform(translate(320px,0));
+        opacity: 0;
+    }
 }
 
 #bills{
     position: absolute;
-    left: 144px;
+    // left: 144px;
+    right:10px;
     top: 100%;
     margin-top: -70px;
     width: 100%;
     z-index: 98;
     .holder{
-        margin-right: 125px;
+        margin-right: 154px;
         // overflow-x: scroll;
         // overflow-y: hidden;
         height: 100%;
@@ -491,20 +536,20 @@ $grid-margin:6px;
         line-height: 46px;
     }
     .list{
-        margin-left: 80px;
+        // margin-left: 80px;
+        float: right;
     }
     .bill{
-        width: 312px;
-        margin-right: 20px;
+        position: absolute;
         border-radius: 6px;
-        float: left;
-        @include transition(all .3s);
+        // @include transition(all .3s);
         @include unselectable;
-        .bottom{
-            display: none;
-        }
+        
         &.highlight{
             background:rgba(255,255,255,0.9);
+        }
+        &.collapsed{
+            top: 0!important;
         }
     }
     

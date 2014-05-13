@@ -4,17 +4,18 @@
 	hm-dragup="dragUp($event)"
 	hm-dragdown="dragDown($event)"
 	hm-dragend="dragEnd()"
-	ng-class="{highlight:dragging.on}"
+
 	>
-	<div class="scroll" win-height-minus="171">
+	<div class="scroll scrollme" win-height-minus="215" scrollbottom>
 		<div class="in">
+			<div class="pin icon icon_pushpin" ng-class="{pinned:draggable}" hm-tap="$parent.bills.pin(bill)"></div>
 			<div class="cap">bill</div>
 			<h3>New</h3>
 			<hr>
 			<div class="step1 step" ng-hide="step2">
 				<div class="items">
 					<div 
-						class="item " 
+						class="item" 
 						hm-tap="remove(item,bill,$event)" 
 						ng-repeat="item in bill.items track by item.index">
 

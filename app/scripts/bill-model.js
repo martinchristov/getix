@@ -2,8 +2,9 @@
 'use strict';
 (function(){
 
-	function Bill(){
+	function Bill(position){
 		this.index=0;
+		this.position=position;
 		this.items = [];
 	}
 	Bill.$factory = [

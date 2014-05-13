@@ -23,14 +23,14 @@ angular.module('getix')
 			transclude:true,
 			templateUrl:'directives/bill.html',
 			scope:{
-				bill:'='
+				bill:'=',
+				draggable:'='
 			},
-			link: function ($scope, elem, attrs) {
+			link: function ($scope, elem) {
 				$scope.received=0;
 				$scope.toStep2 = function(){
 					$scope.received = $scope.bill.total();
 					$scope.step2=true;
-					// angular.element(document.getElementById('received-input')).focus();
 					setTimeout(function(){
 						$('#received-input').focus();
 					},600);
@@ -38,37 +38,68 @@ angular.module('getix')
 				$scope.remove = function(item,bill){
 					bill.items = _.reject(bill.items,item);
 				};
-				//draggers
-				if(attrs.draggable=='true'){
-					$scope.dragging = UIService.isDragging();
-					console.log($scope.dragging);
-					$scope.dragStart = function(){
-						angular.element(elem).css({'-webkit-transition':'none'});
-						UIService.isDragging(true);
-					};
-					$scope.dragUp = function(e){
-						angular.element(elem).css({'-webkit-transform':'translate(0,-'+e.gesture.distance+'px)'})
-					};
-					$scope.dragDown=function(){
 
-					};
-					$scope.dragEnd= function(){
-						angular.element(elem).removeAttr('style');
+				$scope.$watch('bill.position',function(){
+					angular.element(elem).css({right:$scope.bill.position*335});
+				});
+
+
+
+				//draggers
+				$scope.dragging = UIService.isDragging();
+				var maxdistance = 0;
+				$scope.dragStart = function(){
+					if($scope.draggable){
+						maxdistance = elem.attr('maxdistance');
+						angular.element(elem).addClass('static');
+						UIService.isDragging(true);
+					}
+					
+				};
+				$scope.dragUp = function(e){
+					if($scope.draggable){
+						var distance = e.gesture.distance;
+						if(distance>maxdistance){
+							distance = maxdistance;
+						}
+						console.log(distance,maxdistance);
+						angular.element(elem).css({'-webkit-transform':'translate(0,-'+distance+'px)'});
+					}
+				};
+				$scope.dragDown=function(){
+
+				};
+				$scope.dragEnd= function(){
+					if($scope.draggable){
+						angular.element(elem).removeClass('static');
+						setTimeout(function(){
+							angular.element(elem).css({'-webkit-transform':'translate(0,0)'});
+						},50);
 						UIService.isDragging(false);
-					};
-				}
+					}
+				};
 			}
 		};
 	}])
-
-	.directive('billdrag', function () {
-	    return {
-	        link: function(elem, $scope, attrs){
-	            console.log('here');
-				
-	        }
-	    };
-	})
+	.directive('scrollbottom', [function () {
+		return {
+			restrict: 'A',
+			link: function ($scope, el) {
+				$scope.$on('scrollbottom', function(){
+					el[0].scrollTop = el[0].scrollHeight;
+					$(el).animate({scrollTop:el[0].scrollHeight},200);
+				});
+			}
+		};
+	}])
+	.directive('billTop', [function () {
+		return {
+			restrict: 'A',
+			link: function ($scope, el) {
+				angular.element(el).css({top:-(angular.element(window).height()-85-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+			}
+		};
+	}])
 
 	.directive('currency', function () {
 	    return {
@@ -89,7 +120,8 @@ angular.module('getix')
 			restrict: 'A',
 			link: function ($scope, el, attr) {
 				angular.element(window).resize(function(){
-					el.height(angular.element(window).height()-attr.winHeightMinus);
+					// el.height(angular.element(window).height()-attr.winHeightMinus);
+					el.css({maxHeight:angular.element(window).height()-attr.winHeightMinus, height:angular.element(window).height()-attr.winHeightMinus});
 				})
 				.resize();
 			}

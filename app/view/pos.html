@@ -39,26 +39,26 @@
 				</div>
 			</div>
 		</div>
-		<div id="rightbar">
+		<!-- <div id="rightbar">
 			<bill 
 				ng-repeat="bill in bills.opened" 
 				bill="bill"
 				ng-show="$index==bills.current"
 				></bill>
-		</div>
+		</div> -->
 
 		<div id="bills" 
 			ng-show="bills.opened.length>0" 
-			ng-class="{shorter:bills.current>-1, open:pos.shown=='bills'}" 
+			ng-class="{open:pos.shown=='bills'}" 
 			win-height-minus="85">
 			<div class="holder">
-				<div class="toggle icon icon_pointer" hm-tap="pos.toggleBills()"></div>
-				<div class="list" style="width:{{bills.opened.length*335}}px">
+				<div class="list">
 					<bill
 						ng-repeat="bill in bills.opened"
 						bill="bill"
-						ng-hide="bills.opened[bills.current]==bill"
-						draggable="true"
+						ng-class="{collapsed: bills.opened[bills.current]!=bill, highlight:dragging.on}"
+						draggable="bills.opened[bills.current]!=bill"
+						bill-top
 						></bill>
 				</div>
 			</div>

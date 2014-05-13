@@ -6,13 +6,15 @@
 		
 		var dragging = {
 			on:false
-		}
+		};
 	
 		return {
 			isDragging:function(pass){
-				if(pass!=undefined)dragging.on=pass;
+				if(pass!==undefined){
+					dragging.on=pass;
+				}
 				return dragging;
 			}
 		};
-	}])
+	}]);
 })();
