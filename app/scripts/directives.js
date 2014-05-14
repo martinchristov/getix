@@ -30,9 +30,14 @@ angular.module('getix')
 
 				//info
 				$scope.tables = UIService.tables;
-				$scope.chooseTable = function(table){
+				$scope.setTable = function(table){
 					$scope.bill.table = table;
-				}
+					table.busy=true;
+					// $scope.infotab=2;
+				};
+
+				//temp
+				$scope.info=true;
 
 				// change screen
 				$scope.received=0;

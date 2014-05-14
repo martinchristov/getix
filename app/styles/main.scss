@@ -308,7 +308,7 @@ $grid-margin:6px;
     width: 315px;
     background:rgba(255,255,255,0.55);
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     .head{
         height: 62px;
         padding: 0 20px;
@@ -317,6 +317,10 @@ $grid-margin:6px;
             line-height: 67px;
             margin-bottom: -9px;
             cursor: pointer;
+            small{
+                font-size: 13px;
+                font-weight: bold;
+            }
         }
     }
     .pin{
@@ -333,6 +337,86 @@ $grid-margin:6px;
         &.pinned{
             background:#cfcfcf;
         }
+    }
+    .info{
+        position: absolute;
+        z-index: 101;
+        background:#fff;
+        width: 100%;
+        padding: 10px;
+        top: 67px;
+        min-height: 400px;
+        left: -10px;
+        .tabs{
+            .tab{
+                height: 42px;
+                background:#cdcdcd;
+                font-size: 20px;
+                color: #fff;
+                font-weight: bold;
+                padding: 0 15px;
+                line-height: 42px;
+                float: left;margin-right: 1px;
+                &.on{
+                    background:#3c3c3c;
+                }
+                &.x{
+                    float: right;
+                    width: 42px;
+                    padding: 0;
+                    text-align: center;
+                }
+            }
+            width: 100%;
+            height: 42px;
+        }
+        .tables{
+            .table{
+                width: 96px;
+                height: 60px;
+                border-radius: 4px;
+                border:1px solid #d9d9d9;
+                font-size: 20px;
+                text-align: center;
+                color: #333;
+                line-height: 60px;
+                float: left;
+                margin-right: 10px;
+                margin-top: 10px;
+                @include transition(all .15s ease-out);
+                &:active{
+                    background:#888;
+                    color: #fff;
+                }
+            }
+            div:nth-of-type(3){
+                margin-right: 0;
+            }
+        }
+        .client{
+            input{
+                margin-top: 10px;
+            }
+        }
+
+        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1));
+        &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+            display: block!important;
+        }
+        &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+            @include transform(perspective(340px) rotateX(90deg) scale(0.2));
+            @include transform-origin(50%,0%);
+            -webkit-backface-visibility: visible;
+        }
+        &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+            @include transform(translate(0));
+        }
+    }
+    .hider{
+        width: 100%;
+        overflow: hidden;
+        overflow-y: visible;
+        margin-top: 5px;
     }
     .scroll{
         padding: 20px;
@@ -433,7 +517,7 @@ $grid-margin:6px;
     .bottom{
         position: absolute;
         bottom: 10px;
-        padding: 20px;
+        padding: 20px 0;
         background:$clr-bottom;
         width: 100%;
         
@@ -451,6 +535,7 @@ $grid-margin:6px;
         .btn.cancel{
             float: left;
             margin-right: 17px;
+            margin-left: 20px;
             width: 46px;
             height: 46px;
             background:#a2a2a2;
