@@ -14,7 +14,8 @@
 					dragging.on=pass;
 				}
 				return dragging;
-			}
+			},
+			tables:{}
 		};
 	}]);
 })();

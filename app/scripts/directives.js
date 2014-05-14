@@ -27,6 +27,14 @@ angular.module('getix')
 				draggable:'='
 			},
 			link: function ($scope, elem) {
+
+				//info
+				$scope.tables = UIService.tables;
+				$scope.chooseTable = function(table){
+					$scope.bill.table = table;
+				}
+
+				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
 					$scope.received = $scope.bill.total();
@@ -35,6 +43,9 @@ angular.module('getix')
 						$('#received-input').focus();
 					},600);
 				};
+
+				//items
+
 				$scope.remove = function(item,bill){
 					bill.items = _.reject(bill.items,item);
 				};

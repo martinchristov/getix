@@ -6,6 +6,8 @@
 		this.index=0;
 		this.position=position;
 		this.items = [];
+		this.table = null;
+		this.client = '';
 	}
 	Bill.$factory = [
 		function(){

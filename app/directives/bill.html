@@ -4,14 +4,32 @@
 	hm-dragup="dragUp($event)"
 	hm-dragdown="dragDown($event)"
 	hm-dragend="dragEnd()"
-
 	>
-	<div class="scroll scrollme" win-height-minus="215" scrollbottom>
+	<div class="head">
+		<h2 hm-tap="info=!info">
+			<div ng-hide="bill.table!=null">Choose a table</div>
+			<div ng-show="bill.table!=null">{{bill.table.name}}</div>
+		</h2>
+		<div 
+			class="pin icon icon_pushpin" 
+			ng-class="{pinned:draggable}" 
+			hm-tap="$parent.bills.pin(bill)">
+		</div>
+		<hr>
+	</div>
+	<div class="info" ng-show="info">
+		<div class="holder">
+			<div class="tabs">
+				<div class="tab">table</div>
+				<div class="tab">client</div>
+			</div>
+			<div class="tables">
+				<div class="table" ng-repeat="table in tables"></div>
+			</div>
+		</div>
+	</div>
+	<div class="scroll scrollme" win-height-minus="285" scrollbottom>
 		<div class="in">
-			<div class="pin icon icon_pushpin" ng-class="{pinned:draggable}" hm-tap="$parent.bills.pin(bill)"></div>
-			<div class="cap">bill</div>
-			<h3>New</h3>
-			<hr>
 			<div class="step1 step" ng-hide="step2">
 				<div class="items">
 					<div 

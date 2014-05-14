@@ -309,8 +309,15 @@ $grid-margin:6px;
     background:rgba(255,255,255,0.55);
     position: relative;
     overflow: hidden;
-    .in{
-        // padding: 20px;
+    .head{
+        height: 62px;
+        padding: 0 20px;
+        h2{
+            font-size: 24px;
+            line-height: 67px;
+            margin-bottom: -9px;
+            cursor: pointer;
+        }
     }
     .pin{
         width: 38px;

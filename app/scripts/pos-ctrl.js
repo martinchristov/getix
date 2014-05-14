@@ -10,6 +10,7 @@ var POS = function(appData, UIService){
 	this.bills = null;
 
 	this.dragging = UIService.isDragging();
+	UIService.tables = appData.data.tables.data;
 };
 POS.prototype.show = function(what,index){
 	this.shown = what;
