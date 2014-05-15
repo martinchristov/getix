@@ -74,6 +74,8 @@ input{
     height: 100%;
     background:transparent url('../images/barbg.jpg') left top no-repeat;
     overflow: hidden;
+    -webkit-background-size: 120%;
+    background-size: 120%;
 }
 
 #topbar{
@@ -194,8 +196,22 @@ $grid-margin:6px;
     float: left;
     margin-left: 145px;
     margin-top: 30px;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: visible;
     @include unselectable;
     @include transition(all .2s);
+    .scroll{
+        overflow-x: scroll;
+        overflow-y: visible;
+        height: 100%;
+        margin-right: 160px;
+        padding-bottom: 200px;
+    }
+    .groups{
+        height: 100%;
+        float: left;
+    }
     &.fade{
         opacity: 0.4;
         @include transform(scale(0.9));
@@ -204,11 +220,16 @@ $grid-margin:6px;
         float: left;
         margin-right: 30px;
         width: 280px;
+        overflow: hidden;
         h3{
             font-size: 25px;
             margin-bottom: 15px;
         }
         .items{
+            overflow-y: scroll;
+            overflow-x: visible;
+            width: 294px;
+            padding-right: 30px;
             .item{
                 background:#fff;
                 border-radius: 4px;
@@ -250,7 +271,7 @@ $grid-margin:6px;
                 }
                 @include transition(all .2s ease-out);
                 &:active{
-                    @include transform(scale(1.1));
+                    @include transform(scale(.9));
                     // &:before{
                     //     opacity: .6;
                     // }
@@ -260,53 +281,9 @@ $grid-margin:6px;
     }
 }
 
-#rightbar{
-    position: absolute;
-    height: 100%;
-    top: 85px;
-    right: 0;
-    z-index: 99;
-    .bill{
-        margin-bottom: 90px;
-        height: 100%;
-        position: absolute;
-        top: 0;right: 0;
-        .scroll{
-            height: 100%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-        }
-        
-        .items{
-
-        }
-        .item{
-            
-        }
-        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
-        &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
-            display: block!important;
-        }
-        &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
-            @include transform(perspective(315px) rotateY(-40deg) translate(315px,0));
-            @include transform-origin(100%,50%);
-            -webkit-backface-visibility: visible;
-        }
-        &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
-            @include transform(translate(0));
-        }
-        &.ng-enter{
-            -webkit-transition-delay: .3s;
-        }
-
-
-    }
-
-}
-
 .bill{
     width: 315px;
-    background:rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.95);
     position: relative;
     // overflow: hidden;
     .head{
@@ -429,7 +406,7 @@ $grid-margin:6px;
 
     }
     .item{
-        background:#fff;
+        background:#FCFAE2;
         border-radius: 4px;
         border:1px solid #d9d9d9;
         box-sizing:border-box;

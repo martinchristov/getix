@@ -9,8 +9,8 @@ var Bills = function(Bill,$timeout,$scope){
 	this.current = -1;
 	this.opened=[];
 
-	//temp
-	this.newBill();
+	// start with an open bill?
+	// this.newBill();
 };
 
 Bills.prototype.addToCurrent = function(item){

@@ -1,4 +1,4 @@
-/* global angular,_ */
+/* global angular,_,Hammer */
 'use strict';
 
 angular.module('getix')
@@ -35,9 +35,6 @@ angular.module('getix')
 					table.busy=true;
 					// $scope.infotab=2;
 				};
-
-				//temp
-				$scope.info=true;
 
 				// change screen
 				$scope.received=0;
@@ -78,7 +75,6 @@ angular.module('getix')
 						if(distance>maxdistance){
 							distance = maxdistance;
 						}
-						console.log(distance,maxdistance);
 						angular.element(elem).css({'-webkit-transform':'translate(0,-'+distance+'px)'});
 					}
 				};
@@ -113,6 +109,24 @@ angular.module('getix')
 			restrict: 'A',
 			link: function ($scope, el) {
 				angular.element(el).css({top:-(angular.element(window).height()-85-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+			}
+		};
+	}])
+
+	.directive('dragBoard', [function () {
+		return {
+			restrict: 'A',
+			link: function ($scope, el) {
+				var startX= 0;
+				Hammer(el[0]).on('dragstart', function(){
+					startX = el[0].scrollLeft;
+				});
+				Hammer(el[0]).on('dragleft', function(e){
+					el[0].scrollLeft = startX+e.gesture.distance;
+				});
+				Hammer(el[0]).on('dragright', function(e){
+					el[0].scrollLeft = startX-e.gesture.distance;
+				});
 			}
 		};
 	}])

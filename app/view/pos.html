@@ -22,30 +22,28 @@
 		</div>
 		
 		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on}">
-			<div 
-				class="groups fx-fade-left fx-easing-back fx-speed-500"
-				ng-repeat="category in pos.categories"
-				ng-show="pos.currentCategoryIndex==$index">
-				<div class="group" ng-repeat="group in category.groups.data">
-					<h3>{{group.name}}</h3>
-					<div class="items">
-						<div 
-							class="item" 
-							ng-class="{medium:item.size==2}"
-							ng-repeat="item in group.items.data"
-							hm-tap="bills.addToCurrent(item)"
-							>{{item.name}}</div>
+			<div class="scroll" drag-board>
+				<div 
+					class="groups fx-fade-left fx-easing-back fx-speed-500"
+					ng-repeat="category in pos.categories"
+					ng-show="pos.currentCategoryIndex==$index"
+					style="width:{{category.groups.data.length*310+310}}px"
+
+					>
+					<div class="group" ng-repeat="group in category.groups.data">
+						<h3>{{group.name}}</h3>
+						<div class="items" win-height-minus="250">
+							<div 
+								class="item" 
+								ng-class="{medium:item.size==2}"
+								ng-repeat="item in group.items.data"
+								hm-tap="bills.addToCurrent(item)"
+								>{{item.name}}</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div id="rightbar">
-			<bill 
-				ng-repeat="bill in bills.opened" 
-				bill="bill"
-				ng-show="$index==bills.current"
-				></bill>
-		</div> -->
 
 		<div id="bills" 
 			ng-show="bills.opened.length>0" 
