@@ -414,6 +414,49 @@ $grid-margin:6px;
         margin-bottom: 10px;
         padding: 10px;
         position: relative;
+        height: 55px;
+        overflow: hidden;
+        &.expanded{
+            height: 85px;
+        }
+        .edit{
+            float: right;
+            .btn{
+                width: 34px;height: 34px;
+                float: right;
+                border-radius: 4px;
+                color: #fff;
+                margin-left: 8px;
+                background:#a2a2a2;
+                line-height: 34px;
+                font-size: 20px;
+                &.plus{
+                    background: #44a0c9;
+                    font-weight: bold;
+                    font-size: 26px;
+                }
+                &.minus{
+                    font-weight: bold;
+                    font-size: 26px;
+                    @include transition-delay(.05s);
+                }
+                &.del{
+                    @include transition-delay(.1s);
+                }
+
+                @include transition(all .15s);
+
+                &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+                    display: block!important;
+                }
+                &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+                    @include transform(translate(0,-50px));
+                }
+                &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+                    @include transform(translate(0));
+                }
+            }
+        }
         .quan{
             color: #858585;
             font-size: 13px;
@@ -421,7 +464,8 @@ $grid-margin:6px;
             // float: left;
             width: 100%;
             height: 13px;
-            position: relative;
+            position: absolute;
+            bottom: 30px;
             .in{
                 position: absolute;
                 left: 0;
@@ -436,7 +480,8 @@ $grid-margin:6px;
         }
         .name{
             font-size: 20px;
-            clear: left;
+            bottom: 10px;
+            position: absolute;
         }
         .price{
             position: absolute;
@@ -460,7 +505,7 @@ $grid-margin:6px;
         &.ng-leave-active{
             @include transform(translate(0,-50px));
             opacity: 0;
-            margin-bottom: -55px;
+            margin-bottom: -85px;
         }
     }
 

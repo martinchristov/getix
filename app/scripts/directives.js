@@ -48,8 +48,10 @@ angular.module('getix')
 
 				//items
 
-				$scope.remove = function(item,bill){
-					bill.items = _.reject(bill.items,item);
+				$scope.expand = [];
+
+				$scope.remove = function(item){
+					$scope.bill.items = _.reject($scope.bill.items,item);
 				};
 
 				$scope.$watch('bill.position',function(){
@@ -117,15 +119,21 @@ angular.module('getix')
 		return {
 			restrict: 'A',
 			link: function ($scope, el) {
-				var startX= 0;
-				Hammer(el[0]).on('dragstart', function(){
+				var startX= 0, quota = 0;
+				var bg = angular.element('#pos');
+				new Hammer(el[0]).on('dragstart', function(){
 					startX = el[0].scrollLeft;
+					quota = el[0].scrollWidth-el.width();
 				});
-				Hammer(el[0]).on('dragleft', function(e){
+				new Hammer(el[0]).on('dragleft', function(e){
 					el[0].scrollLeft = startX+e.gesture.distance;
+					var perc = el[0].scrollLeft/quota*100;
+					bg.css({'background-position':perc+'%'});
 				});
-				Hammer(el[0]).on('dragright', function(e){
+				new Hammer(el[0]).on('dragright', function(e){
 					el[0].scrollLeft = startX-e.gesture.distance;
+					var perc = el[0].scrollLeft/quota*100;
+					bg.css({'background-position':perc+'%'});
 				});
 			}
 		};
