@@ -297,6 +297,13 @@ $grid-margin:6px;
                 font-weight: bold;
             }
         }
+        .choose{
+            font-style: italic;
+            color: #0080e2;
+            &:hover{
+                color: #333;
+            }
+        }
     }
     .pin{
         width: 38px;
@@ -322,6 +329,7 @@ $grid-margin:6px;
         top: 67px;
         min-height: 400px;
         left: -10px;
+        
         .tabs{
             .tab{
                 height: 42px;
@@ -625,40 +633,21 @@ $grid-margin:6px;
 
 #bills{
     position: absolute;
-    // left: 144px;
     right:10px;
     top: 100%;
     margin-top: -70px;
     width: 100%;
     z-index: 98;
     .holder{
-        margin-right: 154px;
-        // overflow-x: scroll;
-        // overflow-y: hidden;
         height: 100%;
     }
-    &.shorter .holder{
-        margin-right: 470px;
-    }
-    .toggle{
-        width: 46px;
-        height: 46px;
-        border-radius: 100%;
-        background:#fff;
-        position: absolute;
-        left: 0;right: 0;
-        text-align: center;
-        font-size: 22px;
-        line-height: 46px;
-    }
     .list{
-        // margin-left: 80px;
-        float: right;
+        right: 0;
+        position: absolute;
     }
     .bill{
         position: absolute;
         border-radius: 6px;
-        // @include transition(all .3s);
         @include unselectable;
         
         &.highlight{

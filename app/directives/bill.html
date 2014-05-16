@@ -1,14 +1,15 @@
 <div class="bill" 
 	win-height-minus="85"
+	>
+	<div class="head"
 	hm-dragstart="dragStart()"
 	hm-dragup="dragUp($event)"
 	hm-dragdown="dragDown($event)"
-	hm-dragend="dragEnd()"
-	>
-	<div class="head">
+	hm-dragend="dragEnd()">
 		<h2 hm-tap="info=!info">
-			<div ng-hide="bill.table!=null">Choose a table</div>
+			<div ng-hide="bill.table!=null||bill.client.length>0" class="choose">Choose a table</div>
 			<div ng-show="bill.table!=null">Table {{bill.table.name}} <small>{{bill.client}}</small></div>
+			<div ng-show="bill.table==null&&bill.client.length>0">{{bill.client}}</div>
 		</h2>
 		<div 
 			class="pin icon icon_pushpin" 

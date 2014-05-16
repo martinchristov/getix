@@ -52,7 +52,7 @@
 			bill-puller
 			>
 			<div class="holder">
-				<div class="list">
+				<div class="list" drag-board-custom style="width:{{bills.opened.length*335+134}}px; right:{{bills.boardX}}px">
 					<bill
 						ng-repeat="bill in bills.opened"
 						bill="bill"

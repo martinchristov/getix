@@ -60,6 +60,8 @@ Bills.prototype.pin = function(bill){
 		}
 		_this.opened[nextCurrent].position=0;
 	}
+
+	this.boardX=0;
 	Bills.$timeout(function(){
 		_this.allUp=false;
 	},300);

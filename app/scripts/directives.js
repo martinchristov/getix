@@ -54,8 +54,10 @@ angular.module('getix')
 					$scope.bill.items = _.reject($scope.bill.items,item);
 				};
 
+				//position
+
 				$scope.$watch('bill.position',function(){
-					angular.element(elem).css({right:$scope.bill.position*335});
+					elem.css({right:$scope.bill.position*335});
 				});
 
 
@@ -65,18 +67,18 @@ angular.module('getix')
 				$scope.dragging = UIService.isDragging();
 				var maxdistance = 0;
 				$scope.dragStart = function(){
-					if($scope.draggable){
+					if($scope.draggable && !UIService.getBillBoard().dragging){
 						maxdistance = elem.attr('maxdistance');
-						angular.element(elem).addClass('static');
-						// angular.element(elem).prev().addClass('static');
-						// angular.element(elem).next().addClass('static');
+						elem.addClass('static');
+
 						$scope.$parent.prepareAdjacentTo($scope.bill.position);
 						UIService.isDragging(true);
+						UIService.setBill({dragging:true});
 					}
 					
 				};
 				$scope.dragUp = function(e){
-					if($scope.draggable){
+					if($scope.draggable && !UIService.getBillBoard().dragging){
 						var distance = e.gesture.distance;
 						if(distance>maxdistance){
 							distance = maxdistance;
@@ -88,7 +90,7 @@ angular.module('getix')
 					}
 				};
 				$scope.dragDown=function(e){
-					if($scope.draggable){
+					if($scope.draggable && !UIService.getBillBoard().dragging){
 						if($scope.$parent.bills.allUp){
 							var distance = e.gesture.distance;
 							if(distance<0){
@@ -102,12 +104,12 @@ angular.module('getix')
 					}
 				};
 				$scope.dragEnd= function(){
-					if($scope.draggable){
+					if($scope.draggable && !UIService.getBillBoard().dragging){
 						elem.removeClass('static');
-						if(lastDragDirection=='up' && !$scope.$parent.bills.allUp){
+						if(lastDragDirection==='up' && !$scope.$parent.bills.allUp){
 							$scope.$parent.bills.pullAll();
 						}
-						else if(lastDragDirection=='down' && $scope.$parent.bills.allUp){
+						else if(lastDragDirection==='down' && $scope.$parent.bills.allUp){
 							$scope.$parent.bills.pushAll();
 						}
 						setTimeout(function(){
@@ -115,6 +117,7 @@ angular.module('getix')
 						},50);
 						$scope.$parent.clearAdjacentPulls();
 						UIService.isDragging(false);
+						UIService.setBill({dragging:false});
 					}
 				};
 
@@ -212,6 +215,34 @@ angular.module('getix')
 					el[0].scrollLeft = startX-e.gesture.distance;
 					var perc = el[0].scrollLeft/quota*100;
 					bg.css({'background-position':perc+'%'});
+				});
+			}
+		};
+	}])
+	.directive('dragBoardCustom', ['UIService',function (UIService) {
+		return {
+			restrict: 'A',
+			link: function ($scope, el) {
+				var xpos= 0, quota = 0;
+				$scope.bills.boardX=0;
+				new Hammer(el[0]).on('dragstart', function(){
+					if(!UIService.getBill().dragging){
+						quota = el.width()-angular.element(window).width();
+						xpos = $scope.bills.boardX;
+					}
+				});
+				new Hammer(el[0]).on('dragleft', function(e){
+					$scope.$apply(function(){
+						$scope.bills.boardX = xpos+e.gesture.distance;
+					});
+				});
+				new Hammer(el[0]).on('dragright', function(e){
+					$scope.$apply(function(){
+						$scope.bills.boardX = xpos-e.gesture.distance;
+					});
+				});
+				new Hammer(el[0]).on('dragend',function(){
+					UIService.setBillBoard({dragging:false});
 				});
 			}
 		};
