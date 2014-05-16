@@ -34,9 +34,7 @@ h1,h2,h3,h4{
     user-select: none;
 }
 
-.static{
-    @include transition(none!important);
-}
+
 
 .icon{
     font-weight: normal!important;
@@ -318,7 +316,7 @@ $grid-margin:6px;
     .info{
         position: absolute;
         z-index: 101;
-        background:#fff;
+        background:#E7E7E7;
         width: 100%;
         padding: 10px;
         top: 67px;
@@ -327,7 +325,7 @@ $grid-margin:6px;
         .tabs{
             .tab{
                 height: 42px;
-                background:#cdcdcd;
+                background:#B1B1B1;
                 font-size: 20px;
                 color: #fff;
                 font-weight: bold;
@@ -360,6 +358,7 @@ $grid-margin:6px;
                 float: left;
                 margin-right: 10px;
                 margin-top: 10px;
+                background:rgb(250, 250, 250);
                 @include transition(all .15s ease-out);
                 &:active{
                     background:#888;
@@ -401,6 +400,7 @@ $grid-margin:6px;
         padding-right: 50px;
         overflow-x: hidden;
         overflow-y: scroll;
+        position: relative;
     }
     .items{
 
@@ -535,6 +535,9 @@ $grid-margin:6px;
             color: #838383;
             font-size: 24px;
         }
+        position: absolute;
+        right:50px;
+        top: 10px;
     }
     .bottom{
         position: absolute;
@@ -600,13 +603,12 @@ $grid-margin:6px;
             opacity: 1;
         }
     }
-    .step2{
-        position: absolute;
-        right:30px;
-        top: 60px;
+    @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+    
+    &.static{
+        @include transition(all 0s, top .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
     }
 
-    @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
     &.ng-enter{
         @include transform(translate(320px,0));
         opacity: 0;

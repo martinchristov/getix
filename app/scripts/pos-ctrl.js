@@ -17,6 +17,7 @@ POS.prototype.show = function(what,index){
 	if(what==='categories'){
 		this.currentCategoryIndex = index;
 		this.groups = this.categories[index].groups.data;
+		this.bills.allUp=false;
 	}
 };
 POS.prototype.toggleBills = function(){

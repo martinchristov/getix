@@ -8,9 +8,10 @@ var Bills = function(Bill,$timeout,$scope){
 	this.$scope = $scope;
 	this.current = -1;
 	this.opened=[];
+	this.allUp = false;
 
 	// start with an open bill?
-	this.newBill();
+	// this.newBill();
 };
 
 Bills.prototype.addToCurrent = function(item){
@@ -59,6 +60,17 @@ Bills.prototype.pin = function(bill){
 		}
 		_this.opened[nextCurrent].position=0;
 	}
+	Bills.$timeout(function(){
+		_this.allUp=false;
+	},300);
+	
+};
+
+Bills.prototype.pullAll = function(){
+	this.allUp=true;
+};
+Bills.prototype.pushAll = function(){
+	this.allUp=false;
 };
 Bills.prototype.close = function(bill){
 	this.current=-1;

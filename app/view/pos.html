@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		
-		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on}">
+		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on||bills.allUp}">
 			<div class="scroll" drag-board>
 				<div 
 					class="groups fx-fade-left fx-easing-back fx-speed-500"
@@ -48,15 +48,18 @@
 		<div id="bills" 
 			ng-show="bills.opened.length>0" 
 			ng-class="{open:pos.shown=='bills'}" 
-			win-height-minus="85">
+			win-height-minus="85"
+			bill-puller
+			>
 			<div class="holder">
 				<div class="list">
 					<bill
 						ng-repeat="bill in bills.opened"
 						bill="bill"
-						ng-class="{collapsed: bills.opened[bills.current]!=bill, highlight:dragging.on}"
+						ng-class="{collapsed: bills.opened[bills.current]!=bill && bills.allUp==false, highlight:dragging.on}"
 						draggable="bills.opened[bills.current]!=bill"
 						bill-top
+						pull-adjacent-bill
 						></bill>
 				</div>
 			</div>
