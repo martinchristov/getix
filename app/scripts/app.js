@@ -26,10 +26,6 @@ angular.module('getix', [
 );
 
 //fix for ios elastic scroll
-document.addEventListener(
-'touchmove',
-function(e) {
-e.preventDefault();
-},
-false
-);
+document.addEventListener('touchmove',	function(e) {
+	e.preventDefault();
+}, false);

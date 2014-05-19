@@ -91,8 +91,13 @@ Bills.prototype.cancel = function(bill){
 	this.current=-1;
 	var _this=this;
 	Bills.$timeout(function(){
+		for(var i=0;i<_this.opened.length;i++){
+			if(_this.opened[i].position>bill.position){
+				_this.opened[i].position--;
+			}
+		}
 		_this.opened = _.reject(_this.opened,bill);
-	},300);
+	},400);
 };
 
 Bills.$inject = ['gxBill','$timeout','$scope'];

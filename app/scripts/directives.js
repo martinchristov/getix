@@ -191,7 +191,7 @@ angular.module('getix')
 		return {
 			restrict: 'A',
 			link: function ($scope, el) {
-				el.css({top:-(angular.element(window).height()-85-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+				el.css({top:-(angular.element(window).height()-55-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
 			}
 		};
 	}])
