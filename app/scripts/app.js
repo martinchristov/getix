@@ -24,3 +24,12 @@ angular.module('getix', [
 			.otherwise({ redirectTo: '/pos' });
 	}]
 );
+
+//fix for ios elastic scroll
+document.addEventListener(
+'touchmove',
+function(e) {
+e.preventDefault();
+},
+false
+);

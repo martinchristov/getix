@@ -14,6 +14,8 @@ body {
     background: #fafafa;
     font-family: $font-family;
     color: #333;
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
 }
 
 h1,h2,h3,h4{
@@ -72,6 +74,7 @@ input{
     height: 100%;
     background:transparent url('../images/barbg.jpg') left top no-repeat;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
     -webkit-background-size: 120%;
     background-size: 120%;
 }
@@ -168,6 +171,11 @@ $clr-bottom:#3c3c3c;
         bottom: 85px;
         width: 100%;
         background:$clr-bottom;
+
+        @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+          //ipad fix
+          bottom: 105px;
+        }
         .btn.newbill{
             
         }
@@ -199,6 +207,7 @@ $grid-margin:6px;
     overflow-x: visible;
     @include unselectable;
     @include transition(all .2s);
+    -webkit-overflow-scrolling: touch;
     .scroll{
         overflow-x: scroll;
         overflow-y: visible;
@@ -638,6 +647,9 @@ $grid-margin:6px;
     margin-top: -70px;
     width: 100%;
     z-index: 98;
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+      margin-top: -90px;
+    }
     .holder{
         height: 100%;
     }
