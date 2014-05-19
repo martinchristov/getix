@@ -368,7 +368,7 @@ module.exports = function (grunt) {
             },
             analogo:{
                 options:{
-                    remote:'analogo.net@analogo.net:domains/analogo.net/html/ejero/',
+                    remote:'analogo.net@analogo.net:domains/analogo.net/html/getix/',
                     branch:'master'
                 }
             }
