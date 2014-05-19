@@ -313,7 +313,9 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.webp',
                         '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
+                        '{,*/}*.json',
+                        'styles/fonts/{,*/}*.*',
+                        'fonts/*.*'
                     ]
                 }]
             },
@@ -354,6 +356,22 @@ module.exports = function (grunt) {
                 }
             }
 
+        },
+
+        // Distribution
+        buildcontrol:{
+            options:{
+                dir:'dist',
+                commit:true,
+                push:true,
+                message:'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            analogo:{
+                options:{
+                    remote:'analogo.net@analogo.net:domains/analogo.net/html/ejero/',
+                    branch:'master'
+                }
+            }
         }
     });
 
@@ -370,6 +388,11 @@ module.exports = function (grunt) {
             'connect:livereload',
             'watch'
         ]);
+    });
+
+    grunt.registerTask('publish', function(target){
+        // grunt.task.run(['build']);
+        grunt.task.run([target ? ('buildcontrol:' + target) : 'buildcontrol']);
     });
 
     grunt.registerTask('server', function (target) {
