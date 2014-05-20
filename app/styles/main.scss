@@ -209,7 +209,7 @@ $grid-margin:6px;
 
 #list{
     float: left;
-    margin-left: 145px;
+    margin-left: 105px;
     margin-top: 30px;
     width: 100%;
     overflow-y: hidden;
@@ -221,12 +221,13 @@ $grid-margin:6px;
         overflow-x: scroll;
         overflow-y: visible;
         height: 100%;
-        margin-right: 160px;
+        margin-right: 110px;
         padding-bottom: 200px;
     }
     .groups{
         height: 100%;
         float: left;
+        margin-left: 40px;
     }
     &.fade{
         opacity: 0.4;
