@@ -9,7 +9,16 @@
 		};
 
 		var billBoard = {
-			dragging:false
+			dragging:false,
+			opened:false,
+			billDragging:false,
+			open:function(){
+				billBoard.opened = true;
+			},
+			close:function(){
+				billBoard.opened = false;
+				console.log(billBoard);
+			}
 		};
 		var bill = {
 			dragging:false
@@ -28,7 +37,7 @@
 			},
 			setBillBoard:function(_billBoard){
 				console.log('billboard',_billBoard);
-				billBoard=_billBoard;
+				// billBoard=_billBoard;
 			},
 			isDragging:function(pass){
 				if(pass!==undefined){

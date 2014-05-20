@@ -57,14 +57,13 @@
 					<bill
 						ng-repeat="bill in bills.opened"
 						bill="bill"
-						ng-class="{collapsed: bills.opened[bills.current]!=bill && bills.allUp==false, highlight:dragging.on}"
+						ng-class="{collapsed: bills.opened[bills.current]!=bill && bills.billBoard.opened==false, highlight:dragging.on}"
 						draggable="bills.opened[bills.current]!=bill"
 						bill-top
 						pull-adjacent-bill
 						></bill>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

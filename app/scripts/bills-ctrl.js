@@ -1,7 +1,7 @@
 /* global angular,_ */
 'use strict';
 
-var Bills = function(Bill,$timeout,$scope){
+var Bills = function(Bill,$timeout,$scope,UIService){
 	Bills.Bill = Bill;
 	Bills.$timeout=$timeout;
 
@@ -9,6 +9,8 @@ var Bills = function(Bill,$timeout,$scope){
 	this.current = -1;
 	this.opened=[];
 	this.allUp = false;
+
+	this.billBoard = UIService.getBillBoard();
 
 	// start with an open bill?
 	// this.newBill();
@@ -63,17 +65,11 @@ Bills.prototype.pin = function(bill){
 
 	this.boardX=0;
 	Bills.$timeout(function(){
-		_this.allUp=false;
+		_this.billBoard.close();
 	},300);
 	
 };
 
-Bills.prototype.pullAll = function(){
-	this.allUp=true;
-};
-Bills.prototype.pushAll = function(){
-	this.allUp=false;
-};
 Bills.prototype.close = function(bill){
 	this.current=-1;
 	var _this=this;
@@ -100,6 +96,6 @@ Bills.prototype.cancel = function(bill){
 	},400);
 };
 
-Bills.$inject = ['gxBill','$timeout','$scope'];
+Bills.$inject = ['gxBill','$timeout','$scope', 'UIService'];
 
 angular.module('getix').controller('Bills',Bills);

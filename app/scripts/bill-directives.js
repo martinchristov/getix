@@ -61,18 +61,18 @@
 				$scope.dragging = UIService.isDragging();
 				var maxdistance = 0;
 				$scope.dragStart = function(){
-					if($scope.draggable && !UIService.getBillBoard().dragging){
+					if($scope.draggable){
 						maxdistance = elem.attr('maxdistance');
 						elem.addClass('static');
 
 						$scope.$parent.prepareAdjacentTo($scope.bill.position);
-						UIService.isDragging(true);
-						UIService.setBill({dragging:true});
+						// UIService.getBillBoard().dragging=true;
+						// UIService.setBill({dragging:true});
 					}
 					
 				};
 				$scope.dragUp = function(e){
-					if($scope.draggable && !UIService.getBillBoard().dragging){
+					if($scope.draggable){
 						var distance = e.gesture.distance;
 						if(distance>maxdistance){
 							distance = maxdistance;
@@ -84,8 +84,8 @@
 					}
 				};
 				$scope.dragDown=function(e){
-					if($scope.draggable && !UIService.getBillBoard().dragging){
-						if($scope.$parent.bills.allUp){
+					if($scope.draggable){
+						if(UIService.getBillBoard().opened){
 							var distance = e.gesture.distance;
 							if(distance<0){
 								distance = 0;
@@ -98,20 +98,20 @@
 					}
 				};
 				$scope.dragEnd= function(){
-					if($scope.draggable && !UIService.getBillBoard().dragging){
+					if($scope.draggable){
 						elem.removeClass('static');
-						if(lastDragDirection==='up' && !$scope.$parent.bills.allUp){
-							$scope.$parent.bills.pullAll();
+						if(lastDragDirection==='up' && !UIService.getBillBoard().opened){
+							UIService.getBillBoard().open();
 						}
-						else if(lastDragDirection==='down' && $scope.$parent.bills.allUp){
-							$scope.$parent.bills.pushAll();
+						else if(lastDragDirection==='down' && UIService.getBillBoard().opened){
+							UIService.getBillBoard().close();
 						}
 						setTimeout(function(){
 							elem.css({'-webkit-transform':'translate(0,0)'});
 						},50);
 						$scope.$parent.clearAdjacentPulls();
-						UIService.isDragging(false);
-						UIService.setBill({dragging:false});
+						// UIService.getBillBoard().dragging=false;
+						// UIService.setBill({dragging:false});
 					}
 				};
 

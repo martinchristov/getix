@@ -57,23 +57,28 @@ angular.module('getix')
 				var xpos= 0, quota = 0;
 				$scope.bills.boardX=0;
 				new Hammer(el[0]).on('dragstart', function(){
-					if(!UIService.getBill().dragging){
+					if(UIService.getBillBoard().opened){
 						quota = el.width()-angular.element(window).width();
 						xpos = $scope.bills.boardX;
 					}
 				});
 				new Hammer(el[0]).on('dragleft', function(e){
-					$scope.$apply(function(){
-						$scope.bills.boardX = xpos+e.gesture.distance;
-					});
+					if(UIService.getBillBoard().opened){
+						$scope.$apply(function(){
+							$scope.bills.boardX = xpos+e.gesture.distance;
+						});
+					}
 				});
 				new Hammer(el[0]).on('dragright', function(e){
-					$scope.$apply(function(){
-						$scope.bills.boardX = xpos-e.gesture.distance;
-					});
+					if(UIService.getBillBoard().opened){
+						$scope.$apply(function(){
+							$scope.bills.boardX = xpos-e.gesture.distance;
+						});
+					}
 				});
 				new Hammer(el[0]).on('dragend',function(){
-					UIService.setBillBoard({dragging:false});
+					console.log(UIService.getBillBoard());
+					// UIService.setBillBoard({dragging:false});
 				});
 			}
 		};
