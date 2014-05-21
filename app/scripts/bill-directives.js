@@ -39,6 +39,11 @@
 					table.busy=true;
 					// $scope.infotab=2;
 				};
+				$scope.stalkEnter = function(e){
+					if(e.keyCode===13){
+						$scope.info=false;
+					}
+				};
 
 				// change screen
 				$scope.received=0;

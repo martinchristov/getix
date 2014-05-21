@@ -9,7 +9,7 @@
 		this.table = null;
 		this.client = '';
 
-		this.closedStacks = [];
+		this.closedStack = null;
 		this.openedStack=null;
 		this.newStack();
 	}
@@ -68,9 +68,28 @@
 			}
 		}
 
-		this.closedStacks.push(stack);
+		if(this.closedStack!==null){
+			idDict = {};
+			for(i=0;i<this.closedStack.items.length;i++){
+				idDict[this.closedStack.items[i].id]=i;
+			}
+			for(i=0;i<stack.items.length;i++){
+				if(idDict.hasOwnProperty(stack.items[i].id)){
+					this.closedStack.items[idDict[stack.items[i].id]].quantity+=stack.items[i].quantity;
+				}
+				else {
+					this.closedStack.items.push(stack.items[i]);
+				}
+				this.closedStack.total+=stack.items[i].quantity*stack.items[i].price;
+			}
+		}
+		else {
+			this.closedStack = stack;
+		}
+
+		
+
 		this.newStack();
-		//todo: stack items & calc total
 	};
 
 	Bill.prototype.close = function(){
@@ -83,10 +102,10 @@
 
 	Bill.prototype.total = function(){
 		var total=0;
-		for(var i=0;i<this.closedStacks.length;i++){
-			total+=this.closedStacks[i].total;
+		if(this.closedStack!==null){
+			total+=this.closedStack.total;
 		}
-		for(i=0;i<this.openedStack.items.length;i++){
+		for(var i=0;i<this.openedStack.items.length;i++){
 			total+=this.openedStack.items[i].price*this.openedStack.items[i].quantity;
 		}
 		return total;
