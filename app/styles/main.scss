@@ -457,8 +457,52 @@ $grid-margin:6px;
         overflow-y: scroll;
         position: relative;
     }
-    .items{
+    .closed-stacks{
+        .stack{
 
+        }
+    }
+    .stack{
+        background:#eee;
+        border-radius: 4px;
+        border:1px solid #d9d9d9;
+        box-sizing:border-box;
+        width: 100%;
+        margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
+        padding: 10px;
+        .item{
+            @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+            &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+                display: block!important;
+            }
+            &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+                @include transform(translate(0,-50px));
+                opacity: 0;
+                margin-bottom: -55px;
+            }
+            &.ng-hide-remove{
+                @include transition-delay(.1s);
+            }
+            &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+                @include transform(translate(0));
+                opacity: 1;
+                margin-bottom: 10px;
+            }
+        }
+        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+        &.ng-enter{
+            // @include transform(translate(0,-50px));
+            // opacity: 0;
+            // margin-bottom: -71px;
+            margin-bottom: -10px;
+        }
+        &.ng-enter-active{
+            // @include transform(translate(0,0));
+            // opacity: 1;
+            margin-bottom: 10px;
+        }
     }
     .item{
         background:#FCFAE2;
@@ -560,6 +604,9 @@ $grid-margin:6px;
         &.ng-leave-active{
             @include transform(translate(0,-50px));
             opacity: 0;
+            margin-bottom: -55px;
+        }
+        &.ng-leave-active.expanded{
             margin-bottom: -85px;
         }
     }

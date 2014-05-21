@@ -1,4 +1,4 @@
-/* global angular,_ */
+/* global angular */
 'use strict';
 (function(){
 	angular.module('getix')
@@ -13,6 +13,16 @@
 				draggable:'='
 			},
 			link: function ($scope, elem) {
+
+				$scope.readyToClose = function(){
+					if($scope.bill.client===''&&$scope.bill.table===null){
+						return true;
+					}
+					if($scope.bill.openedStack.items.length===0){
+						return true;
+					}
+					return false;
+				};
 
 				//info
 				$scope.tapHead = function(){
@@ -41,15 +51,10 @@
 				};
 
 				//items
-
 				$scope.expand = [];
 
-				$scope.remove = function(item){
-					$scope.bill.items = _.reject($scope.bill.items,item);
-				};
 
 				//position
-
 				$scope.$watch('bill.position',function(){
 					elem.css({right:$scope.bill.position*335});
 				});
