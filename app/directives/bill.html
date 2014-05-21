@@ -38,7 +38,7 @@
 					<div class="closed-stacks">
 						<div ng-show="bill.closedStack!=null" class="stack" hm-tap="stackExpanded=!stackExpanded">
 							<div class="items">
-								<div class="item" ng-show="stackExpanded" ng-repeat="item in bill.closedStack.items track by item.index">
+								<div class="item" ng-show="stackExpanded||billBoard.opened" ng-repeat="item in bill.closedStack.items track by item.index">
 									<div class="quan"><div class="in" animate-on-change="item.quantity">{{item.quantity}}x</div></div>
 									<div class="name">{{item.name}}</div>
 									<div class="price">{{item.price*item.quantity | money}}</div>

@@ -14,6 +14,8 @@
 			},
 			link: function ($scope, elem) {
 
+				$scope.billBoard = UIService.getBillBoard();
+
 				$scope.readyToClose = function(){
 					if($scope.bill.client===''&&$scope.bill.table===null){
 						return true;

@@ -8,7 +8,6 @@ var Bills = function(Bill,$timeout,$scope,UIService){
 	this.$scope = $scope;
 	this.current = -1;
 	this.opened=[];
-	this.allUp = false;
 
 	this.billBoard = UIService.getBillBoard();
 
