@@ -7,7 +7,7 @@
 		
 		this.shown = 'categories';
 		this.groups = this.categories[0].groups.data;
-		this.searchResults = null; //todo this
+		this.searchResults = getSearchResults(this.categories);
 		this.bills = null;
 
 		this.dragging = UIService.isDragging();
@@ -19,16 +19,12 @@
 	};
 	POS.prototype.show = function(index){
 		var _this = this;
+		this.searching=false;
 		function switchCat () {
 			_this.currentCategoryIndex = index;
 			_this.groups = _this.categories[index].groups.data;
 		}
-		if(this.bills.allUp){
-			switchCat();
-			POS.$timeout(function(){_this.bills.allUp=false;},100);
-		} else {
-			switchCat();
-		}
+		switchCat();
 	};
 	POS.prototype.toggleBills = function(){
 		if(this.shown==='bills'){
@@ -73,4 +69,15 @@
 
 	angular.module('getix').controller('POS',POS);
 
+	function getSearchResults(categories){
+		var res = [];
+		for(var c=0;c<categories.length;c++){
+			for(var g=0;g<categories[c].groups.data.length;g++){
+				for(var i=0;i<categories[c].groups.data[g].items.data.length;i++){
+					res.push(categories[c].groups.data[g].items.data[i]);
+				}
+			}
+		}
+		return res;
+	}
 })();

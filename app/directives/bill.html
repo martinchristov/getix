@@ -11,11 +11,12 @@
 			<div ng-show="bill.table!=null">Table {{bill.table.name}} <small>{{bill.client}}</small></div>
 			<div ng-show="bill.table==null&&bill.client.length>0">{{bill.client}}</div>
 		</h2>
-		<div 
+		<div class="total">{{bill.total() | money}}</div>
+		<!-- <div 
 			class="pin icon icon_pushpin" 
 			ng-class="{pinned:draggable}" 
 			hm-tap="$parent.bills.pin(bill)">
-		</div>
+		</div> -->
 		<hr>
 	</div>
 	<div class="info" ng-show="info" ng-init="infotab=1">
@@ -67,7 +68,7 @@
 							<div class="price">{{item.price*item.quantity | money}}</div>
 						</div>
 					</div>
-					<div class="total"><div class="cap">total</div>{{bill.total() | money}}</div>
+					<!-- <div class="total"><div class="cap">total</div>{{bill.total() | money}}</div> -->
 				</div>
 				<div class="step2 step" ng-show="step2">
 					<div class="total">

@@ -2,7 +2,7 @@
 	<div ng-controller="Bills as bills" ng-init="pos.bills=bills">
 		<div id="topbar">
 			<div id="search">
-				<input type="text" ng-model="pos.search" ng-focus="pos.searching=true" ng-blur="pos.searching=false">
+				<input type="text" ng-model="pos.search" ng-focus="pos.searching=true" ng-blur="">
 			</div>
 			<h1>Bilkova</h1>
 			<div class="btns">
@@ -50,10 +50,12 @@
 					class="search-results fx-fade-left fx-easing-back fx-speed-500"
 					ng-show="pos.searching && pos.search.length>0"
 					>
-					<div 
-						class="item" 
-						hm-tap="bills.addToCurrent(item)"
-						ng-repeat="item in pos.searchResults">{{item.name}}</div>
+					<div class="group">
+						<div 
+							class="item" 
+							hm-tap="bills.addToCurrent(item)"
+							ng-repeat="item in pos.searchResults | filter:pos.search">{{item.name}}</div>
+					</div>
 					
 				</div>
 			</div>
