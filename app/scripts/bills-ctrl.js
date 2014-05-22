@@ -79,6 +79,7 @@ Bills.prototype.close = function(bill){
 			}
 		}
 		_this.opened = _.reject(_this.opened,bill);
+		bill.close();
 	},400);
 
 };

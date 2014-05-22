@@ -21,6 +21,24 @@
 				return curTpl.replace('{{money}}',formatPrice(d));
 			};
 		}
+	])
+	.filter('quantity',[
+		function(){
+			return function(d){
+				if(d>=1){
+					return d;
+				}
+				else if(d===0.67){
+					return '2/3';
+				}
+				else if(d===0.5){
+					return '1/2';
+				}
+				else if(d===0.34){
+					return '1/3';
+				}
+			};
+		}
 	]);
 
 })();

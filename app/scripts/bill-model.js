@@ -92,8 +92,18 @@
 		this.newStack();
 	};
 
-	Bill.prototype.close = function(){
+	Bill.prototype.setTable = function(table){
+		if(this.table!==null){
+			this.table.busy=false;
+		}
+		this.table = table;
+		table.busy=true;
+	};
 
+	Bill.prototype.close = function(){
+		if(this.table!==null){
+			this.table.busy=false;
+		}
 	};
 
 	Bill.prototype.cancel = function(){

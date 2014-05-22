@@ -36,11 +36,6 @@
 					}
 				};
 				$scope.tables = UIService.tables;
-				$scope.setTable = function(table){
-					$scope.bill.table = table;
-					table.busy=true;
-					// $scope.infotab=2;
-				};
 				$scope.stalkEnter = function(e){
 					if(e.keyCode===13){
 						$scope.info=false;
@@ -59,6 +54,39 @@
 
 				//items
 				$scope.expand = [];
+
+				$scope.lessQuantity = function(item){
+					if(item.quantity>1){
+						item.quantity--;
+					}
+					else {
+						if(item.quantity===1){
+							item.quantity=0.67;
+						}
+						else if(item.quantity===0.67){
+							item.quantity=0.5;
+						}
+						else if(item.quantity===0.5){
+							item.quantity=0.34;
+						}
+					}
+				};
+				$scope.moreQuantity = function(item){
+					if(item.quantity>=1){
+						item.quantity++;
+					}
+					else {
+						if(item.quantity===0.67){
+							item.quantity=1;
+						}
+						else if(item.quantity===0.5){
+							item.quantity=0.67;
+						}
+						else if(item.quantity===0.34){
+							item.quantity=0.5;
+						}
+					}
+				};
 
 
 				//position

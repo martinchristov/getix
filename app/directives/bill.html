@@ -26,7 +26,7 @@
 			<div class="tab x" hm-tap="info=false;"></div>
 		</div>
 		<div class="tables" ng-show="infotab==1">
-			<div class="table" ng-repeat="table in tables" hm-tap="setTable(table)">{{table.name}}</div>
+			<div class="table" ng-repeat="table in tables" ng-hide="table.busy" hm-tap="bill.setTable(table)">{{table.name}}</div>
 		</div>
 		<div class="client" ng-show="infotab==2">
 			<input type="text" ng-model="bill.client" ng-keyup="stalkEnter($event)">
@@ -60,10 +60,10 @@
 							>
 							<div class="edit">
 								<div ng-show="expand[$index]" class="btn del icon icon_bin" hm-tap="bill.remove(item);expand[$index]=false;"></div>
-								<div ng-show="expand[$index]" class="btn minus" hm-tap="item.quantity=item.quantity-1">-</div>
-								<div ng-show="expand[$index]" class="btn plus" hm-tap="item.quantity=item.quantity+1">+</div>
+								<div ng-show="expand[$index]" class="btn minus" hm-tap="lessQuantity(item)">-</div>
+								<div ng-show="expand[$index]" class="btn plus" hm-tap="moreQuantity(item)">+</div>
 							</div>
-							<div class="quan"><div class="in" animate-on-change="item.quantity">{{item.quantity}}x</div></div>
+							<div class="quan"><div class="in" animate-on-change="item.quantity">{{item.quantity | quantity}}x</div></div>
 							<div class="name">{{item.name}}</div>
 							<div class="price">{{item.price*item.quantity | money}}</div>
 						</div>
