@@ -13,9 +13,12 @@
 		this.dragging = UIService.isDragging();
 		UIService.tables = appData.data.tables.data;
 		POS.$timeout = $timeout;
+		POS.UIService = UIService;
 
 		this.search='';
 		this.searching=false;
+
+		this.itemToResize=null;
 	};
 	POS.prototype.show = function(index){
 		var _this = this;
@@ -34,6 +37,26 @@
 			this.shown='bills';
 			this.bills.current=-1;
 		}
+	};
+
+	POS.prototype.setResizeItem = function(item){
+		this.itemToResize = item;
+		POS.UIService.setResizing(true);
+	};
+
+	POS.prototype.resizeItem = function(item){
+		// this.itemToResize = item;
+		if(item.size<3){
+			item.size++;
+		}
+		else {
+			item.size=1;
+		}
+		this.itemToResize=null;
+		setTimeout(function(){
+			POS.UIService.setResizing(false);
+		},100);
+		
 	};
 
 	POS.prototype.fullscreen = function(){

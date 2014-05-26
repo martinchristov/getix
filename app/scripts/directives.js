@@ -45,7 +45,7 @@ angular.module('getix')
 				});
 
 				el.on('scroll',function(e){
-					bg.css({'background-position':(el.target.scrollLeft/quota*100)+'%'});
+					bg.css({'background-position':(e.target.scrollLeft/quota*100)+'%'});
 				});
 			}
 		};

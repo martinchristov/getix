@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		
-		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on||bills.allUp}">
+		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on||bills.allUp, resizing:pos.itemToResize!==null}">
 			<div class="scroll" drag-board>
 				<div 
 					class="groups fx-fade-left fx-easing-back fx-speed-500 {{category.key}}"
@@ -38,10 +38,14 @@
 						<div class="items" win-height-minus="210">
 							<div 
 								class="item" 
-								ng-class="{medium:item.size==2}"
+								ng-class="{medium:item.size==2, large:item.size==3, resizing:pos.itemToResize===item}"
 								ng-repeat="item in group.items.data"
 								hm-tap="bills.addToCurrent(item)"
-								>{{item.name}}</div>
+								hm-hold="pos.setResizeItem(item)"
+								>
+								<div class="resize icon icon_pointer" hm-tap="pos.resizeItem(item)"></div>
+								{{item.name}}
+								</div>
 						</div>
 					</div>
 				</div>

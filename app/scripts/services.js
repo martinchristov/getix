@@ -23,6 +23,8 @@
 		var bill = {
 			dragging:false
 		};
+
+		var resizing=false;
 	
 		return {
 			getBill:function(){
@@ -44,6 +46,12 @@
 					dragging.on=pass;
 				}
 				return dragging;
+			},
+			resizing: function(){
+				return resizing;
+			},
+			setResizing:function(to){
+				resizing=to;
 			},
 			tables:{}
 		};

@@ -271,7 +271,7 @@ $grid-margin:6px;
         overflow: hidden;
         h3{
             font-size: 25px;
-            margin-bottom: 15px;
+            margin-bottom: 9px;
         }
         .items{
             overflow-y: scroll;
@@ -285,13 +285,33 @@ $grid-margin:6px;
             width: $grid-single;
             height:$grid-single;
             margin-right: $grid-margin;
-            margin-bottom: $grid-margin;
+            margin-top: $grid-margin;
             float: left;
             box-sizing:border-box;
             font-size: 13px;
             font-weight: 700;
             padding: 10px;
             position: relative;
+
+            .resize{
+                position: absolute;
+                display: none;
+                width: 32px;
+                height: 32px;
+                top: -6px;right: -6px;
+                border-radius: 100%;
+                background:#fff;
+                color: #444;
+                @include transform(rotate(-135deg));
+                line-height: 32px;
+                font-size: 16px;
+                text-align: center;
+            }
+            &.resizing{
+                .resize{
+                    display: block;
+                }
+            }
 
             &.medium{
                 width:$grid-double;
@@ -304,6 +324,9 @@ $grid-margin:6px;
             &.large{
                 width:$grid-double;
                 height:$grid-double;
+                .resize{
+                    @include transform(rotate(45deg));
+                }
             }
 
             &:before{
@@ -327,7 +350,17 @@ $grid-margin:6px;
             }
         }
     }
-
+    
+    &.resizing{
+        .group .item{
+            @include transform(scale(.9));
+            opacity: 0.8;
+        }
+        .group .item.resizing{
+            @include transform(scale(1));
+            opacity: 1;
+        }
+    }
     .search-results{
         .group{
             margin-left: 40px;

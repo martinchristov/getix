@@ -4,6 +4,7 @@
 var Bills = function(Bill,$timeout,$scope,UIService){
 	Bills.Bill = Bill;
 	Bills.$timeout=$timeout;
+	Bills.UIService = UIService;
 
 	this.$scope = $scope;
 	this.current = -1;
@@ -16,11 +17,14 @@ var Bills = function(Bill,$timeout,$scope,UIService){
 };
 
 Bills.prototype.addToCurrent = function(item){
-	if(this.current===-1){
-		this.newBill();
+	if(Bills.UIService.resizing()===false){
+		if(this.current===-1){
+			this.newBill();
+		}
+		this.opened[this.current].add(item);
+		this.$scope.$broadcast('scrollbottom');
 	}
-	this.opened[this.current].add(item);
-	this.$scope.$broadcast('scrollbottom');
+	
 };
 Bills.prototype.newBill = function(){
 	this.opened.unshift(new Bills.Bill(0));
