@@ -769,6 +769,7 @@ $grid-margin:6px;
             float: left;
             margin-right: 17px;
             margin-left: 20px;
+            line-height: 40px;
             width: 46px;
             height: 46px;
             background:#a2a2a2;
@@ -776,6 +777,9 @@ $grid-margin:6px;
             font-size: 25px;
             &:active{
                 box-shadow: 0 1px 0 shade(#a2a2a2, $btn-shadow-shade);
+            }
+            .icon{
+                @include transition(all .2s);
             }
         }
 
@@ -864,16 +868,10 @@ $grid-margin:6px;
 
     &.open{
         .bill{
-            @include transform(translate(0,-100%));
-            margin-top: 90px;
-            &:nth-child(1){
-                -webkit-transition-delay:.1s;
-            }
-            &:nth-child(2){
-                -webkit-transition-delay:.2s;
-            }
-            &:nth-child(3){
-                -webkit-transition-delay:.3s;
+            .bottom{
+                .btn.cancel .icon{
+                    @include transform(rotate(-90deg));
+                }
             }
         }
     }

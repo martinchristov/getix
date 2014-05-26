@@ -45,7 +45,7 @@ Bills.prototype.pin = function(bill){
 	}
 	for(var i=0;i<this.opened.length;i++){
 		if(_this.opened[i]===bill){
-			if(_this.current!==i){
+			if(_this.current!==i || _this.billBoard.opened){
 				nextCurrent=i;
 				Bills.$timeout(setcurrent,100);
 			}

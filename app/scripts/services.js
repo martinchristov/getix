@@ -31,7 +31,6 @@
 				return bill;
 			},
 			setBill:function(_bill){
-				console.log('bill',_bill);
 				bill=_bill;
 			},
 			getBillBoard:function(){

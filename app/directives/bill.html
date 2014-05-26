@@ -87,7 +87,9 @@
 		</div>
 	</div>
 	<div class="bottom" ng-hide="step2">
-		<div class="btn cancel icon icon_bin" hm-tap="$parent.bills.cancel(bill)"></div>
+		<div class="btn cancel" hm-tap="$parent.bills.pin(bill)">
+			<div class="icon icon_pointer"></div>
+		</div>
 		<div class="btn close" hm-tap="toStep2()" ng-show="readyToClose()">CLOSE</div>
 		<div class="btn close" hm-tap="bill.closeStack()" ng-hide="readyToClose()">TOTAL</div>
 	</div>

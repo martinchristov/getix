@@ -45,11 +45,18 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					$scope.received = $scope.bill.total();
-					$scope.step2=true;
-					setTimeout(function(){
-						$('#received-input').focus();
-					},600);
+					if($scope.bill.items.length===0){
+						$scope.$parent.bills.cancel($scope.bill);
+					}
+					else
+					{
+						$scope.received = $scope.bill.total();
+						$scope.step2=true;
+						setTimeout(function(){
+							$('#received-input').focus();
+						},600);
+					}
+					
 				};
 
 				//items
