@@ -62,9 +62,9 @@
 				//items
 				$scope.expand = [];
 
-				$scope.toggleExpand = function(item){
+				$scope.toggleExpand = function(index){
 					if(!$scope.grouping){
-						$scope.expand[$index]=!$scope.expand[$index];
+						$scope.expand[index]=!$scope.expand[index];
 					}
 				};
 

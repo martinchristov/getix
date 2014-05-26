@@ -56,7 +56,7 @@
 						<div class="group-click" hm-tap="grouping=true;" ng-hide="grouping"></div>
 						<div 
 							class="item" 
-							hm-tap="toggleExpand(item)" 
+							hm-tap="toggleExpand($index)" 
 							ng-repeat="item in bill.openedStack.items track by item.index"
 							ng-class="{expanded:expand[$index], grouping:grouping}"
 							>
