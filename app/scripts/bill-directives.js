@@ -45,7 +45,7 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					if($scope.bill.items.length===0){
+					if($scope.bill.items.length==0){
 						$scope.$parent.bills.cancel($scope.bill);
 					}
 					else
@@ -61,6 +61,12 @@
 
 				//items
 				$scope.expand = [];
+
+				$scope.toggleExpand = function(item){
+					if(!$scope.grouping){
+						$scope.expand[$index]=!$scope.expand[$index];
+					}
+				};
 
 				$scope.lessQuantity = function(item){
 					if(item.quantity>1){

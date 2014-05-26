@@ -696,6 +696,26 @@ $grid-margin:6px;
             color: $clr-money;
             font-weight:600;
         }
+
+        
+        .groupcheck{
+            display: none;
+            // background:#aaa;
+            // width: 20px;
+            // height: 20px;
+        }
+        &.grouping{
+            .quan{
+                margin-left: 25px;
+            }
+            .name{
+                margin-left: 25px;
+            }
+            .groupcheck{
+                display: block;
+            }
+        }
+
         @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
         &.ng-enter{
             @include transform(translate(0,-50px));
@@ -729,6 +749,17 @@ $grid-margin:6px;
             font-size: 13px;
             color: #858585;
         }
+    }
+    .opened-stack{
+        position: relative;
+    }
+    .group-click{
+        position: absolute;
+        height: 100%;
+        width: 30px;
+        left: 0;
+        top: 0;
+        z-index: 999;
     }
     
     .step2{

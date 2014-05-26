@@ -36,6 +36,7 @@
 		<div class="scroll scrollme" win-height-minus="290" scrollbottom>
 			<div class="in">
 				<div class="step1 step" ng-hide="step2">
+
 					<div class="closed-stacks">
 						<div ng-show="bill.closedStack!=null" class="stack" hm-tap="stackExpanded=!stackExpanded">
 							<div class="items">
@@ -52,12 +53,16 @@
 					<div 
 						class="opened-stack"
 						>
+						<div class="group-click" hm-tap="grouping=true;" ng-hide="grouping"></div>
 						<div 
 							class="item" 
-							hm-tap="expand[$index]=!expand[$index]" 
+							hm-tap="toggleExpand(item)" 
 							ng-repeat="item in bill.openedStack.items track by item.index"
-							ng-class="{expanded:expand[$index]}"
+							ng-class="{expanded:expand[$index], grouping:grouping}"
 							>
+							<div class="groupcheck">
+								<input type="checkbox" ng-model="item.checked">
+							</div>
 							<div class="edit">
 								<div ng-show="expand[$index]" class="btn del icon icon_bin" hm-tap="bill.remove(item);expand[$index]=false;"></div>
 								<div ng-show="expand[$index]" class="btn minus" hm-tap="lessQuantity(item)">-</div>
@@ -96,5 +101,9 @@
 	<div class="bottom" ng-show="step2">
 		<div class="btn cancel" hm-tap="step2=false;"></div>
 		<div class="btn close" hm-tap="$parent.bills.close(bill)">COMPLETE</div>
+	</div>
+	<div class="bottom" ng-show="grouping">
+		<div class="btn half" hm-tap="grouping=false;">cancel</div>
+		<div class="btn half green" hm-tap="groupItems()">group</div>
 	</div>
 </div>
