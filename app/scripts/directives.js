@@ -39,13 +39,13 @@ angular.module('getix')
 				});
 				new Hammer(el[0]).on('dragleft', function(e){
 					el[0].scrollLeft = startX+e.gesture.distance;
-					var perc = el[0].scrollLeft/quota*100;
-					bg.css({'background-position':perc+'%'});
 				});
 				new Hammer(el[0]).on('dragright', function(e){
 					el[0].scrollLeft = startX-e.gesture.distance;
-					var perc = el[0].scrollLeft/quota*100;
-					bg.css({'background-position':perc+'%'});
+				});
+
+				el.on('scroll',function(e){
+					bg.css({'background-position':(el.target.scrollLeft/quota*100)+'%'});
 				});
 			}
 		};

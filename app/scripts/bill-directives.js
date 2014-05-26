@@ -214,7 +214,11 @@
 		return {
 			restrict: 'A',
 			link: function ($scope, el) {
-				el.css({top:-(angular.element(window).height()-55-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+				function position () {
+					el.css({top:-(angular.element(window).height()-55-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+				}
+				angular.element(window).resize(position);
+				position();
 			}
 		};
 	}]);

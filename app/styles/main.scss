@@ -247,7 +247,7 @@ $grid-margin:6px;
     overflow-x: visible;
     @include unselectable;
     @include transition(all .2s);
-    -webkit-overflow-scrolling: touch;
+    // -webkit-overflow-scrolling: touch;
     .scroll{
         overflow-x: scroll;
         overflow-y: visible;
@@ -531,7 +531,6 @@ $grid-margin:6px;
     .scroll{
         padding: 20px;
         width: 290px;
-        padding-right: 50px;
         overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
