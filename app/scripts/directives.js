@@ -122,4 +122,25 @@ angular.module('getix')
 			});
 		};
 	}])
+	.directive('barcodeListener',[function(){
+		return function($scope){
+			var pressed = false;
+		    var chars = [];
+		    angular.element(window).keypress(function(e) {
+		        if (e.which >= 48 && e.which <= 57) {
+		            chars.push(String.fromCharCode(e.which));
+		        }
+		        if (pressed === false) {
+		            setTimeout(function(){
+		                if (chars.length >= 10) {
+		                    $scope.$emit('barcodeScanned',chars.join(''));
+		                }
+		                chars = [];
+		                pressed = false;
+		            },500);
+		        }
+		        pressed = true;
+		    });
+		};
+	}])
 	;

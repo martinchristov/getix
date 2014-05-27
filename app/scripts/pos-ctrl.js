@@ -1,7 +1,7 @@
 /* global angular */
 'use strict';
 (function(){
-	var POS = function(appData, UIService, $timeout){
+	var POS = function(appData, UIService, $timeout, $scope){
 		this.categories = appData.data.menu.data;
 		this.currentCategoryIndex = 0;
 		
@@ -19,6 +19,18 @@
 		this.searching=false;
 
 		this.itemToResize=null;
+
+		var _this = this;
+		$scope.$on('barcodeScanned',function(e,barcode){
+			//search for item
+			for(var i=0;i<_this.searchResults.length;i++){
+				if(_this.searchResults[i].code===barcode){
+					_this.bills.addToCurrent(_this.searchResults[i]);
+					$scope.$apply();
+					break;
+				}
+			}
+		});
 	};
 	POS.prototype.show = function(index){
 		var _this = this;
@@ -88,7 +100,7 @@
 		
 	};
 
-	POS.$inject = ['appData','UIService', '$timeout'];
+	POS.$inject = ['appData','UIService', '$timeout', '$scope'];
 
 	angular.module('getix').controller('POS',POS);
 

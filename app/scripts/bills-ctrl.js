@@ -14,6 +14,7 @@ var Bills = function(Bill,$timeout,$scope,UIService){
 
 	// start with an open bill?
 	// this.newBill();
+
 };
 
 Bills.prototype.addToCurrent = function(item){

@@ -1,5 +1,5 @@
 <div id="pos">
-	<div ng-controller="Bills as bills" ng-init="pos.bills=bills">
+	<div ng-controller="Bills as bills" ng-init="pos.bills=bills" barcode-listener>
 		<div id="topbar">
 			<div id="search">
 				<input type="text" ng-model="pos.search" ng-focus="pos.searching=true" ng-blur="">
