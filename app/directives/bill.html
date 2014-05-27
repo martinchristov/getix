@@ -58,7 +58,7 @@
 							class="item" 
 							hm-tap="toggleExpand($index)" 
 							ng-repeat="item in bill.openedStack.items track by item.index"
-							ng-class="{expanded:expand[$index], grouping:grouping}"
+							ng-class="{expanded:expand[$index], grouping:grouping, group:item.type=='group'}"
 							>
 							<div class="groupcheck">
 								<input type="checkbox" ng-model="item.checked">
@@ -92,18 +92,27 @@
 		</div>
 	</div>
 	<div class="bottom" ng-hide="step2">
-		<div class="btn cancel" hm-tap="$parent.bills.pin(bill)">
+		<div class="btn cancel grey" hm-tap="$parent.bills.pin(bill)">
 			<div class="icon icon_pointer"></div>
 		</div>
-		<div class="btn close" hm-tap="toStep2()" ng-show="readyToClose()">CLOSE</div>
-		<div class="btn close" hm-tap="bill.closeStack()" ng-hide="readyToClose()">TOTAL</div>
+		<div class="btn close green" hm-tap="toStep2()" ng-show="readyToClose()">CLOSE</div>
+		<div class="btn close green" hm-tap="bill.closeStack()" ng-hide="readyToClose()">TOTAL</div>
 	</div>
 	<div class="bottom" ng-show="step2">
-		<div class="btn cancel" hm-tap="step2=false;"></div>
-		<div class="btn close" hm-tap="$parent.bills.close(bill)">COMPLETE</div>
+		<div class="btn cancel grey" hm-tap="step2=false;"></div>
+		<div class="btn close green" hm-tap="$parent.bills.close(bill)">COMPLETE</div>
 	</div>
 	<div class="bottom" ng-show="grouping">
-		<div class="btn half" hm-tap="grouping=false;">cancel</div>
-		<div class="btn half green" hm-tap="groupItems()">group</div>
+		<div class="half">
+			<div class="btn blue" hm-tap=" grouping=false; editgroup=true; bill.group();">group</div>
+		</div>
+		<div class="half">
+			<div class="btn grey" hm-tap="grouping=false;">cancel</div>
+		</div>
+	</div>
+	<div class="bottom editgroup" ng-show="editgroup">
+		<input type="text" class="name" ng-model="bill.lastGroupItem.name">
+		<input type="text" class="money" ng-model="bill.lastGroupItem.price" currency>
+		<div class="btn green ok" hm-tap="editgroup=false">ok</div>
 	</div>
 </div>

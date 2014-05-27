@@ -45,6 +45,9 @@ $clr-other:#999;
 $clr-money:#41921e;
 $clr-dark:#575757;
 $clr-darker:#494949;
+$clr-grey:#a2a2a2;
+$clr-blue:#1e75c6;
+$clr-green:#4AB41D;
 
 
 .icon{
@@ -63,6 +66,27 @@ $clr-darker:#494949;
     line-height: 46px;
     &:active{
         @include transform(translateY(3px));
+    }
+    &.grey{
+        background:$clr-grey;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-grey, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-grey, $btn-shadow-shade);
+        }
+    }
+    &.green{
+        background:$clr-green;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-green, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-green, $btn-shadow-shade);
+        }
+    }
+    &.blue{
+        background:$clr-blue;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-blue, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-blue, $btn-shadow-shade);
+        }
     }
 }
 
@@ -695,14 +719,13 @@ $grid-margin:6px;
             font-size: 20px;
             color: $clr-money;
             font-weight:600;
+            padding-left: 5px;
+            background:#FCFAE2;
         }
 
         
         .groupcheck{
             display: none;
-            // background:#aaa;
-            // width: 20px;
-            // height: 20px;
         }
         &.grouping{
             .quan{
@@ -713,6 +736,21 @@ $grid-margin:6px;
             }
             .groupcheck{
                 display: block;
+            }
+        }
+        &.group{
+            background:rgb(235, 238, 240);
+            .price{
+                background:rgb(235, 238, 240);
+            }
+            .groupcheck{
+                display: none;
+            }
+            .quan{
+                margin-left: 0;
+            }
+            .name{
+                margin-left: 0;
             }
         }
 
@@ -784,16 +822,29 @@ $grid-margin:6px;
         padding: 20px 0;
         background:$clr-darker;
         width: 100%;
+
+        .half{
+            width: 50%;
+            float: left;
+            .btn{
+                margin: 0 20px;
+            }
+        }
+        .half:nth-of-type(1){
+            .btn{
+                margin-right:10px;
+            }
+        }
+        .half:nth-of-type(2){
+            .btn{
+                margin-left:10px;
+            }
+        }
         
         .btn.close{
             float: left;
             width: 216px;
             height: 46px;
-            background:#4AB41D;
-            box-shadow:0 $btn-shadow-size 0 shade(#4AB41D, $btn-shadow-shade);
-            &:active{
-                box-shadow: 0 1px 0 shade(#4AB41D, $btn-shadow-shade);
-            }
 
         }
         .btn.cancel{
@@ -803,14 +854,32 @@ $grid-margin:6px;
             line-height: 40px;
             width: 46px;
             height: 46px;
-            background:#a2a2a2;
-            box-shadow:0 $btn-shadow-size 0 shade(#a2a2a2, $btn-shadow-shade);
             font-size: 25px;
-            &:active{
-                box-shadow: 0 1px 0 shade(#a2a2a2, $btn-shadow-shade);
-            }
             .icon{
                 @include transition(all .2s);
+            }
+        }
+
+        &.editgroup{
+            input{
+                background:#8B8B8B;
+                border:none;
+                float: left;
+                margin-right: 10px;
+                line-height: 36px;
+                color: white;
+                &.name{
+                    width: 130px;
+                    margin-left: 20px;
+                }
+                &.money{
+                    width: 50px;
+                    text-align: right;
+                }
+            }
+            .ok{
+                float: left;
+                width: 54px;
             }
         }
 

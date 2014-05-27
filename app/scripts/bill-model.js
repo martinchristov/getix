@@ -12,6 +12,7 @@
 		this.closedStack = null;
 		this.openedStack=null;
 		this.newStack();
+		this.lastGroupItem = {price:0};
 	}
 	Bill.$factory = [
 		function(){
@@ -40,6 +41,30 @@
 	};
 	Bill.prototype.remove = function(item){
 		this.openedStack.items = _.reject(this.openedStack.items,item);
+	};
+
+	Bill.prototype.group = function(){
+		var groupItem = {
+			items:[],
+			price:0,
+			quantity:1,
+			type:'group'
+		},
+			_this = this;
+
+		for (var i = this.openedStack.items.length - 1; i >= 0; i--) {
+			if(_this.openedStack.items[i].checked){
+				groupItem.price+=_this.openedStack.items[i].price*_this.openedStack.items[i].quantity;
+				groupItem.items.push(_this.openedStack.items[i]);
+				_this.openedStack.items.splice(i,1);
+			}
+		}
+		if(groupItem.items.length>0){
+			groupItem.name = 'Mix '+ groupItem.items[groupItem.items.length-1].name;
+			groupItem.index=this.index++;
+			this.openedStack.items.push(groupItem);
+			this.lastGroupItem = groupItem;
+		}
 	};
 
 	Bill.prototype.newStack = function(){

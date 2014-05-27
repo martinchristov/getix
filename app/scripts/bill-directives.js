@@ -45,7 +45,7 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					if($scope.bill.items.length==0){
+					if($scope.bill.items.length===0){
 						$scope.$parent.bills.cancel($scope.bill);
 					}
 					else
