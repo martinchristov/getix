@@ -45,6 +45,9 @@ $clr-other:#999;
 $clr-money:#41921e;
 $clr-dark:#575757;
 $clr-darker:#494949;
+$clr-grey:#a2a2a2;
+$clr-blue:#1e75c6;
+$clr-green:#4AB41D;
 
 
 .icon{
@@ -63,6 +66,27 @@ $clr-darker:#494949;
     line-height: 46px;
     &:active{
         @include transform(translateY(3px));
+    }
+    &.grey{
+        background:$clr-grey;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-grey, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-grey, $btn-shadow-shade);
+        }
+    }
+    &.green{
+        background:$clr-green;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-green, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-green, $btn-shadow-shade);
+        }
+    }
+    &.blue{
+        background:$clr-blue;
+        box-shadow:0 $btn-shadow-size 0 shade($clr-blue, $btn-shadow-shade);
+        &:active{
+            box-shadow: 0 1px 0 shade($clr-blue, $btn-shadow-shade);
+        }
     }
 }
 
@@ -117,6 +141,37 @@ input{
                 padding: 0 10px;
             }
         }
+    }
+}
+#search{
+    position: absolute;
+    left: 111px;
+    top: 7px;
+    input{
+        border-radius: 6px;
+        background:#e9e9e9;
+        border:none;
+        outline:none;
+        color: #fff;
+        line-height: 20px;
+        padding: 0 10px;
+        width: 150px;
+        height: 40px;
+        @include transition(all .2s);
+        &:hover,&:focus{
+            background:#afafaf;
+        }
+        
+    }
+    &:before{
+        position: absolute;
+        content:"\e005";
+        font-family: icons;
+        color:white;
+        font-size: 20px;
+        top: 0px;
+        right: 8px;
+        line-height: 39px;
     }
 }
 
@@ -216,7 +271,7 @@ $grid-margin:6px;
     overflow-x: visible;
     @include unselectable;
     @include transition(all .2s);
-    -webkit-overflow-scrolling: touch;
+    // -webkit-overflow-scrolling: touch;
     .scroll{
         overflow-x: scroll;
         overflow-y: visible;
@@ -240,7 +295,7 @@ $grid-margin:6px;
         overflow: hidden;
         h3{
             font-size: 25px;
-            margin-bottom: 15px;
+            margin-bottom: 9px;
         }
         .items{
             overflow-y: scroll;
@@ -254,13 +309,33 @@ $grid-margin:6px;
             width: $grid-single;
             height:$grid-single;
             margin-right: $grid-margin;
-            margin-bottom: $grid-margin;
+            margin-top: $grid-margin;
             float: left;
             box-sizing:border-box;
             font-size: 13px;
             font-weight: 700;
             padding: 10px;
             position: relative;
+
+            .resize{
+                position: absolute;
+                display: none;
+                width: 32px;
+                height: 32px;
+                top: -6px;right: -6px;
+                border-radius: 100%;
+                background:#fff;
+                color: #444;
+                @include transform(rotate(-135deg));
+                line-height: 32px;
+                font-size: 16px;
+                text-align: center;
+            }
+            &.resizing{
+                .resize{
+                    display: block;
+                }
+            }
 
             &.medium{
                 width:$grid-double;
@@ -273,6 +348,9 @@ $grid-margin:6px;
             &.large{
                 width:$grid-double;
                 height:$grid-double;
+                .resize{
+                    @include transform(rotate(45deg));
+                }
             }
 
             &:before{
@@ -293,6 +371,41 @@ $grid-margin:6px;
                 // &:before{
                 //     opacity: .6;
                 // }
+            }
+        }
+    }
+    
+    &.resizing{
+        .group .item{
+            @include transform(scale(.9));
+            opacity: 0.8;
+        }
+        .group .item.resizing{
+            @include transform(scale(1));
+            opacity: 1;
+        }
+    }
+    .search-results{
+        .group{
+            margin-left: 40px;
+            width: auto;
+        }
+        .item{
+            @include transition(all .2s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+            &.ng-enter{
+                @include transform(translate(0,-50px));
+                opacity: 0;
+                margin-right: -87px;
+            }
+            &.ng-enter-active, &.ng-leave{
+                @include transform(translate(0,0));
+                opacity: 1;
+                margin-right: 6px;
+            }
+            &.ng-leave-active{
+                @include transform(translate(0,-50px));
+                opacity: 0;
+                margin-right: -87px;
             }
         }
     }
@@ -351,6 +464,11 @@ $grid-margin:6px;
                 color: #333;
             }
         }
+        .total{
+            position: absolute;
+            right: 13px;
+            top: 22px;
+        }
     }
     .pin{
         width: 38px;
@@ -401,6 +519,8 @@ $grid-margin:6px;
             height: 42px;
         }
         .tables{
+            margin-left: -5px;
+            width: 330px;
             .table{
                 width: 96px;
                 height: 60px;
@@ -411,7 +531,8 @@ $grid-margin:6px;
                 color: #333;
                 line-height: 60px;
                 float: left;
-                margin-right: 10px;
+                margin-right: 5px;
+                margin-left: 5px;
                 margin-top: 10px;
                 background:rgb(250, 250, 250);
                 @include transition(all .15s ease-out);
@@ -419,10 +540,25 @@ $grid-margin:6px;
                     background:#888;
                     color: #fff;
                 }
+                // @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1));
+                &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+                    display: block!important;
+                }
+                &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+                    // @include transform(perspective(340px) rotateX(90deg) scale(0.2));
+                    // @include transform-origin(50%,0%);
+                    // -webkit-backface-visibility: visible;
+                    opacity: 0;
+                    margin-right: -96px;
+                }
+                &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+                    opacity: 1;
+                    margin-right: 5px;
+                }
             }
-            div:nth-of-type(3){
-                margin-right: 0;
-            }
+            // div:nth-of-type(3){
+            //     margin-right: 0;
+            // }
         }
         .client{
             input{
@@ -452,15 +588,9 @@ $grid-margin:6px;
     .scroll{
         padding: 20px;
         width: 290px;
-        padding-right: 50px;
         overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
-    }
-    .closed-stacks{
-        .stack{
-
-        }
     }
     .stack{
         background:#eee;
@@ -589,7 +719,41 @@ $grid-margin:6px;
             font-size: 20px;
             color: $clr-money;
             font-weight:600;
+            padding-left: 5px;
+            background:#FCFAE2;
         }
+
+        
+        .groupcheck{
+            display: none;
+        }
+        &.grouping{
+            .quan{
+                margin-left: 25px;
+            }
+            .name{
+                margin-left: 25px;
+            }
+            .groupcheck{
+                display: block;
+            }
+        }
+        &.group{
+            background:rgb(235, 238, 240);
+            .price{
+                background:rgb(235, 238, 240);
+            }
+            .groupcheck{
+                display: none;
+            }
+            .quan{
+                margin-left: 0;
+            }
+            .name{
+                margin-left: 0;
+            }
+        }
+
         @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
         &.ng-enter{
             @include transform(translate(0,-50px));
@@ -624,6 +788,17 @@ $grid-margin:6px;
             color: #858585;
         }
     }
+    .opened-stack{
+        position: relative;
+    }
+    .group-click{
+        position: absolute;
+        height: 100%;
+        width: 30px;
+        left: 0;
+        top: 0;
+        z-index: 999;
+    }
     
     .step2{
         .cap{
@@ -647,29 +822,64 @@ $grid-margin:6px;
         padding: 20px 0;
         background:$clr-darker;
         width: 100%;
+
+        .half{
+            width: 50%;
+            float: left;
+            .btn{
+                margin: 0 20px;
+            }
+        }
+        .half:nth-of-type(1){
+            .btn{
+                margin-right:10px;
+            }
+        }
+        .half:nth-of-type(2){
+            .btn{
+                margin-left:10px;
+            }
+        }
         
         .btn.close{
             float: left;
             width: 216px;
             height: 46px;
-            background:#4AB41D;
-            box-shadow:0 $btn-shadow-size 0 shade(#4AB41D, $btn-shadow-shade);
-            &:active{
-                box-shadow: 0 1px 0 shade(#4AB41D, $btn-shadow-shade);
-            }
 
         }
         .btn.cancel{
             float: left;
             margin-right: 17px;
             margin-left: 20px;
+            line-height: 40px;
             width: 46px;
             height: 46px;
-            background:#a2a2a2;
-            box-shadow:0 $btn-shadow-size 0 shade(#a2a2a2, $btn-shadow-shade);
             font-size: 25px;
-            &:active{
-                box-shadow: 0 1px 0 shade(#a2a2a2, $btn-shadow-shade);
+            .icon{
+                @include transition(all .2s);
+            }
+        }
+
+        &.editgroup{
+            input{
+                background:#8B8B8B;
+                border:none;
+                float: left;
+                margin-right: 10px;
+                line-height: 36px;
+                color: white;
+                &.name{
+                    width: 130px;
+                    margin-left: 20px;
+                }
+                &.money{
+                    width: 50px;
+                    text-align: right;
+                }
+            }
+            .ok{
+                float: left;
+                width: 54px;
             }
         }
 
@@ -758,16 +968,10 @@ $grid-margin:6px;
 
     &.open{
         .bill{
-            @include transform(translate(0,-100%));
-            margin-top: 90px;
-            &:nth-child(1){
-                -webkit-transition-delay:.1s;
-            }
-            &:nth-child(2){
-                -webkit-transition-delay:.2s;
-            }
-            &:nth-child(3){
-                -webkit-transition-delay:.3s;
+            .bottom{
+                .btn.cancel .icon{
+                    @include transform(rotate(-90deg));
+                }
             }
         }
     }

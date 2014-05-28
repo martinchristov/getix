@@ -4,11 +4,11 @@
 var Bills = function(Bill,$timeout,$scope,UIService){
 	Bills.Bill = Bill;
 	Bills.$timeout=$timeout;
+	Bills.UIService = UIService;
 
 	this.$scope = $scope;
 	this.current = -1;
 	this.opened=[];
-	this.allUp = false;
 
 	this.billBoard = UIService.getBillBoard();
 
@@ -17,11 +17,14 @@ var Bills = function(Bill,$timeout,$scope,UIService){
 };
 
 Bills.prototype.addToCurrent = function(item){
-	if(this.current===-1){
-		this.newBill();
+	if(Bills.UIService.resizing()===false){
+		if(this.current===-1){
+			this.newBill();
+		}
+		this.opened[this.current].add(item);
+		this.$scope.$broadcast('scrollbottom');
 	}
-	this.opened[this.current].add(item);
-	this.$scope.$broadcast('scrollbottom');
+	
 };
 Bills.prototype.newBill = function(){
 	this.opened.unshift(new Bills.Bill(0));
@@ -42,7 +45,7 @@ Bills.prototype.pin = function(bill){
 	}
 	for(var i=0;i<this.opened.length;i++){
 		if(_this.opened[i]===bill){
-			if(_this.current!==i){
+			if(_this.current!==i || _this.billBoard.opened){
 				nextCurrent=i;
 				Bills.$timeout(setcurrent,100);
 			}
@@ -80,6 +83,7 @@ Bills.prototype.close = function(bill){
 			}
 		}
 		_this.opened = _.reject(_this.opened,bill);
+		bill.close();
 	},400);
 
 };

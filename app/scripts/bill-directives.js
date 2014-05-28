@@ -14,6 +14,8 @@
 			},
 			link: function ($scope, elem) {
 
+				$scope.billBoard = UIService.getBillBoard();
+
 				$scope.readyToClose = function(){
 					if($scope.bill.client===''&&$scope.bill.table===null){
 						return true;
@@ -34,11 +36,6 @@
 					}
 				};
 				$scope.tables = UIService.tables;
-				$scope.setTable = function(table){
-					$scope.bill.table = table;
-					table.busy=true;
-					// $scope.infotab=2;
-				};
 				$scope.stalkEnter = function(e){
 					if(e.keyCode===13){
 						$scope.info=false;
@@ -48,15 +45,61 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					$scope.received = $scope.bill.total();
-					$scope.step2=true;
-					setTimeout(function(){
-						$('#received-input').focus();
-					},600);
+					if($scope.bill.items.length===0){
+						$scope.$parent.bills.cancel($scope.bill);
+					}
+					else
+					{
+						$scope.received = $scope.bill.total();
+						$scope.step2=true;
+						setTimeout(function(){
+							$('#received-input').focus();
+						},600);
+					}
+					
 				};
 
 				//items
 				$scope.expand = [];
+
+				$scope.toggleExpand = function(index){
+					if(!$scope.grouping){
+						$scope.expand[index]=!$scope.expand[index];
+					}
+				};
+
+				$scope.lessQuantity = function(item){
+					if(item.quantity>1){
+						item.quantity--;
+					}
+					else {
+						if(item.quantity===1){
+							item.quantity=0.67;
+						}
+						else if(item.quantity===0.67){
+							item.quantity=0.5;
+						}
+						else if(item.quantity===0.5){
+							item.quantity=0.34;
+						}
+					}
+				};
+				$scope.moreQuantity = function(item){
+					if(item.quantity>=1){
+						item.quantity++;
+					}
+					else {
+						if(item.quantity===0.67){
+							item.quantity=1;
+						}
+						else if(item.quantity===0.5){
+							item.quantity=0.67;
+						}
+						else if(item.quantity===0.34){
+							item.quantity=0.5;
+						}
+					}
+				};
 
 
 				//position
@@ -184,7 +227,11 @@
 		return {
 			restrict: 'A',
 			link: function ($scope, el) {
-				el.css({top:-(angular.element(window).height()-55-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+				function position () {
+					el.css({top:-(angular.element(window).height()-55-80)}).attr({'maxdistance':(angular.element(window).height()-85-80)});
+				}
+				angular.element(window).resize(position);
+				position();
 			}
 		};
 	}]);
