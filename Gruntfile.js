@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                 port: 9000,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
+                hostname: '0.0.0.0'
             },
             livereload: {
                 options: {
@@ -345,31 +345,31 @@ module.exports = function (grunt) {
             ]
         },
 
-        webfont:{
-            icons:{
-                src:'app/images/svg/*.svg',
-                dest:'app/fonts',
-                options:{
-                    stylesheet:'scss',
-                    engine:'node',
-                    relativeFontPath:'../fonts/'
+        webfont: {
+            icons: {
+                src: 'app/images/svg/*.svg',
+                dest: 'app/fonts',
+                options: {
+                    stylesheet: 'scss',
+                    engine: 'node',
+                    relativeFontPath: '../fonts/'
                 }
             }
 
         },
 
         // Distribution
-        buildcontrol:{
-            options:{
-                dir:'dist',
-                commit:true,
-                push:true,
-                message:'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+        buildcontrol: {
+            options: {
+                dir: 'dist',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
             },
-            analogo:{
-                options:{
-                    remote:'analogo.net@analogo.net:domains/analogo.net/html/getix/',
-                    branch:'master'
+            analogo: {
+                options: {
+                    remote: 'analogo.net@analogo.net:domains/analogo.net/html/getix/',
+                    branch: 'master'
                 }
             }
         }
@@ -390,7 +390,7 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('publish', function(target){
+    grunt.registerTask('publish', function (target) {
         // grunt.task.run(['build']);
         grunt.task.run([target ? ('buildcontrol:' + target) : 'buildcontrol']);
     });

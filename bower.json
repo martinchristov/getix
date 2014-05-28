@@ -9,7 +9,8 @@
     "angular-hammer": "~1.0.3",
     "angular-route": "~1.2.16",
     "lodash": "~2.4.1",
-    "ng-Fx": "~0.4.0"
+    "ng-Fx": "~0.4.0",
+    "angular-local-storage": "~0.0.5"
   },
   "devDependencies": {}
 }

@@ -14,7 +14,6 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
-
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -34,16 +33,16 @@
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/angular/angular.js" type="text/javascript"></script>
-        <!-- // <script src="bower_components/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script> -->
-        <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
-        <script src="bower_components/hammerjs/hammer.js" type="text/javascript"></script>
-        <script src="bower_components/angular-hammer/angular-hammer.js" type="text/javascript"></script>
-        <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
-        <script src="bower_components/gsap/src/minified/TweenMax.min.js" type="text/javascript"></script>
-        <script src="bower_components/gsap/src/minified/easing/EasePack.min.js" type="text/javascript"></script>
-        <script src="bower_components/ng-Fx/dist/ng-Fx.js" type="text/javascript"></script>
-        <script src="bower_components/lodash/dist/lodash.js" type="text/javascript"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/hammerjs/hammer.js"></script>
+        <script src="bower_components/angular-hammer/angular-hammer.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+        <script src="bower_components/ng-Fx/dist/ng-Fx.js"></script>
+        <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -59,11 +58,17 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/server-provider.js"></script>
+        <script src="scripts/config.js"></script>
+        <script src="scripts/user-service.js"></script>
+        <script src="scripts/run-login-check.js"></script>
         <script src="scripts/pos-ctrl.js"></script>
         <script src="scripts/bills-ctrl.js"></script>
         <script src="scripts/bill-model.js"></script>
         <script src="scripts/bill-directives.js"></script>
-
+        <script src="scripts/bill-directives.js"></script>
+        <script src="scripts/login-controller.js"></script>
+        <script src="scripts/logout-controller.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/directives.js"></script>
         <script src="scripts/filters.js"></script>
