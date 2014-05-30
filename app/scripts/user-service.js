@@ -15,12 +15,10 @@ var st;
       password: password
     }
 
-    /* DEBUG * /
-    return success.call(context, {
-      'api_key': '123123123',
-      'objName': 'andro'
-    })
-    /* */
+    // return success.call(context, {
+    //   'api_key': '123123123',
+    //   'objName': 'andro'
+    // })
 
     this.server.post('/api/v2/login/', data, function (response, status) {
       if (response.error) {

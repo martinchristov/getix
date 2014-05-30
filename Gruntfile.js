@@ -33,7 +33,8 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['<%= config.app %>/scripts/{,*/}*.js'],
-                tasks: ['jshint'],
+                // tasks: ['jshint'],
+                tasks:[],
                 options: {
                     livereload: true
                 }
@@ -71,7 +72,7 @@ module.exports = function (grunt) {
                 port: 9000,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
-                hostname: '0.0.0.0'
+                hostname: 'localhost'
             },
             livereload: {
                 options: {
