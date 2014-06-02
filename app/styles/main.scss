@@ -536,6 +536,9 @@ $grid-margin:6px;
                 margin-top: 10px;
                 background:rgb(250, 250, 250);
                 @include transition(all .15s ease-out);
+                &.remove{
+                    background:#B1B1B1;
+                }
                 &:active{
                     background:#888;
                     color: #fff;
@@ -671,6 +674,9 @@ $grid-margin:6px;
                 }
                 &.del{
                     @include transition-delay(.1s);
+                }
+                &.group{
+                    @include transition-delay(0.15s)
                 }
 
                 @include transition(all .15s);
@@ -813,7 +819,7 @@ $grid-margin:6px;
             font-size: 24px;
         }
         position: absolute;
-        right:50px;
+        right:15px;
         top: 10px;
     }
     .bottom{

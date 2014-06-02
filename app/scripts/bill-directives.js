@@ -2,7 +2,7 @@
 'use strict';
 (function(){
 	angular.module('getix')
-	.directive('bill', ['UIService',function (UIService) {
+	.directive('bill', ['UIService', '$timeout',function (UIService, $timeout) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -14,6 +14,7 @@
 			},
 			link: function ($scope, elem) {
 
+
 				$scope.billBoard = UIService.getBillBoard();
 
 				$scope.readyToClose = function(){
@@ -24,6 +25,12 @@
 						return true;
 					}
 					return false;
+				};
+
+				$scope.tmHide = function(){
+					$timeout(function(){
+						$scope.$emit('collapseBill');
+					},3000);
 				};
 
 				//info
@@ -45,7 +52,7 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					if($scope.bill.items.length===0){
+					if($scope.bill.openedStack.items.length===0){
 						$scope.$parent.bills.cancel($scope.bill);
 					}
 					else
@@ -61,14 +68,28 @@
 
 				//items
 				$scope.expand = [];
+				var expanded=-1, preventCollapse=false, collapsePromise;
 
 				$scope.toggleExpand = function(index){
-					if(!$scope.grouping){
+					if(!$scope.grouping && !preventCollapse){
 						$scope.expand[index]=!$scope.expand[index];
+						if($scope.expand[index]){
+							expanded=index;
+						}
 					}
 				};
 
 				$scope.lessQuantity = function(item){
+					preventCollapse=true;
+
+					if(collapsePromise){
+						$timeout.cancel(collapsePromise);
+					}
+					collapsePromise = $timeout(function(){
+						preventCollapse=false;
+						$scope.expand[expanded]=false;
+					},3000);
+
 					if(item.quantity>1){
 						item.quantity--;
 					}
@@ -85,6 +106,15 @@
 					}
 				};
 				$scope.moreQuantity = function(item){
+					preventCollapse=true;
+
+					if(collapsePromise){
+						$timeout.cancel(collapsePromise);
+					}
+					collapsePromise = $timeout(function(){
+						preventCollapse=false;
+						$scope.expand[expanded]=false;
+					},3000);
 					if(item.quantity>=1){
 						item.quantity++;
 					}
@@ -99,6 +129,10 @@
 							item.quantity=0.5;
 						}
 					}
+				};
+				$scope.startGroup = function(item,index){
+					$scope.grouping=true;
+					$scope.expand[index]=false;
 				};
 
 

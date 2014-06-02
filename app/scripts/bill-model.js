@@ -122,7 +122,9 @@
 			this.table.busy=false;
 		}
 		this.table = table;
-		table.busy=true;
+		if(table!==null){
+			table.busy=true;
+		}
 	};
 
 	Bill.prototype.close = function(){

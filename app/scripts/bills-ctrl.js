@@ -15,6 +15,11 @@ var Bills = function (Bill, $timeout, $scope, UIService) {
 	// start with an open bill?
 	// this.newBill();
 
+	var _this = this;
+	$scope.$on('collapseBill',function(){
+		_this.current = -1;
+	})
+
 };
 
 Bills.prototype.addToCurrent = function (item) {
