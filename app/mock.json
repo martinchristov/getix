@@ -48,7 +48,7 @@
             {
                 "id": "50",
                 "name": "Admin",
-                "pswHash": "202cb962ac59075b964b07152d234b70",
+                "pswHash": "fa9ff6b1543e365772bffb36dcb70dbc",
                 "userGroup": "0"
             }
         ]
@@ -767,6 +767,48 @@
                             "id": "1978",
                             "code": null,
                             "name": "Разядки",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "1976123",
+                "name": "Liqueur",
+                "key":"liqueur",
+                "description": "",
+                "visible": "1",
+                "objId": "24",
+                "items": {
+                    "total": 0
+                },
+                "groups": {
+                    "total": 2,
+                    "data": [
+                        {
+                            "id": "1977",
+                            "code": null,
+                            "name": "Whiskey",
+                            "description": null,
+                            "visible": "1",
+                            "items": {
+                                "total": 0,
+                                "data": [
+
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1978",
+                            "code": null,
+                            "name": "Cognac",
                             "description": null,
                             "visible": "1",
                             "items": {

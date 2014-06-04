@@ -3,12 +3,13 @@
 
 (function () {
 
-	var login = function ($root, $location, User) {
-		var checkLogin = function (event) {
-			if (!User.isAuthenticated() && '/login' !== $location.path()) {
-				event.preventDefault();
-				window.location.href='#/login';
-				return ;
+	var login = function ($root, $location, Account) {
+		var checkLogin = function () {
+			if (!Account.isAuthenticated() && '/login' !== $location.path()) {
+				// event.preventDefault();
+				// window.location.href='#/login';
+				// return ;
+				$location.path('/login');
 			}
 		};
 
@@ -16,6 +17,6 @@
 	};
 
 
-	login.$inject = ['$rootScope', '$location', 'User'];
+	login.$inject = ['$rootScope', '$location', 'Account'];
 	angular.module('getix').run(login);
 })();

@@ -39,15 +39,17 @@ h1,h2,h3,h4{
 $btn-shadow-size:4px;
 $btn-shadow-shade:35;
 $clr-hot-drinks:#895a48;
-$clr-cold-drinks:#ffb273;
+$clr-cold-drinks:#B9C2C9;
 $clr-cocktails:#844889;
 $clr-other:#999;
+$clr-liqueur:#999;
 $clr-money:#41921e;
 $clr-dark:#575757;
 $clr-darker:#494949;
 $clr-grey:#a2a2a2;
 $clr-blue:#1e75c6;
 $clr-green:#4AB41D;
+$clr-item:#FCFAE2;
 
 
 .icon{
@@ -64,8 +66,8 @@ $clr-green:#4AB41D;
     font-weight: 600;
     text-align: center;
     line-height: 46px;
-    &:active{
-        @include transform(translateY(3px));
+    &.notog:active{
+        @include transform(translateY(3px))
     }
     &.grey{
         background:$clr-grey;
@@ -105,16 +107,72 @@ input{
     position: absolute;
     width: 100%;
     height: 100%;
-    background:transparent url('../images/barbg.jpg') left top no-repeat;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    -webkit-background-size: 120%;
-    background-size: 120%;
+    z-index: 2;
+}
+#users{
+    .bg{
+        opacity: .9;
+    }
+    .holder{
+        width: 250px;
+        margin: 50px auto;
+        background:#fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        h1{
+            font-weight: bold;
+            font-size: 25px;
+            color: #464646;
+        }
+        h3{
+            font-weight: normal;font-size: 20px;
+            color: #696868;
+        }
+        .item{
+            background:$clr-item;
+            border-radius: 4px;
+            border:1px solid #d9d9d9;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        button{
+            width: 204px;
+            margin-left: 24px;
+            line-height: 30px;
+            outline: none;
+        }
+    }
+    .someone-else{
+        margin-top: 15px;
+        display: block;
+        color: $clr-blue;
+    }
+}
+.content{
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    top: 0;left: 0;
+}
+.bg{
+    background:transparent url('../images/bar-bg.jpg') left top no-repeat;
+    opacity: .5;
+    position: absolute;
+    z-index: 0;
+    left: 0;top: 0;
+    width: 100%;
+    height: 100%;
+    @include transition(opacity .35s);
+    &.highlight{
+        opacity: .9;
+    }
 }
 
 #topbar{
     height: 54px;
-    // background:rgba(0,0,0,0.6);
     background:#fff;
     text-align: center;
     @include unselectable;
@@ -139,6 +197,10 @@ input{
             line-height: 40px;
             .text{
                 padding: 0 10px;
+            }
+            &.icon_dashboard{
+                font-size: 28px;
+                background:#6d6d6d;
             }
         }
     }
@@ -193,35 +255,34 @@ input{
         margin-top: 14px;
         border-radius: 100%;
 
+        background-color:#313131;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow:0 $btn-shadow-size 0 shade(#313131, $btn-shadow-shade);
+        &.on{
+            box-shadow:0 1px 0 shade(#313131,$btn-shadow-shade);
+        }
+
         //custom styling for category keywords
         &.hot-drinks{
-            background:$clr-hot-drinks;
-            box-shadow:0 $btn-shadow-size 0 shade($clr-hot-drinks, $btn-shadow-shade);
-            &:active, &.on{
-                box-shadow: 0 1px 0 shade($clr-hot-drinks, $btn-shadow-shade);
-            }
+            background-image:url(../images/icons/hot-drinks.png);
+            background-size:120%;
         }
         &.cold-drinks{
-            background:url(../images/icons/beer.png) no-repeat center -8px $clr-cold-drinks;
-            background-size:100%;
-            box-shadow:0 $btn-shadow-size 0 shade($clr-cold-drinks, $btn-shadow-shade);
-            &:active, &.on{
-                box-shadow: 0 1px 0 shade($clr-cold-drinks, $btn-shadow-shade);
-            }
+            background-image:url(../images/icons/cold-drinks.png);
+            background-size:130%;
         }
         &.cocktails{
-            background:$clr-cocktails;
-            box-shadow:0 $btn-shadow-size 0 shade($clr-cocktails, $btn-shadow-shade);
-            &:active, &.on{
-                box-shadow: 0 1px 0 shade($clr-cocktails, $btn-shadow-shade);
-            }
+            background-image:url(../images/icons/cocktails.png);
+            background-size:120%;
         }
         &.other{
-            background:$clr-other;
-            box-shadow:0 $btn-shadow-size 0 shade($clr-other, $btn-shadow-shade);
-            &:active, &.on{
-                box-shadow: 0 1px 0 shade($clr-other, $btn-shadow-shade);
-            }
+            background-image:url(../images/icons/other.png);
+            background-size:120%;
+        }
+        &.liqueur{
+            background-image:url(../images/icons/liqueur.png);
+            background-size:120%;
         }
 
         &.on{
@@ -234,7 +295,7 @@ input{
         position: absolute;
         bottom: 0;
         width: 100%;
-        background:$clr-dark;
+        background:#2B2B2B;
 
         @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
           //ipad fix
@@ -255,6 +316,16 @@ input{
             background:url(../images/icons/plus.png) no-repeat center #fff;
         }
     }
+
+    @include transition(all .2s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+    &.ng-enter{
+        @include transform(translate(-60px,0));
+        opacity: 0;
+    }
+    &.ng-enter-active{
+        @include transform(translate(0,0));
+        opacity: 1;
+    }
 }
 
 //items grid sizes
@@ -271,7 +342,6 @@ $grid-margin:6px;
     overflow-x: visible;
     @include unselectable;
     @include transition(all .2s);
-    // -webkit-overflow-scrolling: touch;
     .scroll{
         overflow-x: scroll;
         overflow-y: visible;
@@ -304,7 +374,7 @@ $grid-margin:6px;
             padding-right: 30px;
         }
         .item{
-            background:#fff;
+            background:$clr-item;
             border-radius: 4px;
             width: $grid-single;
             height:$grid-single;
@@ -316,6 +386,7 @@ $grid-margin:6px;
             font-weight: 700;
             padding: 10px;
             position: relative;
+            border:1px solid #808080;
 
             .resize{
                 position: absolute;
@@ -324,8 +395,8 @@ $grid-margin:6px;
                 height: 32px;
                 top: -6px;right: -6px;
                 border-radius: 100%;
-                background:#fff;
-                color: #444;
+                background:#444;
+                color: #fff;
                 @include transform(rotate(-135deg));
                 line-height: 32px;
                 font-size: 16px;
@@ -436,6 +507,20 @@ $grid-margin:6px;
         .group .item{
             background:$clr-other;
         }
+    }
+
+    @include transition(all .3s);
+
+    &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+        display: block!important;
+    }
+    &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+        @include transform(translate(0,-100px));
+        opacity: 0;
+    }
+    &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+        @include transform(translate(0));
+        opacity: 1;
     }
 }
 
@@ -638,7 +723,7 @@ $grid-margin:6px;
         }
     }
     .item{
-        background:#FCFAE2;
+        background:$clr-item;
         border-radius: 4px;
         border:1px solid #d9d9d9;
         box-sizing:border-box;
@@ -717,6 +802,8 @@ $grid-margin:6px;
             font-size: 20px;
             bottom: 10px;
             position: absolute;
+            height: 20px;
+            overflow: hidden;
         }
         .price{
             position: absolute;
@@ -726,7 +813,7 @@ $grid-margin:6px;
             color: $clr-money;
             font-weight:600;
             padding-left: 5px;
-            background:#FCFAE2;
+            background:$clr-item;
         }
 
         
@@ -981,15 +1068,41 @@ $grid-margin:6px;
             }
         }
     }
+
+    @include transition(all .4s);
+
+    &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+        display: block!important;
+    }
+    &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+        @include transform(translate(0,70px));
+        opacity: 0;
+    }
+    &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+        @include transform(translate(0));
+        opacity: 1;
+    }
 }
 
-@-webkit-keyframes BillsUp { 
-  0% { @include transform(scale(1.2)); }
-  // 85% { @include }
-  100% { @include transform(translate(0,-100%)); }
-}
-@-webkit-keyframes BillsDown { 
-  0% { @include transform(scale(1.2)); }
-  // 85% { @include }
-  100% { @include transform(translate(0,-100%)); }
+.dropdown{
+    position: absolute;
+    right: 15px;
+    top:65px;
+    z-index: 99999;
+    
+    padding: 20px;
+    background:#AFAFAF;
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: left;
+
+    a{
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        min-width: 200px;
+    }
 }

@@ -24,6 +24,7 @@
 			})
 			.when('/users', {
 				controller: 'Users',
+				controllerAs: 'users',
 				templateUrl: 'view/users.html'
 			})
 			.when('/pos', {
@@ -31,9 +32,11 @@
 				controllerAs: 'pos',
 				templateUrl: 'view/pos.html',
 				resolve: {
-					appData: ['Server', '$http',
-						function (Server, $http) {
-							return $http.get('mock.json');
+					appData: ['Server', '$http', 'Init',
+						function (Server, $http, Init) {
+							// 
+							// return $http.get('mock.json');
+							return Init.getData();
 							// return Server.get('/api/v2/init');
 							// return $http.get('http://dev.getix.net/api/v2/init?ApiKey=f6301dd606223f1f8aaae50fbfc7384c');
 						}

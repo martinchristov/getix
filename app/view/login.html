@@ -1,7 +1,17 @@
-<div class="error" ng-show="login.error">{{login.error}}</div>
-
-<form ng-submit="login.submit()">
-	<input type="text" ng-model="login.email" name="email" placeholder="Enter login e-mail" />
-	<input type="password" ng-model="login.password" name="password" placeholder="Enter login password" />
-	<button type="submit">Login</button>
-</form>
+<div id="users">
+	<div class="bg"></div>
+	<div class="content">
+		<div class="holder" >
+			<h1>Getix</h1>
+			<h3>login to your account</h3>
+			<hr>
+			<div class="error" ng-show="login.error">{{login.error}}</div>
+			<form ng-submit="login.submit()">
+				<input type="text" auto-fill-sync ng-model="login.email" name="email" placeholder="Enter login e-mail" />
+				<input type="password" auto-fill-sync ng-model="login.password" name="password" placeholder="Enter login password" />
+				<button type="submit" class="btn">Login</button>
+			</form>
+		</div>
+		
+	</div>
+</div>

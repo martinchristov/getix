@@ -1,0 +1,21 @@
+<div id="users">
+	<div class="bg"></div>
+	<div class="content">
+		<div class="holder" ng-hide="users.chosen">
+			<h1>Bilkova</h1>
+			<h3>choose a user</h3>
+			<hr>
+			<div class="item" ng-repeat="user in users.data" hm-tap="users.chosen=user">{{user.name}}</div>
+		</div>
+		<div class="holder" ng-show="users.chosen">
+			<h1>{{users.chosen.name}}</h1>
+			<h3>enter your password</h3>
+			<hr>
+			<form ng-submit="users.login()">
+				<input ng-model="users.pass" type="password">
+				<button class="btn" type="submit">login</button>
+			</form>
+			<a class="someone-else" hm-tap="users.chosen=null">Not {{users.chosen.name}}?</a>
+		</div>
+	</div>
+</div>

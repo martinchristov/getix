@@ -57,11 +57,13 @@
 	};
 
 	Server.prototype.request = function (url, data, callback, context, method) {
-		var request;
+		var request,
+			headers = {};
 
 		method = method || 'get';
 		context = context || null;
 		url = this.genURL(url);
+		
 
 		if (typeof url !== 'string') {
 			throw new Error('[API Connect]: Invalid or missing URL!\n');
@@ -76,19 +78,21 @@
 		}
 
 		if (this.token){
-			data.token = this.token;
+			headers.token = this.token;
 		}
 
 		request = {
 			method: method,
 			url: url,
-			data: data
+			data: data,
+			headers: headers
 		};
-
-		return this
-			.adapter(request)
+		
+		return this.adapter(request)
 			.success(function (response) {
-				return callback.call(context, response);
+				if(callback!==undefined){
+					return callback.call(context, response);
+				}
 			})
 			.error(function (response) {
 				if (status === 404){
@@ -100,10 +104,13 @@
 				if (status === 500) {
 					throw new Error('500: Server error');
 				}
-
-				return callback.call(context, response);
+				if(callback){
+					return callback.call(context, response);
+				}
 			});
 	};
+
+	// Server.$inject=['http'];
 
 	angular.module('getix').provider('Server', Server);
 })();

@@ -1,14 +1,21 @@
 <div id="pos">
-	<div ng-controller="Bills as bills" ng-init="pos.bills=bills" barcode-listener>
+	<div class="bg" ng-class="{highlight:pos.showDashboard}"></div>
+	<div class="content" ng-controller="Bills as bills" ng-init="pos.bills=bills" barcode-listener>
 		<div id="topbar">
 			<div id="search">
 				<input type="text" ng-model="pos.search" ng-focus="pos.searching=true" ng-blur="">
 			</div>
 			<h1>Bilkova</h1>
 			<div class="btns">
-				<div class="btn"><div class="text">martin</div></div>
+				<div class="btn icon icon_dashboard" ng-class="{on:pos.showDashboard}" hm-tap="pos.showDashboard=!pos.showDashboard"></div>
+				<div class="btn" hm-tap="userDropdown=!userDropdown"><div class="text">martin</div></div>
 				<div class="btn icon icon_settings"></div>
 				<div class="btn icon icon_fullscreen" hm-tap="pos.fullscreen()"></div>
+			</div>
+
+			<div class="user dropdown" ng-show="userDropdown">
+				<a href="#/users">Switch user</a>
+				<a href="#/logout">Logout</a>
 			</div>
 		</div>
 
@@ -17,17 +24,17 @@
 			<a 
 				class="btn {{category.key}}"
 				ng-class="{on: pos.currentCategoryIndex==$index}"
-				ng-repeat="category in pos.categories" 
+				ng-repeat="category in pos.categories | limitTo:6" 
 				hm-tap="pos.show({{$index}})"></a>
 			<div class="bottom">
-				<a class="btn newbill" hm-tap="bills.newBill()"></a>
+				<a class="btn newbill notog" hm-tap="bills.newBill(); pos.showDashboard=false;"></a>
 			</div>
 		</div>
 		
-		<div id="list" ng-hide="pos.shown=='bills'" ng-class="{fade:pos.dragging.on||bills.allUp, resizing:pos.itemToResize!==null}">
+		<div id="list" ng-hide="pos.showDashboard" ng-class="{fade:pos.dragging.on||bills.allUp, resizing:pos.itemToResize!==null}">
 			<div class="scroll" drag-board>
 				<div 
-					class="groups fx-fade-left fx-easing-back fx-speed-500 {{category.key}}"
+					class="groups fx-fade-left fx-easing-back fx-speed-500"
 					ng-repeat="category in pos.categories"
 					ng-show="pos.currentCategoryIndex==$index && !(pos.searching && pos.search.length>0)"
 					style="width:{{category.groups.data.length*310+310}}px"
@@ -66,7 +73,7 @@
 		</div>
 
 		<div id="bills" 
-			ng-show="bills.opened.length>0" 
+			ng-show="bills.opened.length>0&&!pos.showDashboard" 
 			ng-class="{open:bills.billBoard.opened}" 
 			win-height-minus="55"
 			bill-puller
