@@ -316,16 +316,6 @@ input{
             background:url(../images/icons/plus.png) no-repeat center #fff;
         }
     }
-
-    @include transition(all .2s cubic-bezier(0.250, 0.250, 0.000, 1.200));
-    &.ng-enter{
-        @include transform(translate(-60px,0));
-        opacity: 0;
-    }
-    &.ng-enter-active{
-        @include transform(translate(0,0));
-        opacity: 1;
-    }
 }
 
 //items grid sizes

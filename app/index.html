@@ -58,26 +58,25 @@
         </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/app.js"></script>
+        <script src="app.js"></script>
+        <script src="services/server-provider.js"></script>
+        <script src="config.js"></script>
         
-        <script src="scripts/server-provider.js"></script>
-        <script src="scripts/config.js"></script>
-
-        <script src="scripts/init-service.js"></script>
-        <script src="scripts/account-service.js"></script>
+        <script src="services/init-service.js"></script>
+        <script src="services/account-service.js"></script>
         <script src="scripts/run-login-check.js"></script>
-        <script src="scripts/ctrl/users-ctrl.js"></script>
 
-        <script src="scripts/ctrl/pos-ctrl.js"></script>
-        <script src="scripts/ctrl/login-ctrl.js"></script>
-        <script src="scripts/ctrl/logout-ctrl.js"></script>
-
-        <script src="scripts/ctrl/bills-ctrl.js"></script>
+        <script src="controllers/users-ctrl.js"></script>
+        <script src="controllers/pos-ctrl.js"></script>
+        <script src="controllers/login-ctrl.js"></script>
+        <script src="controllers/logout-ctrl.js"></script>
+        
+        <script src="controllers/bills-ctrl.js"></script>
         <script src="scripts/bill-model.js"></script>
-        <script src="scripts/bill-directives.js"></script>
+        <script src="directives/bill-directives.js"></script>
 
-        <script src="scripts/services.js"></script>
-        <script src="scripts/directives.js"></script>
+        <script src="services/ui-service.js"></script>
+        <script src="directives/directives.js"></script>
         <script src="scripts/filters.js"></script>
 
 
