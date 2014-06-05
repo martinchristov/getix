@@ -680,7 +680,37 @@ $grid-margin:6px;
         position: relative;
         overflow: hidden;
         padding: 10px;
+        @include transition(all .2s);
+        .pointer{
+            position: absolute;
+            z-index: 9;
+            width: 40px;height: 40px;
+            color: #fff;
+            bottom: -40px;
+            left: 0;
+            @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+            @include transform-origin(50%,50%);
+            @include transform(rotate(0deg));
+        }
+        &:hover{
+            background:#DDD;
+            .pointer{
+                bottom:10px;
+                @include transform(rotate(180deg));
+            }
+        }
+        &.expanded{
+            .pointer{
+            
+            }
+            &:hover .pointer{
+                @include transform(rotate(0deg));
+            }
+        }
         .item{
+            &:hover{
+
+            }
             @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
             &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
                 display: block!important;
