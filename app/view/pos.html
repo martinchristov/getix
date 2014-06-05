@@ -1,23 +1,7 @@
-<div id="pos">
+<div id="pos" ng-class="{darken:pos.showDashboard}">
 	<div class="bg" ng-class="{highlight:pos.showDashboard}"></div>
 	<div class="content" ng-controller="Bills as bills" ng-init="pos.bills=bills" barcode-listener>
-		<div id="topbar">
-			<div id="search">
-				<input type="text" ng-model="pos.search" ng-focus="pos.searching=true" ng-blur="">
-			</div>
-			<h1>Bilkova</h1>
-			<div class="btns">
-				<div class="btn icon icon_dashboard" ng-class="{on:pos.showDashboard}" hm-tap="pos.showDashboard=!pos.showDashboard"></div>
-				<div class="btn" hm-tap="userDropdown=!userDropdown"><div class="text">martin</div></div>
-				<div class="btn icon icon_settings"></div>
-				<div class="btn icon icon_fullscreen" hm-tap="pos.fullscreen()"></div>
-			</div>
-
-			<div class="user dropdown" ng-show="userDropdown">
-				<a href="#/users">Switch user</a>
-				<a href="#/logout">Logout</a>
-			</div>
-		</div>
+		<top-bar></top-bar>
 
 		<div id="leftbar">
 			<div class="fixer"></div>
@@ -90,6 +74,10 @@
 						></bill>
 				</div>
 			</div>
+		</div>
+
+		<div id="dashboard">
+			
 		</div>
 	</div>
 </div>

@@ -11,6 +11,7 @@
 			<h1>{{users.chosen.name}}</h1>
 			<h3>enter your password</h3>
 			<hr>
+			<div ng-show="users.loginError">Wrong password :/</div>
 			<form ng-submit="users.login()">
 				<input ng-model="users.pass" type="password">
 				<button class="btn" type="submit">login</button>

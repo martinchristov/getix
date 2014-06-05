@@ -10,17 +10,17 @@
 		});
 		this.chosen = null;
 		this.$location = $location;
+		this.loginError=false;
 	};
 
 	Users.prototype.login = function(){
 		if(md5(this.pass)===this.chosen.pswHash){
-			console.log('login success');
+			this.loginError=false;
+			this.$location.path('/pos');
 		}
 		else {
-			console.log('login failure');
+			this.loginError=true;
 		}
-
-		this.$location.path('/pos');
 	};
 
 	Users.$inject = ['Init','$location'];

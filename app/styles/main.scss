@@ -109,6 +109,11 @@ input{
     height: 100%;
     overflow: hidden;
     z-index: 2;
+    background:#fff;
+    // @include transition(background .55s);
+    &.darken{
+        background:#000;
+    }
 }
 #users{
     .bg{
@@ -159,6 +164,7 @@ input{
 }
 .bg{
     background:transparent url('../images/bar-bg.jpg') left top no-repeat;
+    background-size: 100%;
     opacity: .5;
     position: absolute;
     z-index: 0;
@@ -167,7 +173,7 @@ input{
     height: 100%;
     @include transition(opacity .35s);
     &.highlight{
-        opacity: .9;
+        opacity: .7;
     }
 }
 

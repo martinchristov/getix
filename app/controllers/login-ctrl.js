@@ -1,30 +1,34 @@
 /* global angular */
 'use strict';
 (function () {
-	var Login = function (Account, $location) {
+	var Login = function (Account, $location, $timeout) {
 		this.error = null;
 		this.email = '';
 		this.password = '';
 
 		this.location = $location;
-		this.service = Account;
+		this.account = Account;
+		this.timeout = $timeout;
 	};
 
 	Login.prototype.submit = function () {
 		this.error = null;
-		this.service.login(this.email, this.password, this.loginSuccess, this.loginFail, this);
+		this.account.login(this.email, this.password, this.loginSuccess, this.loginFail, this);
 	};
 
 	Login.prototype.loginSuccess = function (response) {
-		this.service.setAccount(response.objName, response['api_key']);
-		this.location.path('/users');
+		this.account.setAccount(response.objName, response.apiKey);
+		var self = this;
+		this.timeout(function(){
+			self.location.path('/users');
+		},200);
 	};
 
 	Login.prototype.loginFail = function (response) {
 		this.error = response.message;
 	};
 
-	Login.$inject = ['Account', '$location'];
+	Login.$inject = ['Account', '$location', '$timeout'];
 
 	angular.module('getix').controller('Login', Login);
 })();

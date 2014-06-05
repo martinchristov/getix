@@ -18,16 +18,12 @@
 			email: email,
 			password: password
 		};
-
-		// return success.call(context, {
-		//   'api_key': '123123123',
-		//   'objName': 'andro'
-		// })
-
+		var self = this;
 		this.server.post('/api/v2/login/', data, function (response, status) {
 			if (response.error) {
 				return fail.call(context, response, status);
 			} else {
+				self.server.setToken(response.apiKey);
 				return success.call(context, response, status);
 			}
 		});

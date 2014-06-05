@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 tasks: ['bowerInstall']
             },
             js: {
-                files: ['<%= config.app %>/scripts/{,*/}*.js'],
+                files: ['<%= config.app %>/{,*/}*.js'],
                 tasks: ['jshint'],
                 // tasks:[],
                 options: {
