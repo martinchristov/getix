@@ -6,6 +6,10 @@
 	hm-dragup="dragUp($event)"
 	hm-dragdown="dragDown($event)"
 	hm-dragend="dragEnd()">
+		<div class="pintainer">
+			<div class="rect"></div>
+			<div class="icon icon_pushpin"></div>
+		</div>
 		<h2 hm-tap="tapHead()">
 			<div ng-hide="bill.table!=null||bill.client.length>0" class="choose">Choose a table</div>
 			<div ng-show="bill.table!=null">Table {{bill.table.name}} <small>{{bill.client}}</small></div>

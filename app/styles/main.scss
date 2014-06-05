@@ -514,11 +514,85 @@ $grid-margin:6px;
     }
 }
 
+
+#bills{
+    position: absolute;
+    right:10px;
+    top: 100%;
+    margin-top: -70px;
+    width: 100%;
+    z-index: 98;
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+      margin-top: -90px;
+    }
+    .holder{
+        height: 100%;
+    }
+    .list{
+        right: 0;
+        position: absolute;
+    }
+    &.open{
+        .bill{
+            .bottom{
+                .btn.cancel .icon{
+                    @include transform(rotate(-90deg));
+                }
+            }
+        }
+    }
+
+    @include transition(all .4s);
+
+    &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
+        display: block!important;
+    }
+    &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
+        @include transform(translate(0,70px));
+        opacity: 0;
+    }
+    &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
+        @include transform(translate(0));
+        opacity: 1;
+    }
+}
+
 .bill{
     width: 315px;
     background:rgba(255,255,255,0.95);
-    position: relative;
-    // overflow: hidden;
+    position: absolute;
+    border-radius: 6px;
+    @include unselectable;
+    
+    .pintainer{
+        position: absolute;
+        right: 0;top: 0;
+        border-top-right-radius: 6px;
+        width: 44px; height: 44px;
+        overflow: hidden;
+        .rect{
+            @include transform(rotate(45deg));
+            background:#eaeaea;
+            width: 66px;height: 40px;
+            top: -10px;
+            right: -26px;
+            position: absolute;
+        }
+        .icon{
+            position: absolute;
+            @include transform(rotate(-45deg));
+            color: #707070;
+            font-size: 20px;
+            top: 5px;right: 5px;
+        }
+    }
+    &.collapsed .pintainer .icon{
+        color: #fff;
+    }
+    &:hover .pintainer .icon{
+        color: #707070;
+    }
+
     .head{
         height: 62px;
         padding: 0 20px;
@@ -1036,6 +1110,16 @@ $grid-margin:6px;
             opacity: 1;
         }
     }
+
+
+    &.highlight{
+        background:rgba(255,255,255,0.9);
+    }
+    &.collapsed{
+        top: 3px !important;
+    }
+
+
     @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
     
     &.static{
@@ -1056,61 +1140,6 @@ $grid-margin:6px;
     }
 }
 
-#bills{
-    position: absolute;
-    right:10px;
-    top: 100%;
-    margin-top: -70px;
-    width: 100%;
-    z-index: 98;
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
-      margin-top: -90px;
-    }
-    .holder{
-        height: 100%;
-    }
-    .list{
-        right: 0;
-        position: absolute;
-    }
-    .bill{
-        position: absolute;
-        border-radius: 6px;
-        @include unselectable;
-        
-        &.highlight{
-            background:rgba(255,255,255,0.9);
-        }
-        &.collapsed{
-            top: 3px !important;
-        }
-    }
-    
-
-    &.open{
-        .bill{
-            .bottom{
-                .btn.cancel .icon{
-                    @include transform(rotate(-90deg));
-                }
-            }
-        }
-    }
-
-    @include transition(all .4s);
-
-    &.ng-hide-add, &.ng-hide-remove, &.ng-hide-add-active{
-        display: block!important;
-    }
-    &.ng-hide-remove, &.ng-hide-add.ng-hide-add-active, &.ng-enter{
-        @include transform(translate(0,70px));
-        opacity: 0;
-    }
-    &.ng-hide-remove.ng-hide-remove-active, &.ng-hide-add, &.ng-enter-active{
-        @include transform(translate(0));
-        opacity: 1;
-    }
-}
 
 .dropdown{
     position: absolute;
