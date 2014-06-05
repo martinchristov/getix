@@ -40,6 +40,11 @@
 					]
 				}
 			})
+			.when('/dashboard',{
+				controller:'Dash',
+				controllerAs:'dash',
+				templateUrl:'view/dashboard.html'
+			})
 			.otherwise({
 				redirectTo: '/pos'
 			});

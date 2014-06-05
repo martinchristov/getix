@@ -75,35 +75,6 @@
 		
 	};
 
-	POS.prototype.fullscreen = function(){
-		var doc = angular.element('html')[0],
-			ison=(document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen);
-	    
-	    if(ison){
-			if(doc.requestFullscreen){
-				doc.requestFullscreen();
-			} else if (doc.webkitRequestFullscreen){
-			    doc.webkitRequestFullscreen();
-			} else if (doc.mozRequestFullScreen) {
-			    doc.mozRequestFullScreen();
-			} else if (doc.msRequestFullscreen) {
-			    doc.msRequestFullscreen();
-			}
-	    }
-	    else {
-			if (document.cancelFullScreen) {
-				document.cancelFullScreen();
-			} else if (document.webkitCancelFullScreen) {
-			    document.webkitCancelFullScreen();
-			} else if (document.mozCancelFullScreen) {
-			    document.mozCancelFullScreen();
-			} else if (document.msCancelFullScreen) {
-			    document.msCancelFullScreen();
-			}
-	    }
-		
-	};
-
 	POS.$inject = ['appData','UIService', '$timeout', '$scope'];
 
 	angular.module('getix').controller('POS',POS);
