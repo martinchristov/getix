@@ -680,31 +680,39 @@ $grid-margin:6px;
         position: relative;
         overflow: hidden;
         padding: 10px;
-        @include transition(all .2s);
+        // @include transition(all .2s);
         .pointer{
             position: absolute;
             z-index: 9;
             width: 40px;height: 40px;
-            color: #fff;
             bottom: -40px;
             left: 0;
+            .icon{
+                width: 40px;height: 40px;
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+                @include transform-origin(50%,50%);
+                @include transform(rotate(180deg));
+            }
             @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
-            @include transform-origin(50%,50%);
-            @include transform(rotate(0deg));
         }
         &:hover{
             background:#DDD;
             .pointer{
                 bottom:10px;
-                @include transform(rotate(180deg));
+                .icon{
+                   @include transform(rotate(0deg)); 
+               }
             }
         }
         &.expanded{
             .pointer{
             
             }
-            &:hover .pointer{
-                @include transform(rotate(0deg));
+            &:hover .pointer .icon{
+                @include transform(rotate(180deg));
             }
         }
         .item{
@@ -729,7 +737,7 @@ $grid-margin:6px;
                 margin-bottom: 10px;
             }
         }
-        @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
+        // @include transition(all .4s cubic-bezier(0.250, 0.250, 0.000, 1.300));
         &.ng-enter{
             // @include transform(translate(0,-50px));
             // opacity: 0;

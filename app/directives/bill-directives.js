@@ -68,14 +68,28 @@
 
 				//items
 				$scope.expand = [];
-				var expanded=-1, preventCollapse=false, collapsePromise;
+				var expanded=-1, preventCollapse=false, collapsePromise, preventStackCollapse=false;
 
 				$scope.toggleExpand = function(index){
 					if(!$scope.grouping && !preventCollapse){
+						preventStackCollapse=true;
 						$scope.expand[index]=!$scope.expand[index];
 						if($scope.expand[index]){
 							expanded=index;
 						}
+					}
+				};
+				$scope.addItemFromStack = function(item){
+					$scope.stackExpanded=false;
+					$scope.bill.add(item);
+				};
+
+				$scope.toggleStackExpand = function(){
+					if(!preventStackCollapse){
+						$scope.stackExpanded = !$scope.stackExpanded;
+					}
+					else {
+						preventStackCollapse=false;
 					}
 				};
 
