@@ -7,6 +7,7 @@
 		this.host = '';
 		// this.adapter;
 		this.token = null;
+		this.userid = null;
 
 		this.$get = [
 			'$http',
@@ -31,6 +32,11 @@
 
 	Server.prototype.setToken = function (token) {
 		this.token = token;
+		return this;
+	};
+
+	Server.prototype.setUserId = function(userid){
+		this.userid = userid;
 		return this;
 	};
 
@@ -79,6 +85,9 @@
 
 		if (this.token){
 			headers.token = this.token;
+		}
+		if(this.userid){
+			headers.userid = this.userid;
 		}
 
 		request = {

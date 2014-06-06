@@ -2,9 +2,18 @@
 	<div class="bg highlight"></div>
 	<div class="content">
 		<top-bar></top-bar>
-
+		<div class="cats">
+			<div class="item" ng-repeat="cat in dash.cats">
+				<div class="cat {{cat.key}}"></div>
+				<div class="cap">{{cat.revenue | money}} <br><small>{{cat.name}}</small></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="total" ng-class="{in:dash.cats.length>0}">
+			<h1><b>{{dash.data.total | money}}</b> today</h1>
+		</div>
 		<div id="graph">
-			<graph data="dash.data" resize=true></graph>
+			<graph data="dash.data.graph" resize=true></graph>
 		</div>
 	</div>
 </div>

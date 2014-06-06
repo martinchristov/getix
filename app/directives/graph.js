@@ -16,6 +16,7 @@
 		}
 	};
 	function Graph ($scope, el) {
+
 		var svg = d3.select(el[0]).append('svg')
 			.attr({
 				width:el.width(),
@@ -29,8 +30,8 @@
 			xAxis,
 			_xAxis,
 			bottomBar,
+			cpoints,
 			updateScales = function(){
-				console.log(d3.format("$"));
 				balanceScale = d3.scale.linear()
 					.domain(d3.extent($scope.data,function(d){return d.balance;}))
 					.range([0, opts.h-opts.ybuffer]);
@@ -61,8 +62,24 @@
 					.attr({
 						d:curve
 					});
-				};
+			},
+			updateOnResize = function(){
+				svg.attr({
+					width:el.width()
+				}),
+				updateScales();
+				updatePath();
+			};
 
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.html(function(d) { 
+				console.log(d);
+				return '<span>' + d.balance + '</span>';
+			})
+			.offset([-12, 0])
+
+		svg.call(tip);
 
 		//insert one 0 point at each end
 		$scope.data.unshift({
@@ -73,8 +90,6 @@
 			hour:$scope.data[$scope.data.length-1].hour+1,
 			balance:0
 		});
-
-		
 
 		updateScales();
 
@@ -90,6 +105,7 @@
 
 		createGradient(svg);
 
+		//draw flat line
 		path = svg.append('path')
 			.data([$scope.data])
 			.attr({
@@ -99,28 +115,106 @@
 				'stroke-width':2
 			});
 
+		//draw points
+		cpoints = svg.selectAll('g.cpoint')
+			.data($scope.data)
+			.enter()
+			.append('g')
+			.attr({
+				'class':'cpoint'
+			})
+			.each(function(d,i){
+				d3.select(this)
+				.append('circle')
+				.attr({
+					'class':'outer',
+					cx: function(d){
+						return hourScale(d.hour);
+					}, 
+					cy:function(d){
+						return opts.h- balanceScale(d.balance) + opts.ybuffer;
+					},
+					r:0,
+					opacity:0
+				});
+				d3.select(this)
+				.append('circle')
+				.attr({
+					'class':'front',
+					cx: function(d){
+						return hourScale(d.hour);
+					}, 
+					cy:function(d){
+						return opts.h- balanceScale(d.balance) + opts.ybuffer;
+					},
+					r:0,
+					opacity:0
+				});
+
+				d3.select(this)
+				.append('circle')
+				.attr({
+					'class':'back',
+					cx: function(d){
+						return hourScale(d.hour);
+					}, 
+					cy:function(d){
+						return opts.h- balanceScale(d.balance) + opts.ybuffer;
+					},
+					r:20,
+					fill:'#ccc',
+					opacity:0
+				});
+			})
+			.on('mouseover',function(d,i){
+				d3.select(this).select('.outer')
+				.transition()
+				.duration(950).ease('elastic')
+				.attr({
+					opacity:.9,
+					r:10
+				});
+				d3.select(this).select('.front')
+				.transition().delay(100)
+				.duration(950).ease('elastic')
+				.attr({
+					opacity:1,
+					r:7
+				});
+				tip.show(d,i);
+			})
+			.on('mouseout',function(d,i){
+				d3.select(this).select('.outer')
+				.transition().delay(150)
+				.duration(250)
+				.attr({
+					opacity:0,
+					r:0.3
+				});
+				d3.select(this).select('.front')
+				.transition()
+				.duration(250)
+				.attr({
+					opacity:0,
+					r:0.3
+				});
+				tip.hide(d,i);
+			});
+		//draw axis 
 		bottomBar = svg.append('path')
 			.attr({
 				d: template('M{x1},{y2} {x1},{y1} {x2},{y1} {x2},{y2}', {x1:0, x2: el.width(), y1:opts.h-opts.bottom, y2:opts.h}),
 				'class':'bottom-bar'
 			});
-
 		_xAxis = svg.append('g').attr({
 		    'class':'axis',
 		    transform:'translate('+ [0, opts.h-opts.bottom-4] +')'
 		}).call(xAxis);
 
+		//animate in the graph
 		setTimeout(updatePath,1000);
 
-		angular.element(window).resize(function(){
-			svg.attr({
-				width:el.width()
-			}),
-			updateScales();
-			updatePath();
-		});
-
-
+		angular.element(window).resize(updateOnResize);
 	};
 
 	config.link = Graph;

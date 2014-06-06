@@ -90,6 +90,34 @@ $clr-item:#FCFAE2;
             box-shadow: 0 1px 0 shade($clr-blue, $btn-shadow-shade);
         }
     }
+
+
+}
+.cat{
+    -webkit-background-size: 120%;
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.hot-drinks{
+    background-image:url(../images/icons/hot-drinks.png);
+    background-size:120%;
+}
+.cold-drinks{
+    background-image:url(../images/icons/cold-drinks.png);
+    background-size:120%;
+}
+.cocktails{
+    background-image:url(../images/icons/cocktails.png);
+    background-size:120%;
+}
+.other{
+    background-image:url(../images/icons/other.png);
+    background-size:120%;
+}
+.liqueur{
+    background-image:url(../images/icons/liqueur.png);
+    background-size:120%;
 }
 
 input{
@@ -141,7 +169,106 @@ input{
             stroke:#7b763f;
             stroke-width:1;
         }
+        circle.outer{
+            fill:#ffea00;
+        }
+        circle.front{
+            stroke-width:0;
+            fill:#68621c;
+        }
     }
+
+    .cats{
+        margin: 30px;
+        min-height: 108px;
+        
+        .cat{
+            width: 60px;height: 60px;
+            border-radius: 100%;
+            background-color: #525252;
+            @include transition(all .45s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+        }
+        .cap{
+            margin-top: 10px;
+            @include transition(all .45s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+        }
+        small{
+            font-size: 15px;
+            font-weight: 300px;
+        }
+
+        .item{
+            min-width: 140px;
+            line-height: 17px;
+            float: left; margin-right: 20px;
+            font-weight: 400;
+            font-size: 25px;
+            color: #fff;
+
+            @include transition(all .65s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+
+            &.ng-enter{
+                .cat{
+                    // @include transform(scale(0.1));
+                }
+                @include transform(translate(-100px,0px));
+                opacity: 0;
+            }
+            &.ng-enter-active, &.ng-leave{
+                .cat{
+                    // @include transform(scale(1));
+                }
+                @include transform(translate(0,0));
+                opacity: 1;
+            }
+            &:nth-of-type(1){
+                @include transition-delay(.1s);
+                .cat{
+                   @include transition-delay(.1s); 
+                }
+            }
+            &:nth-of-type(2){
+                @include transition-delay(.2s);
+                .cat{
+                   @include transition-delay(.2s); 
+                }
+            }
+            &:nth-of-type(3){
+                @include transition-delay(.3s);
+                .cat{
+                   @include transition-delay(.3s); 
+                }
+            }
+            &:nth-of-type(4){
+                @include transition-delay(.4s);
+                .cat{
+                   @include transition-delay(.4s); 
+                }
+            }
+        }
+    }
+    .total{
+        margin: 40px 30px 0;
+        font-weight: 300;
+        color: #fff;
+        font-size: 25px;
+        b{
+            font-weight: 700;
+            color: #fff;
+            font-family: Roboto,Lato,Arial,sans-serif;
+            font-size: 45px;
+        }
+        @include transition(all .65s cubic-bezier(0.250, 0.250, 0.000, 1.200));
+        @include transform(transition(-100px,0));
+        opacity: 0;
+        &.in{
+            opacity: 1;
+            @include transform(transition(0,0));
+        }
+    }
+}
+.d3-tip{
+    z-index:999999;
 }
 #users{
     .bg{
@@ -307,26 +434,7 @@ input{
         }
 
         //custom styling for category keywords
-        &.hot-drinks{
-            background-image:url(../images/icons/hot-drinks.png);
-            background-size:120%;
-        }
-        &.cold-drinks{
-            background-image:url(../images/icons/cold-drinks.png);
-            background-size:130%;
-        }
-        &.cocktails{
-            background-image:url(../images/icons/cocktails.png);
-            background-size:120%;
-        }
-        &.other{
-            background-image:url(../images/icons/other.png);
-            background-size:120%;
-        }
-        &.liqueur{
-            background-image:url(../images/icons/liqueur.png);
-            background-size:120%;
-        }
+        
 
         &.on{
             box-shadow:none;

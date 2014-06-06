@@ -3,7 +3,7 @@
 
 (function () {
 
-	var NAME_STORE = '_user';
+	var NAME_STORE = '_account';
 	var KEY_STORE = '_key';
 
 	var Account = function (Server, localStorageService, Init) {
@@ -30,6 +30,7 @@
 	};
 
 	Account.prototype.setAccount = function (name, key) {
+		console.log(name,key);
 		this.store.set(NAME_STORE, name);
 		this.store.set(KEY_STORE, key);
 		return this;
