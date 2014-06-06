@@ -10,10 +10,6 @@
 		this.store = localStorageService;
 		this.q = $q;
 		this.timeout = $timeout;
-
-		// if(!this.hasData){
-		// 	this.fetchData();
-		// }
 	};
 
 	Init.prototype.getData = function(){

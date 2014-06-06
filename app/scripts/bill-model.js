@@ -2,24 +2,42 @@
 'use strict';
 (function(){
 
-	function Bill(position){
-		this.index=0;
-		this.position=position;
-		this.table = null;
-		this.client = '';
+	function Bill(futureBillData){
+		_.extend(this,{
+			index:0,
+			position:0,
+			table:null,
+			client:'',
+			closedStack:null,
+			openedStack:null,
+			lastGroupItem : {price:0}
+		});
 
-		this.closedStack = null;
-		this.openedStack=null;
+		this.$unwrap(futureBillData);
 		this.newStack();
-		this.lastGroupItem = {price:0};
 	}
 	Bill.$factory = [
-		function(){
+		'$timeout',
+		// '$resource',
+		function($timeout, $resource){
+			_.extend(Bill,{
+				$timeout:$timeout,
+				$$resource:$resource
+			});
 			return Bill;
 		}
 	];
 
 	angular.module('getix').factory('gxBill', Bill.$factory);
+
+	Bill.prototype.$unwrap = function(futureBillData){
+		var self = this;
+
+		this.$futureBillData = futureBillData;
+		this.$futureBillData.then(function(data) {
+			Bill.$timeout(function() { _.extend(self, data); });
+		});
+	};
 
 	Bill.prototype.add = function(item){
 		//add to the last item?
@@ -37,9 +55,13 @@
 				quantity:1
 			})
 		);
+
+		this.$save();
 	};
 	Bill.prototype.remove = function(item){
 		this.openedStack.items = _.reject(this.openedStack.items,item);
+
+		this.$save();
 	};
 
 	Bill.prototype.group = function(){
@@ -70,6 +92,8 @@
 		this.openedStack = {
 			items:[]
 		};
+
+		this.$save();
 	};
 	Bill.prototype.closeStack = function(){
 		var _this=this,
@@ -114,6 +138,7 @@
 		
 
 		this.newStack();
+
 	};
 
 	Bill.prototype.setTable = function(table){
@@ -145,6 +170,13 @@
 			total+=this.openedStack.items[i].price*this.openedStack.items[i].quantity;
 		}
 		return total;
+	};
+
+	Bill.prototype.$save = function(){
+		// this.$$resource.set(this.id,this);
+	};
+	Bill.prototype.$close = function(){
+		// this.$$resource.close(this.id);
 	};
 
 })();
