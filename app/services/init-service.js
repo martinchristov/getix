@@ -51,7 +51,7 @@
 		if(this.store.get(NAME_STORE)){
 			this.timeout(function(){
 				deferred.resolve(self.store.get(NAME_STORE).operators.data);
-			});
+			},50);
 		}
 		else {
 			this.fetchData().success(function(d){

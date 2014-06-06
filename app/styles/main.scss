@@ -118,6 +118,30 @@ input{
     overflow: hidden;
     z-index: 2;
     background:#000;
+
+    .graph{
+        position: absolute;
+        bottom: 0;
+        height: 300px;
+        width: 100%;
+        .axis{
+            path, line{
+                fill:none;
+                stroke:none;
+            }
+            text{
+                font-family: Lato, Arial, sans-serif;
+                font-weight: 300;
+                fill: #fff;
+                font-size: 13px;
+            }
+        }
+        .bottom-bar{
+            fill:#404040;
+            stroke:#7b763f;
+            stroke-width:1;
+        }
+    }
 }
 #users{
     .bg{
