@@ -8,11 +8,11 @@
 	};
 	function TopBar () {
 		// body...
-	};
+	}
 
 	config.link = TopBar;
 
 	angular.module('getix').directive('topBar',[function(){
 		return config;
-	}])
+	}]);
 })();

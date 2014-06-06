@@ -22,10 +22,10 @@
 				width:el.width(),
 				height:opts.h
 			}),
-			hourScale, 
-			balanceScale, 
-			flatLine, 
-			curve, 
+			hourScale,
+			balanceScale,
+			flatLine,
+			curve,
 			path,
 			xAxis,
 			_xAxis,
@@ -66,18 +66,18 @@
 			updateOnResize = function(){
 				svg.attr({
 					width:el.width()
-				}),
+				});
 				updateScales();
 				updatePath();
 			};
 
 		var tip = d3.tip()
 			.attr('class', 'd3-tip')
-			.html(function(d) { 
+			.html(function(d) {
 				console.log(d);
 				return '<span>' + d.balance + '</span>';
 			})
-			.offset([-12, 0])
+			.offset([-12, 0]);
 
 		svg.call(tip);
 
@@ -123,14 +123,14 @@
 			.attr({
 				'class':'cpoint'
 			})
-			.each(function(d,i){
+			.each(function(){
 				d3.select(this)
 				.append('circle')
 				.attr({
 					'class':'outer',
 					cx: function(d){
 						return hourScale(d.hour);
-					}, 
+					},
 					cy:function(d){
 						return opts.h- balanceScale(d.balance) + opts.ybuffer;
 					},
@@ -143,7 +143,7 @@
 					'class':'front',
 					cx: function(d){
 						return hourScale(d.hour);
-					}, 
+					},
 					cy:function(d){
 						return opts.h- balanceScale(d.balance) + opts.ybuffer;
 					},
@@ -157,7 +157,7 @@
 					'class':'back',
 					cx: function(d){
 						return hourScale(d.hour);
-					}, 
+					},
 					cy:function(d){
 						return opts.h- balanceScale(d.balance) + opts.ybuffer;
 					},
@@ -171,7 +171,7 @@
 				.transition()
 				.duration(950).ease('elastic')
 				.attr({
-					opacity:.9,
+					opacity:0.9,
 					r:10
 				});
 				d3.select(this).select('.front')
@@ -215,7 +215,7 @@
 		setTimeout(updatePath,1000);
 
 		angular.element(window).resize(updateOnResize);
-	};
+	}
 
 	config.link = Graph;
 
@@ -231,23 +231,23 @@
 	}
 
 	function createGradient (svg) {
-		var gradient = svg.append("svg:defs")
-			.append("svg:linearGradient")
-			.attr("id", "gradient")
-			.attr("x1", "0%")
-			.attr("y1", "0%")
-			.attr("x2", "0%")
-			.attr("y2", "100%")
-			.attr("spreadMethod", "pad");
+		var gradient = svg.append('svg:defs')
+			.append('svg:linearGradient')
+			.attr('id', 'gradient')
+			.attr('x1', '0%')
+			.attr('y1', '0%')
+			.attr('x2', '0%')
+			.attr('y2', '100%')
+			.attr('spreadMethod', 'pad');
 
-		gradient.append("svg:stop")
-			.attr("offset", "0%")
-			.attr("stop-color", "#626262")
-			.attr("stop-opacity", .85);
+		gradient.append('svg:stop')
+			.attr('offset', '0%')
+			.attr('stop-color', '#626262')
+			.attr('stop-opacity', 0.85);
 
-		gradient.append("svg:stop")
-			.attr("offset", "100%")
-			.attr("stop-color", "#474747")
-			.attr("stop-opacity", .85);
+		gradient.append('svg:stop')
+			.attr('offset', '100%')
+			.attr('stop-color', '#474747')
+			.attr('stop-opacity', 0.85);
 	}
 })();

@@ -87,7 +87,7 @@
 				}
 			]
 		};
-	};
+	}
 
 	Dash.$inject = ['$timeout'];
 

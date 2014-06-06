@@ -185,7 +185,7 @@
 						    document.msCancelFullScreen();
 						}
 				    }
-				}
+				};
 			}
 		};
 	}])
