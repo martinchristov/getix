@@ -5,7 +5,8 @@
 			<h1>Bilkova</h1>
 			<h3>choose a user</h3>
 			<hr>
-			<div class="item" ng-repeat="user in users.data" hm-tap="users.chosen=user">{{user.name}}</div>
+			<div class="item" ng-repeat="user in users.data" hm-tap="users.choose(user)">{{user.name}}</div>
+			<a href="#/logout">logout</a>
 		</div>
 		<div class="holder" ng-show="users.chosen">
 			<h1>{{users.chosen.name}}</h1>

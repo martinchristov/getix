@@ -14,6 +14,11 @@
 		this.loginError=false;
 	};
 
+	Users.prototype.choose = function(user){
+		this.User.login(user);
+		this.$location.path('/pos');
+	};
+
 	Users.prototype.login = function(){
 		if(md5(this.pass)===this.chosen.pswHash){
 			this.loginError=false;

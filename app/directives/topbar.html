@@ -5,15 +5,9 @@
 	<a href="#/pos" class="back btn" ng-show="dash"><div class="text">&lt; back to POS</div></a>
 	<h1>Bilkova</h1>
 	<div class="btns">
-	<!-- ng-class="{on:pos.showDashboard}" hm-tap="pos.showDashboard=!pos.showDashboard" -->
 		<a class="btn icon icon_dashboard" href="#/dashboard" ng-hide="dash"></a>
-		<div class="btn" hm-tap="userDropdown=!userDropdown"><div class="text">martin</div></div>
+		<a class="btn" href="#/users"><div class="text">{{pos.User.getUser()}}</div></a>
 		<div class="btn icon icon_settings"></div>
 		<div class="btn icon icon_fullscreen" fullscreen hm-tap="toggleFullscreen()"></div>
-	</div>
-
-	<div class="user dropdown" ng-show="userDropdown">
-		<a href="#/users">Switch user</a>
-		<a href="#/logout">Logout</a>
 	</div>
 </div>

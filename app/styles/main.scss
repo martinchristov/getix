@@ -6,6 +6,21 @@
 
 @import "../fonts/_icons.scss";
 
+$btn-shadow-size:4px;
+$btn-shadow-shade:35;
+$clr-hot-drinks:#895a48;
+$clr-cold-drinks:#B9C2C9;
+$clr-cocktails:#844889;
+$clr-other:#999;
+$clr-liqueur:#999;
+$clr-money:#41921e;
+$clr-dark:#575757;
+$clr-darker:#494949;
+$clr-grey:#a2a2a2;
+$clr-blue:#1e75c6;
+$clr-green:#4AB41D;
+$clr-item:#FCFAE2;
+
 // @import "compass/helpers/colors";
 
 $font-family:"Open Sans", Helvetica, Arial, sans-serif;
@@ -21,7 +36,10 @@ body {
 h1,h2,h3,h4{
     font-weight: 300;
 }
-
+a{
+    text-decoration: none;
+    color: $clr-blue;
+}
 .clearfix{
     width: 100%; float: none; clear: both;
 }
@@ -36,20 +54,6 @@ h1,h2,h3,h4{
     user-select: none;
 }
 
-$btn-shadow-size:4px;
-$btn-shadow-shade:35;
-$clr-hot-drinks:#895a48;
-$clr-cold-drinks:#B9C2C9;
-$clr-cocktails:#844889;
-$clr-other:#999;
-$clr-liqueur:#999;
-$clr-money:#41921e;
-$clr-dark:#575757;
-$clr-darker:#494949;
-$clr-grey:#a2a2a2;
-$clr-blue:#1e75c6;
-$clr-green:#4AB41D;
-$clr-item:#FCFAE2;
 
 
 .icon{
@@ -302,6 +306,7 @@ input{
             margin-left: 24px;
             line-height: 30px;
             outline: none;
+            background:#ccc;
         }
     }
     .someone-else{
@@ -528,7 +533,9 @@ $grid-margin:6px;
             padding: 10px;
             position: relative;
             border:1px solid #808080;
-
+            .text{
+                overflow: hidden;
+            }
             .resize{
                 position: absolute;
                 display: none;

@@ -3,6 +3,7 @@
 (function(){
 
 	function Bill(futureBillData){
+		var time = new Date();
 		_.extend(this,{
 			index:0,
 			position:0,
@@ -10,7 +11,10 @@
 			client:'',
 			closedStack:null,
 			openedStack:null,
-			lastGroupItem : {price:0}
+			lastGroupItem : {price:0},
+			groupIndex:0,
+			timestamp: time.getTime(),
+			userId: Bill.User.getUserId()
 		});
 
 		this.$unwrap(futureBillData);
@@ -18,11 +22,13 @@
 	}
 	Bill.$factory = [
 		'$timeout',
-		// '$resource',
-		function($timeout, $resource){
+		'User',
+		'gxResource',
+		function($timeout, User, Resource){
 			_.extend(Bill,{
 				$timeout:$timeout,
-				$$resource:$resource
+				User:User,
+				$$resource:new Resource('/bills')
 			});
 			return Bill;
 		}
@@ -65,19 +71,21 @@
 	};
 
 	Bill.prototype.group = function(){
+		this.groupIndex++;
 		var groupItem = {
 			items:[],
 			price:0,
 			quantity:1,
-			type:'group'
+			type:'group',
+			id:this.groupIndex
 		},
-			_this = this;
+			self = this;
 
 		for (var i = this.openedStack.items.length - 1; i >= 0; i--) {
-			if(_this.openedStack.items[i].checked){
-				groupItem.price+=_this.openedStack.items[i].price*_this.openedStack.items[i].quantity;
-				groupItem.items.push(_this.openedStack.items[i]);
-				_this.openedStack.items.splice(i,1);
+			if(self.openedStack.items[i].checked){
+				groupItem.price+=self.openedStack.items[i].price*self.openedStack.items[i].quantity;
+				groupItem.items.push(self.openedStack.items[i]);
+				self.openedStack.items.splice(i,1);
 			}
 		}
 		if(groupItem.items.length>0){
@@ -96,13 +104,13 @@
 		this.$save();
 	};
 	Bill.prototype.closeStack = function(){
-		var _this=this,
+		var self=this,
 			idDict={};
 
-		var stack = _.extend(_.clone(_this.openedStack),{
+		var stack = _.extend(_.clone(self.openedStack),{
 			total: 0
 		});
-
+		//walk through the openedStack and combine items
 		for(var i=0;i<stack.items.length;i++){
 			stack.total+= stack.items[i].quantity*stack.items[i].price;
 
@@ -155,6 +163,7 @@
 		if(this.table!==null){
 			this.table.busy=false;
 		}
+		this.$close();
 	};
 
 	Bill.prototype.cancel = function(){
@@ -164,7 +173,7 @@
 	Bill.prototype.total = function(){
 		var total=0;
 		if(this.closedStack!==null){
-			total+=this.closedStack.total;
+			total=this.closedStack.total;
 		}
 		for(var i=0;i<this.openedStack.items.length;i++){
 			total+=this.openedStack.items[i].price*this.openedStack.items[i].quantity;
@@ -173,10 +182,10 @@
 	};
 
 	Bill.prototype.$save = function(){
-		// this.$$resource.set(this.id,this);
+		Bill.$$resource.set(this.timestamp,this);
 	};
 	Bill.prototype.$close = function(){
-		// this.$$resource.close(this.id);
+		Bill.$$resource.close(this.timestamp);
 	};
 
 })();

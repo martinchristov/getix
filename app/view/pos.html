@@ -34,8 +34,8 @@
 								hm-tap="bills.addToCurrent(item)"
 								hm-hold="pos.setResizeItem(item)"
 								>
-								<div class="resize icon icon_pointer" hm-tap="pos.resizeItem(item)"></div>
-								{{item.name}}
+									<div class="resize icon icon_pointer" hm-tap="pos.resizeItem(item)"></div>
+									<div class="text">{{item.name}}</div>
 								</div>
 						</div>
 					</div>
@@ -49,7 +49,9 @@
 						<div 
 							class="item" 
 							hm-tap="bills.addToCurrent(item)"
-							ng-repeat="item in pos.searchResults | filter:pos.search">{{item.name}}</div>
+							ng-repeat="item in pos.searchResults | filter:pos.search">
+								<div class="text">{{item.name}}</div>
+							</div>
 					</div>
 					
 				</div>

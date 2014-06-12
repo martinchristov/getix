@@ -23,23 +23,23 @@
 
 	/* Record retrieval */
 
-	Resource.prototype.find = function(uid) {
+	Resource.prototype.find = function(timestamp) {
 		var deferred = Resource.q.defer();
 
-		this._http.get(this.path(uid))
+		this._http.get(this.path(timestamp))
 			.success(deferred.resolve)
 			.error(deferred.reject);
 
 		return deferred.promise;
 	};
 
-	Resource.prototype.path = function(uid) {
-		return uid ? this._path + '/' + uid : this._path;
+	Resource.prototype.path = function(timestamp) {
+		return timestamp ? this._path + '/' + timestamp : this._path;
 	};
 
-	Resource.prototype.set = function(uid, newValue) {
+	Resource.prototype.set = function(timestamp, newValue) {
 		var deferred = Resource.q.defer();
-		var path = this._path + '/' + uid;
+		var path = this._path + '/' + timestamp;
 
 		this._http
 			.put(path, newValue)
@@ -49,9 +49,9 @@
 		return deferred.promise;
 	};
 
-	Resource.prototype.close = function(uid){
+	Resource.prototype.close = function(timestamp){
 		var deferred = Resource.q.defer();
-		var path = this._path + '/' + uid;
+		var path = this._path + '/' + timestamp;
 
 		this._http
 			.delete(path)

@@ -1,7 +1,14 @@
-/* global angular */
+/* global angular,_ */
 'use strict';
 (function(){
-	var POS = function(appData, UIService, $timeout, $scope){
+	var POS = function(appData, UIService, $timeout, $scope, User){
+
+		_.extend(this,{
+			$timeout:$timeout,
+			UIService: UIService,
+			User: User
+		});
+		console.log(User.getUser());
 		this.categories = appData.menu.data;
 		this.currentCategoryIndex = 0;
 		
@@ -12,8 +19,8 @@
 
 		this.dragging = UIService.isDragging();
 		UIService.tables = appData.tables.data;
-		POS.$timeout = $timeout;
-		POS.UIService = UIService;
+		this.$timeout = $timeout;
+		this.UIService = UIService;
 
 		this.search='';
 		this.searching=false;
@@ -33,15 +40,15 @@
 		});
 	};
 	POS.prototype.show = function(index){
-		var _this = this;
+		var self = this;
 		this.searching=false;
 		function switchCat () {
-			_this.currentCategoryIndex = index;
-			_this.groups = _this.categories[index].groups.data;
+			self.currentCategoryIndex = index;
+			self.groups = self.categories[index].groups.data;
 		}
 		switchCat();
-		POS.$timeout(function(){
-			_this.showDashboard=false;
+		this.$timeout(function(){
+			self.showDashboard=false;
 		},100);
 		
 	};
@@ -57,11 +64,12 @@
 
 	POS.prototype.setResizeItem = function(item){
 		this.itemToResize = item;
-		POS.UIService.setResizing(true);
+		this.UIService.setResizing(true);
 	};
 
 	POS.prototype.resizeItem = function(item){
 		// this.itemToResize = item;
+		var self = this;
 		if(item.size<3){
 			item.size++;
 		}
@@ -70,12 +78,12 @@
 		}
 		this.itemToResize=null;
 		setTimeout(function(){
-			POS.UIService.setResizing(false);
+			self.UIService.setResizing(false);
 		},100);
 		
 	};
 
-	POS.$inject = ['appData','UIService', '$timeout', '$scope'];
+	POS.$inject = ['appData','UIService', '$timeout', '$scope', 'User'];
 
 	angular.module('getix').controller('POS',POS);
 

@@ -87,7 +87,7 @@
 			headers.token = this.token;
 		}
 		if(this.userid){
-			headers.userid = this.userid;
+			// headers.userid = this.userid;
 		}
 
 		request = {

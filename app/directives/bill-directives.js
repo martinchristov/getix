@@ -52,7 +52,7 @@
 				// change screen
 				$scope.received=0;
 				$scope.toStep2 = function(){
-					if($scope.bill.openedStack.items.length===0){
+					if($scope.bill.openedStack.items.length===0&&$scope.bill.closedStack===null){
 						$scope.$parent.bills.cancel($scope.bill);
 					}
 					else
@@ -60,7 +60,8 @@
 						$scope.received = $scope.bill.total();
 						$scope.step2=true;
 						setTimeout(function(){
-							$('#received-input').focus();
+							var input = angular.element('#received-input').focus();
+							input[0].select();
 						},600);
 					}
 					
