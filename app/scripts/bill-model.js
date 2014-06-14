@@ -3,7 +3,6 @@
 (function(){
 
 	function Bill(futureBillData){
-		var time = new Date();
 		_.extend(this,{
 			index:0,
 			position:0,
@@ -13,7 +12,7 @@
 			openedStack:null,
 			lastGroupItem : {price:0},
 			groupIndex:0,
-			timestamp: time.getTime(),
+			timestamp: new Date().getTime(),
 			userId: Bill.User.getUserId()
 		});
 
@@ -28,7 +27,7 @@
 			_.extend(Bill,{
 				$timeout:$timeout,
 				User:User,
-				$$resource:new Resource('/bills')
+				$$resource:new Resource('/api/v2/bills')
 			});
 			return Bill;
 		}
@@ -58,7 +57,8 @@
 		this.openedStack.items.push(
 			_.extend(_.clone(item),{
 				index:index,
-				quantity:1
+				quantity:1,
+				timestamp:new Date().getTime()
 			})
 		);
 
@@ -77,7 +77,8 @@
 			price:0,
 			quantity:1,
 			type:'group',
-			id:this.groupIndex
+			id:this.groupIndex,
+			timestamp: new Date().getTime()
 		},
 			self = this;
 

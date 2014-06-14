@@ -40,7 +40,7 @@
 	Resource.prototype.set = function(timestamp, newValue) {
 		var deferred = Resource.q.defer();
 		var path = this._path + '/' + timestamp;
-
+		console.log('saving bill', newValue);
 		this._http
 			.put(path, newValue)
 			.success(deferred.resolve)
@@ -52,7 +52,7 @@
 	Resource.prototype.close = function(timestamp){
 		var deferred = Resource.q.defer();
 		var path = this._path + '/' + timestamp;
-
+		
 		this._http
 			.delete(path)
 			.success(deferred.resolve)
