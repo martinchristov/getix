@@ -5,11 +5,12 @@
 
 	var NAME_STORE = '_init';
 
-	var Init = function(Server, localStorageService, $q, $timeout){
+	var Init = function(Server, localStorageService, $q, $timeout,$http){
 		this.server = Server;
 		this.store = localStorageService;
 		this.q = $q;
 		this.timeout = $timeout;
+		this.$http = $http;
 	};
 
 	Init.prototype.getData = function(){
@@ -21,7 +22,7 @@
 			});
 		}
 		else {
-			this.fetchData().success(function(d){
+			this.fetchData().then(function(d){
 				deferred.resolve(d);
 			});
 		}
@@ -33,12 +34,30 @@
 	};
 
 	Init.prototype.fetchData = function(){
-		var promise = this.server.get('/api/v2/init'),
-			self = this;
-		promise.success(function(data){
-			self.store.set(NAME_STORE, data);
+		// var promise = this.server.get('/api/v2/init'),
+		// 	self = this;
+		// promise.success(function(data){
+		// 	self.store.set(NAME_STORE, data);
+		// });
+		var deferred = this.q.defer();
+		this.$http.get('mock.json').success(function(d){
+			console.log(d);
+			deferred.resolve(d);
 		});
-		return promise;
+		// this.timeout(function(){
+		// 	deferred.resolve({
+		// 		menu:{
+		// 			data:[
+		// 				{
+		// 					groups:{
+		// 						data:[]
+		// 					}
+		// 				}
+		// 			]
+		// 		}
+		// 	});
+		// },500);
+		return deferred.promise;
 	};
 
 	Init.prototype.getUsers = function(){
@@ -57,6 +76,6 @@
 		return deferred.promise;
 	};
 
-	Init.$inject = ['Server', 'localStorageService', '$q', '$timeout'];
+	Init.$inject = ['Server', 'localStorageService', '$q', '$timeout','$http'];
 	angular.module('getix').service('Init', Init);
 })();

@@ -39,6 +39,7 @@
 					.domain(d3.extent($scope.data,function(d){return d.hour;}))
 					.range([0, el.width()]);
 
+				console.log(balanceScale);
 				xAxis = d3.svg.axis().scale(hourScale).orient('bottom').ticks(14).tickFormat(function(d){
 					return d+':00';
 				});
@@ -49,6 +50,7 @@
 			updatePath = function(){
 				curve = d3.svg.line()
 				.x(function(d){
+					console.log(hourScale(d.hour));
 					return hourScale(d.hour);
 				})
 				.y(function(d){

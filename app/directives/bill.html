@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div class="hider">
-		<div class="scroll scrollme" win-height-minus="290" scrollbottom>
+		<div class="scroll scrollme" win-height-minus="260" scrollbottom>
 			<div class="in">
 				<div class="step1 step" ng-hide="step2">
 
@@ -110,11 +110,17 @@
 		<div class="btn cancel grey" hm-tap="$parent.bills.pin(bill)">
 			<div class="icon icon_pointer"></div>
 		</div>
-		<div class="btn close green" hm-tap="toStep2()" ng-show="readyToClose()">CHECKOUT</div>
-		<div class="btn close green" hm-tap="bill.closeStack();tmHide();" ng-hide="readyToClose()">TOTAL</div>
+		<div ng-show="readyToClose()">
+			<div class="btn close green" hm-tap="toStep2()">CHECKOUT</div>
+		</div>
+		<div ng-hide="readyToClose()">
+			<div class="btn close green" hm-tap="bill.closeStack();tmHide();">TOTAL</div>
+		</div>
 	</div>
 	<div class="bottom" ng-show="step2">
-		<div class="btn cancel grey" hm-tap="step2=false;"></div>
+		<div class="btn cancel grey" hm-tap="step2=false;">
+			<div class="icon icon_pointer rotate-90"></div>
+		</div>
 		<div class="btn close green" hm-tap="$parent.bills.close(bill)">DONE</div>
 	</div>
 	<div class="bottom" ng-show="grouping">

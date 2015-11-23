@@ -9,7 +9,7 @@
 				// event.preventDefault();
 				// window.location.href='#/login';
 				// return ;
-				$location.path('/login');
+				// $location.path('/login');
 			}
 		};
 

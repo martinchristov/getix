@@ -18,15 +18,17 @@
 			email: email,
 			password: password
 		};
-		var self = this;
-		this.server.post('/api/v2/login/', data, function (response, status) {
-			if (response.error) {
-				return fail.call(context, response, status);
-			} else {
-				self.server.setToken(response.apiKey);
-				return success.call(context, response, status);
-			}
-		});
+		success.call(context, {}, 200);
+		// var self = this;
+		// self.server.setToken('asdasdasd')
+		// this.server.post('/api/v2/login/', data, function (response, status) {
+		// 	if (response.error) {
+		// 		return fail.call(context, response, status);
+		// 	} else {
+		// 		self.server.setToken(response.apiKey);
+		// 		return success.call(context, response, status);
+		// 	}
+		// });
 	};
 
 	Account.prototype.setAccount = function (name, key) {

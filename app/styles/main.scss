@@ -54,6 +54,9 @@ a{
     user-select: none;
 }
 
+.rotate-90{
+    @include transform(rotate(90deg));
+}
 
 
 .icon{
@@ -121,6 +124,10 @@ a{
 }
 .liqueur{
     background-image:url(../images/icons/liqueur.png);
+    background-size:120%;
+}
+.liquor{
+    background-image:url(../images/icons/liquor.png);
     background-size:120%;
 }
 
@@ -897,7 +904,7 @@ $grid-margin:6px;
     }
     .scroll{
         padding: 20px;
-        width: 290px;
+        width: 275px;
         overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
